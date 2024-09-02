@@ -1,0 +1,7 @@
+.half {
+  background-color: white;
+  flex: 0 0 calc((100% - var(--main-gap)) / 2); /* 1872px */
+  height: 100%; /* 656px */
+
+  border-radius: 1.5rem;
+}

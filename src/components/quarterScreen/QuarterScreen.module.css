@@ -1,0 +1,7 @@
+.quarter {
+  background-color: white;
+  flex: 0 0 calc((100% - 3 * var(--main-gap)) / 4); /* 920px */
+  height: 100%; /* 656px */
+
+  border-radius: 1.5rem;
+}
