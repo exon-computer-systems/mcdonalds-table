@@ -1,12 +1,14 @@
 import React from "react";
 import styles from "./HalfScreen.module.css";
-import Promotions from "../Promotions/Promotions";
+import Menu from "../menu/Menu";
+import Promotions from "../promotions/Promotions";
 const HalfScreen = () => {
-  return (
-    <section className={styles.half}>
-      <Promotions></Promotions>
-    </section>
-  );
+    return (
+        <section className={styles.half}>
+            {/* <Menu /> */}
+            <Promotions />
+        </section>
+    );
 };
 
 export default HalfScreen;
