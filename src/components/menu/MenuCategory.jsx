@@ -1,7 +1,6 @@
 import styles from "./Menu.module.css";
-import burgerBkg from "../../assets/burgerBkg.jpg";
 
-const MenuCategory = ({ active, onClick, title }) => {
+const MenuCategory = ({ active, onClick, title, bkg }) => {
     return (
         <section
             className={`${styles.mc_item} ${active ? styles.active : ""}`}
@@ -9,7 +8,7 @@ const MenuCategory = ({ active, onClick, title }) => {
         >
             <img
                 className={styles.mc_item_cover}
-                src={burgerBkg}
+                src={bkg}
                 alt="burger background"
             />
             <section className={styles.mc_item_overflow}>
