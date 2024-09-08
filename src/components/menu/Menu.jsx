@@ -10,7 +10,9 @@ import friesBkg from "../../assets/friesBkg.jpg";
 import useScrollToStart from "../../hooks/useScrollToStart";
 
 const Menu = () => {
-    const menuRef = useScrollToStart(30000);
+    const menuRef = useScrollToStart(30000, () =>
+        setSelectedCategory("burgers")
+    );
 
     const [selectedCategory, setSelectedCategory] = useState("burgers");
 

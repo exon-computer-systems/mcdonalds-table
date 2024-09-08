@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const useScrollToStart = (timeDuration = 30000) => {
+const useScrollToStart = (timeDuration = 30000, callback = null) => {
     const menuRef = useRef(null);
     const timeoutRef = useRef(null);
 
@@ -21,6 +21,10 @@ const useScrollToStart = (timeDuration = 30000) => {
         if (!isTouching) {
             timeoutRef.current = setTimeout(() => {
                 menuRef.current.scrollTo({ left: 0 });
+
+                if (callback) {
+                    callback();
+                }
             }, timeDuration);
         }
 
@@ -32,7 +36,7 @@ const useScrollToStart = (timeDuration = 30000) => {
                 clearTimeout(timeoutRef.current);
             }
         };
-    }, [isTouching, timeDuration]);
+    }, [isTouching, timeDuration, callback]);
 
     return menuRef;
 };
