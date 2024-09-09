@@ -1,7 +1,8 @@
 .quarter {
-  background-color: white;
-  flex: 0 0 calc((100% - 3 * var(--main-gap)) / 4); /* 920px */
-  height: 100%; /* 656px */
+    background-color: white;
+    flex: 0 0 calc((100% - 3 * var(--main-gap)) / 4); /* 920px */
+    max-width: calc((100% - 3 * var(--main-gap)) / 4);
+    height: 100%; /* 656px */
 
-  border-radius: 1.5rem;
+    border-radius: 1.5rem;
 }

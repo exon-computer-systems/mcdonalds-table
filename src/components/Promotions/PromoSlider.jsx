@@ -28,7 +28,12 @@ const PromoSlider = () => {
 
             <section className={styles.scroll_wrapper} ref={ref}>
                 {Array.from({ length: 10 }).map((_, index) => (
-                    <img src={img1} alt="i" key={index} />
+                    <img
+                        src={img1}
+                        alt="i"
+                        key={index}
+                        className={styles.scroll_img}
+                    />
                 ))}
             </section>
         </section>
