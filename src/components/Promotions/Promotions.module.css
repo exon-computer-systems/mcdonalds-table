@@ -59,7 +59,7 @@
   scroll-snap-type: x mandatory;
 }
 
-img {
+.scroll_wrapper > img {
   width: 300px;
   border: 1px solid transparent;
   border-radius: 2rem;
