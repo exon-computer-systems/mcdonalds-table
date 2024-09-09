@@ -22,6 +22,13 @@ const ShoppingCart = () => {
             <input type="number" value={1} />
           </section>
         </section>
+
+        <section className={styles.checkout}>
+          <span>Łącznie: 19,00 PLN</span>
+          <section className={styles.checkout_cta}>
+            <button className={styles.order_btn}>Zamów</button>
+          </section>
+        </section>
       </section>
     </section>
   );
