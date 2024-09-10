@@ -1,0 +1,84 @@
+.container {
+  padding: var(--main-padding);
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper > h2 {
+  font-size: 3rem;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: var(--main-gap);
+}
+
+.items {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  border-top: 0.5px solid black;
+  border-bottom: 0.5px solid black;
+  gap: 1rem;
+}
+
+.item_desc {
+  display: flex;
+}
+.item_desc > p {
+  font-size: 1.4rem;
+  font-weight: 600;
+  align-items: center;
+}
+
+.item_cta {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.item_cta > button {
+  padding: 1rem;
+  border: 0.5px solid black;
+  border-radius: 50%;
+}
+
+.item_cta > input {
+  width: 40%;
+  border: 0.5px solid black;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 1rem;
+}
+
+.trash_icon {
+  font-size: 1.2rem;
+}
+
+.checkout {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.checkout > span {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.order_btn {
+  padding: 1rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: #ffbc08;
+}
