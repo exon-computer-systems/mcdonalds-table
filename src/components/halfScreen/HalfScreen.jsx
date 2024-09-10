@@ -4,11 +4,13 @@ import Menu from "../menu/Menu";
 import Promotions from "../promotions/Promotions";
 import Messages from "../messages/Messages";
 import ShoppingCart from "../shoppingCart/ShoppingCart";
+import MainMenu from "../mainMenu/MainMenu";
 const HalfScreen = () => {
   return (
     <section className={styles.half}>
-      {/* <Menu /> */}
-      <ShoppingCart />
+      <MainMenu />
+      <Menu />
+      {/* <ShoppingCart /> */}
       {/* <Promotions /> */}
       {/* <Messages /> */}
     </section>
