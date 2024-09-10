@@ -36,6 +36,7 @@ const SubmenuItem = ({ userOrder, category, item, addToOrder }) => {
                 <section className={styles.sb_item_count}>
                     <button
                         className={`${styles.sb_item_btn} ${styles.sb_item_btn_decrease}`}
+                        onClick={() => addToOrder(item, category, "minus")}
                     >
                         <FontAwesomeIcon
                             icon={faMinus}
@@ -45,6 +46,7 @@ const SubmenuItem = ({ userOrder, category, item, addToOrder }) => {
                     <span className={styles.sb_item_counter}>{quantity}</span>
                     <button
                         className={`${styles.sb_item_btn} ${styles.sb_item_btn_increase}`}
+                        onClick={() => addToOrder(item, category, "plus")}
                     >
                         <FontAwesomeIcon
                             icon={faPlus}
