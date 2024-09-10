@@ -22,20 +22,20 @@ const Menu = () => {
 
     const [selectedCategory, setSelectedCategory] = useState("burgers");
     const [filter, setFilter] = useState("");
-    const [order, setOrder] = useState({
-        bigmac: 0,
-    });
+    const [userOrder, setUserOrder] = useState({});
 
     const [menu, setMenu] = useState({
         burgers: [
             {
                 itemName: "Big Mac",
+                itemId: "bigmac",
                 itemPrice: 20.5,
                 itemImage: "burgers/bigmac.png",
                 tag: "beef",
             },
             {
                 itemName: "WieśMac Podwójny",
+                itemId: "wiesmac-double",
                 itemPrice: 25.9,
                 itemImage: "burgers/wiesmac-double.png",
                 tag: "beef",
@@ -113,7 +113,7 @@ const Menu = () => {
                 tag: "chicken",
             },
             {
-                itemName: " RedChikker",
+                itemName: "RedChikker",
                 itemPrice: 6.9,
                 itemImage: "burgers/red-chikker.png",
                 tag: "chicken",
@@ -208,11 +208,10 @@ const Menu = () => {
                         .map((el, idx) => (
                             <SubmenuItem
                                 key={idx}
-                                order={order}
-                                setOrder={setOrder}
-                                itemName={el.itemName}
-                                itemPrice={parseFloat(el.itemPrice).toFixed(2)}
-                                itemImage={useImage(el.itemImage)}
+                                userOrder={userOrder}
+                                setOrder={setUserOrder}
+                                category="burgers"
+                                item={el}
                             />
                         ))}
                 </section>
