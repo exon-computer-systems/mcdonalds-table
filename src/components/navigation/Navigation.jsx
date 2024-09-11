@@ -1,10 +1,10 @@
-import styles from "./MainMenu.module.css";
+import styles from "./Navigation.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const MainMenu = () => {
+const Navigation = ({ switchComponent }) => {
   const [isClicked, setIsClicked] = useState(false);
   const handleClick = () => {
     setIsClicked(!isClicked);
@@ -37,14 +37,18 @@ const MainMenu = () => {
           animate={isClicked ? { opacity: 1 } : { opacity: 0 }}
           className={styles.btns_wrapper}
         >
-          <button>Aplikacja</button>
+          <button onClick={() => switchComponent("shoppingCart")}>
+            Aplikacja
+          </button>
           <button>Kelner</button>
-          <button>Promocje</button>
-          <button>Gry</button>
+          <button onClick={() => switchComponent("promotions")}>
+            Promocje
+          </button>
+          <button onClick={() => switchComponent("menu")}>Menu</button>
         </motion.section>
       </section>
     </motion.section>
   );
 };
 
-export default MainMenu;
+export default Navigation;
