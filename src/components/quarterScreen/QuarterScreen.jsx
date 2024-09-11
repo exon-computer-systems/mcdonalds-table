@@ -7,15 +7,15 @@ import ShoppingCart from "../shoppingCart/ShoppingCart";
 import MainMenu from "../mainMenu/MainMenu";
 
 const QuarterScreen = () => {
-  return (
-    <section className={styles.quarter}>
-      <MainMenu />
-      <Menu />
-      {/* <ShoppingCart /> */}
-      {/* <Promotions /> */}
-      {/* <Messages /> */}
-    </section>
-  );
+    return (
+        <section className={styles.quarter}>
+            <MainMenu />
+            <Menu />
+            {/* <ShoppingCart /> */}
+            {/* <Promotions /> */}
+            {/* <Messages /> */}
+        </section>
+    );
 };
 
 export default QuarterScreen;
