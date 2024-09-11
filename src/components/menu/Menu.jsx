@@ -12,114 +12,14 @@ import coffeeBkg from "../../assets/coffeeBkg.jpg";
 import friesBkg from "../../assets/friesBkg.jpg";
 
 const Menu = () => {
-  const menuRef = useScrollToStart(30000, () => setSelectedCategory("burgers"));
   const menuRef = useScrollToStart(60000, () => setSelectedCategory(""));
 
-  const [selectedCategory, setSelectedCategory] = useState("burgers");
-  const [filter, setFilter] = useState("");
-  const [userOrder, setUserOrder] = useState({});
   const [selectedCategory, setSelectedCategory] = useState("");
   const [filter, setFilter] = useState("");
   const [userOrder, setUserOrder] = useState({
     burgers: [],
   });
 
-  const [menu, setMenu] = useState({
-    burgers: [
-      {
-        itemName: "Big Mac",
-        itemId: "bigmac",
-        itemPrice: 20.5,
-        itemImage: "burgers/bigmac.png",
-        tag: "beef",
-      },
-      {
-        itemName: "WieśMac Podwójny",
-        itemId: "wiesmac-double",
-        itemPrice: 25.9,
-        itemImage: "burgers/wiesmac-double.png",
-        tag: "beef",
-      },
-      {
-        itemName: "WieśMac",
-        itemPrice: 22.2,
-        itemImage: "burgers/wiesmac.png",
-        tag: "beef",
-      },
-      {
-        itemName: "McRoyal Podwójny",
-        itemPrice: 25.9,
-        itemImage: "burgers/mcroyal-double.png",
-        tag: "beef",
-      },
-      {
-        itemName: "McRoyal",
-        itemPrice: 20.2,
-        itemImage: "burgers/mcroyal.png",
-        tag: "beef",
-      },
-      {
-        itemName: "McCrispy Supreme",
-        itemPrice: 24.9,
-        itemImage: "burgers/mccrispy-supreme.png",
-        tag: "chicken",
-      },
-      {
-        itemName: "McCrispy",
-        itemPrice: 20.5,
-        itemImage: "burgers/mccrispy.png",
-        tag: "chicken",
-      },
-      {
-        itemName: "McChicken",
-        itemPrice: 18.9,
-        itemImage: "burgers/mcchiken.png",
-        tag: "chicken",
-      },
-      {
-        itemName: "Veggie Burger",
-        itemPrice: 19.6,
-        itemImage: "burgers/veggie-burger.png",
-        tag: "vege",
-      },
-      {
-        itemName: "McDouble",
-        itemPrice: 9.5,
-        itemImage: "burgers/mcdouble.png",
-        tag: "beef",
-      },
-      {
-        itemName: "Cheeseburger",
-        itemPrice: 6.9,
-        itemImage: "burgers/cheeseburger.png",
-        tag: "beef",
-      },
-      {
-        itemName: "Hamburger",
-        itemPrice: 6.5,
-        itemImage: "burgers/hamburger.png",
-        tag: "beef",
-      },
-      {
-        itemName: "Jalapeno Burger",
-        itemPrice: 6.9,
-        itemImage: "burgers/jalapenoburger.png",
-        tag: "beef",
-      },
-      {
-        itemName: "Chikker",
-        itemPrice: 6.9,
-        itemImage: "burgers/chikker.png",
-        tag: "chicken",
-      },
-      {
-        itemName: "RedChikker",
-        itemPrice: 6.9,
-        itemImage: "burgers/red-chikker.png",
-        tag: "chicken",
-      },
-    ],
-  });
   const [menu, setMenu] = useState({
     burgers: [
       {

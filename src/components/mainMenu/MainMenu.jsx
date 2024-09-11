@@ -1,6 +1,6 @@
 import styles from "./MainMenu.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAnglesUp } from "@fortawesome/free-solid-svg-icons";
+import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -13,12 +13,13 @@ const MainMenu = () => {
   return (
     <motion.section
       className={styles.container}
-      initial={{ x: 0, y: 0 }}
+      initial={{ x: 0, y: 5, height: 10 }}
       animate={
         isClicked
           ? {
               x: 0,
-              y: 250,
+              y: 0,
+              height: 250,
             }
           : { x: 0, y: 0 }
       }
@@ -30,14 +31,17 @@ const MainMenu = () => {
           initial={{ x: 0, y: 0 }}
           animate={{ rotate: isClicked ? 180 : 0 }}
         >
-          <FontAwesomeIcon icon={faAnglesUp} />
+          <FontAwesomeIcon icon={faAngleUp} />
         </motion.button>
-        <section className={styles.btns_wrapper}>
+        <motion.section
+          animate={isClicked ? { opacity: 1 } : { opacity: 0 }}
+          className={styles.btns_wrapper}
+        >
           <button>Aplikacja</button>
           <button>Kelner</button>
           <button>Promocje</button>
           <button>Gry</button>
-        </section>
+        </motion.section>
       </section>
     </motion.section>
   );

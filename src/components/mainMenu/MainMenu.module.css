@@ -10,12 +10,15 @@
   background-color: var(--main-green);
   border-bottom: 0.5px solid transparent;
   border-radius: 1rem;
+  z-index: 10;
 }
 
 .container::after {
   content: "";
   position: absolute;
-  top: -30px;
+  top: -29px;
+  /* border-top: 150px solid var(--main-green); */
+
   border-left: 50px solid transparent;
   border-right: 50px solid transparent;
   border-bottom: 30px solid var(--main-green);
@@ -36,8 +39,8 @@
   border: none;
   background-color: transparent;
   align-self: center;
-  top: -20px;
-  z-index: 5;
+  top: -28px;
+  z-index: 20;
 }
 
 .btns_wrapper {
