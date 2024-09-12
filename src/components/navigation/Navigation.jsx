@@ -55,14 +55,14 @@ const Navigation = ({ switchComponent }) => {
             className={styles.btns_wrapper}
           >
             <button onClick={() => switchComponent("menu")}>Menu</button>
-            <button onClick={() => switchComponent("shoppingCart")}>
+            <button onClick={() => switchComponent("application")}>
               Aplikacja
             </button>
             <button>Kelner</button>
             <button onClick={() => switchComponent("promotions")}>
               Promocje
             </button>
-            <button onClick={() => switchComponent("menu")}>Gry</button>
+            <button onClick={() => switchComponent("messages")}>Gry</button>
           </motion.section>
         </section>
       </motion.section>

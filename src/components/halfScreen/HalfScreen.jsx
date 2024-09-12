@@ -5,6 +5,7 @@ import Promotions from "../promotions/Promotions";
 import Messages from "../messages/Messages";
 import ShoppingCart from "../shoppingCart/ShoppingCart";
 import Navigation from "../navigation/Navigation";
+import Application from "../application/Application";
 const HalfScreen = () => {
   const [activeComponent, setActiveComponent] = useState("menu");
   const switchComponent = componentName => {
@@ -21,6 +22,9 @@ const HalfScreen = () => {
       case "messages":
         setActiveComponent("messages");
         break;
+      case "application":
+        setActiveComponent("application");
+        break;
       default:
         setActiveComponent("menu");
     }
@@ -33,6 +37,7 @@ const HalfScreen = () => {
       {activeComponent === "shoppingCart" && <ShoppingCart />}
       {activeComponent === "promotions" && <Promotions />}
       {activeComponent === "messages" && <Messages />}
+      {activeComponent === "application" && <Application />}
     </section>
   );
 };

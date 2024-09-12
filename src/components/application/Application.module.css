@@ -1,0 +1,48 @@
+.container {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section_wrapper {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  background-color: #ffbc0e;
+  flex-direction: row;
+  position: relative;
+  justify-content: center;
+}
+
+.desc_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 4rem;
+  gap: 0.5rem;
+}
+
+.paragraph {
+  width: 60%;
+  font-weight: 500;
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  gap: 1rem;
+}
+
+.title > h2 {
+  width: 50%;
+  font-size: 1.8rem;
+}
+
+.qrImage > img {
+  width: 90px;
+}

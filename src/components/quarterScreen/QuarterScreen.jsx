@@ -5,6 +5,7 @@ import Promotions from "../promotions/Promotions";
 import Messages from "../messages/Messages";
 import ShoppingCart from "../shoppingCart/ShoppingCart";
 import Navigation from "../navigation/Navigation";
+import Application from "../application/Application";
 
 const QuarterScreen = () => {
   const [activeComponent, setActiveComponent] = useState("menu");
@@ -22,6 +23,9 @@ const QuarterScreen = () => {
       case "messages":
         setActiveComponent("messages");
         break;
+      case "application":
+        setActiveComponent("application");
+        break;
       default:
         setActiveComponent("menu");
     }
@@ -34,6 +38,7 @@ const QuarterScreen = () => {
       {activeComponent === "shoppingCart" && <ShoppingCart />}
       {activeComponent === "promotions" && <Promotions />}
       {activeComponent === "messages" && <Messages />}
+      {activeComponent === "application" && <Application />}
     </section>
   );
 };
