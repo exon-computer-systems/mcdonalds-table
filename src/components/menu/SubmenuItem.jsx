@@ -17,7 +17,7 @@ const SubmenuItem = ({
     category,
     item,
     addToOrder,
-    setShowPreview,
+    setShowItemPreview,
 }) => {
     const orderCategory = userOrder[category] || [];
     const orderItem = orderCategory.find(
@@ -43,31 +43,39 @@ const SubmenuItem = ({
                 />
                 <section className={styles.sb_item_nav}>
                     <section className={styles.sb_item_count}>
-                        <button
-                            className={`${styles.sb_item_btn} ${styles.sb_item_btn_decrease}`}
-                            onClick={() => addToOrder(item, category, "minus")}
-                        >
-                            <FontAwesomeIcon
-                                icon={faMinus}
-                                className={styles.sb_item_decrease}
-                            />
-                        </button>
-                        <span className={styles.sb_item_counter}>
-                            {quantity}
-                        </span>
-                        <button
-                            className={`${styles.sb_item_btn} ${styles.sb_item_btn_increase}`}
-                            onClick={() => addToOrder(item, category, "plus")}
-                        >
-                            <FontAwesomeIcon
-                                icon={faPlus}
-                                className={styles.sb_item_increase}
-                            />
-                        </button>
+                        {!item.options && (
+                            <>
+                                <button
+                                    className={`${styles.sb_item_btn} ${styles.sb_item_btn_decrease}`}
+                                    onClick={() =>
+                                        addToOrder(item, category, "minus")
+                                    }
+                                >
+                                    <FontAwesomeIcon
+                                        icon={faMinus}
+                                        className={styles.sb_item_decrease}
+                                    />
+                                </button>
+                                <span className={styles.sb_item_counter}>
+                                    {quantity}
+                                </span>
+                                <button
+                                    className={`${styles.sb_item_btn} ${styles.sb_item_btn_increase}`}
+                                    onClick={() =>
+                                        addToOrder(item, category, "plus")
+                                    }
+                                >
+                                    <FontAwesomeIcon
+                                        icon={faPlus}
+                                        className={styles.sb_item_increase}
+                                    />
+                                </button>
+                            </>
+                        )}
                     </section>
                     <button
                         className={styles.sb_item_btn_showup}
-                        onClick={() => setShowPreview(true)}
+                        onClick={() => setShowItemPreview(item)}
                     >
                         <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                     </button>
