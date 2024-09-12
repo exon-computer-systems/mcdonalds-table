@@ -5,5 +5,7 @@
   height: 100%; /* 656px */
   position: relative;
   border-radius: 1.5rem;
+  display: flex;
+  justify-content: center;
   z-index: 5;
 }
