@@ -54,6 +54,7 @@ const Navigation = ({ switchComponent }) => {
             animate={isClicked ? { opacity: 1 } : { opacity: 0 }}
             className={styles.btns_wrapper}
           >
+            <button onClick={() => switchComponent("menu")}>Menu</button>
             <button onClick={() => switchComponent("shoppingCart")}>
               Aplikacja
             </button>
@@ -61,7 +62,7 @@ const Navigation = ({ switchComponent }) => {
             <button onClick={() => switchComponent("promotions")}>
               Promocje
             </button>
-            <button onClick={() => switchComponent("menu")}>Menu</button>
+            <button onClick={() => switchComponent("menu")}>Gry</button>
           </motion.section>
         </section>
       </motion.section>
