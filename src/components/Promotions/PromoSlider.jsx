@@ -16,16 +16,13 @@ const PromoSlider = ({ promoSlider }) => {
   const startScrolling = () => {
     intervalRef.current = setInterval(() => {
       if (ref.current) {
-        ref.current.scrollLeft += 10;
+        ref.current.scrollLeft += 200;
 
-        if (
-          ref.current.scrollLeft >=
-          ref.current.scrollWidth - ref.current.clientWidth
-        ) {
+        if (ref.current.scrollLeft >= ref.current.scrollWidth / 2) {
           ref.current.scrollLeft = 0;
         }
       }
-    }, 10);
+    }, 2000);
   };
 
   const stopScrolling = () => {
