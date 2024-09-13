@@ -1,9 +1,18 @@
 .quarter {
-  background-color: white;
-  flex: 0 0 calc((100% - 3 * var(--main-gap)) / 4); /* 920px */
-  max-width: calc((100% - 3 * var(--main-gap)) / 4);
-  height: 100%; /* 656px */
-  position: relative;
-  border-radius: 1.5rem;
-  z-index: 5;
+    background-color: white;
+
+    flex: 0 0 calc((100% - 3 * var(--main-gap)) / 4); /* 920px */
+    max-width: calc((100% - 3 * var(--main-gap)) / 4);
+    height: 100%; /* 656px */
+
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+    z-index: 5;
+
+    border-radius: 1.5rem;
+
+    background-position: center;
+    background-size: cover;
 }

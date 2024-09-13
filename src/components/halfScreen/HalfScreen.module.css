@@ -1,7 +1,18 @@
 .half {
-  background-color: white;
-  flex: 0 0 calc((100% - var(--main-gap)) / 2); /* 1872px */
-  height: 100%; /* 656px */
-  position: relative;
-  border-radius: 1.5rem;
+    background-color: white;
+
+    flex: 0 0 calc((100% - var(--main-gap)) / 2); /* 1872px */
+    max-width: calc((100% - var(--main-gap)) / 2);
+    height: 100%; /* 656px */
+
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+    z-index: 5;
+
+    border-radius: 1.5rem;
+
+    background-position: center;
+    background-size: cover;
 }

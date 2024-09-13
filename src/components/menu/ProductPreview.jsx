@@ -178,18 +178,18 @@ const ProductPreview = ({
                 </section>
                 <section className={styles.pp_image_btn_cont}>
                     <button
-                        className={styles.pp_image_btn_sub}
-                        onClick={() => addToCart(item, category)}
-                    >
-                        Dodaj do zamówienia{" "}
-                        <FontAwesomeIcon icon={faCartPlus} />
-                    </button>
-                    <button
                         className={styles.pp_image_btn_back}
                         onClick={() => setShowItemPreview(null)}
                         // onClick={() => setUserOrder({})}
                     >
                         <FontAwesomeIcon icon={faAngleLeft} /> {" Wróć"}
+                    </button>
+                    <button
+                        className={styles.pp_image_btn_sub}
+                        onClick={() => addToCart(item, category)}
+                    >
+                        Dodaj do zamówienia{" "}
+                        <FontAwesomeIcon icon={faCartPlus} />
                     </button>
                 </section>
             </section>
