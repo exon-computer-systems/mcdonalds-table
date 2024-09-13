@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./Cart.module.css";
 import CartItem from "./CartItem";
 
-const Cart = ({ userOrder, setShowCart, setUserOrder }) => {
+const Cart = ({ userOrder, setShowCart, setUserOrder, setShowItemPreview }) => {
     const [order, setOrder] = useState(userOrder);
     const [overallPrice, setOverallPrice] = useState(0);
 
@@ -13,6 +13,29 @@ const Cart = ({ userOrder, setShowCart, setUserOrder }) => {
                 (item) => item.itemId !== itemId
             ),
         }));
+    };
+
+    const modifyOrder = (item, category, action) => {
+        setOrder((prevOrder) => {
+            const updatedCategory = prevOrder[category].map((el) => {
+                if (item.itemId === el.itemId) {
+                    const newQuantity =
+                        action === "increase"
+                            ? el.quantity + 1
+                            : el.quantity - 1;
+                    return {
+                        ...el,
+                        quantity: newQuantity < 1 ? 1 : newQuantity,
+                    };
+                }
+                return el;
+            });
+
+            return {
+                ...prevOrder,
+                [category]: updatedCategory,
+            };
+        });
     };
 
     useEffect(() => {
@@ -52,6 +75,9 @@ const Cart = ({ userOrder, setShowCart, setUserOrder }) => {
                                       item={item}
                                       category={category}
                                       removeItem={removeItem}
+                                      setShowItemPreview={setShowItemPreview}
+                                      setShowCart={setShowCart}
+                                      modifyOrder={modifyOrder}
                                   />
                               ))
                             : null

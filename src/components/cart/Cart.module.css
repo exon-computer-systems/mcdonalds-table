@@ -56,6 +56,7 @@
 }
 
 .ci_info {
+    width: 45%;
     flex-grow: 0;
     flex-shrink: 0;
 
@@ -70,6 +71,10 @@
     object-fit: cover;
     object-position: center;
 }
+
+/* .ci_info_title {
+    width: 275px;
+} */
 
 .ci_options {
     flex-grow: 0;
@@ -117,6 +122,31 @@
 .ci_options_price {
     font-weight: 700;
     font-size: 1.25rem;
+}
+
+.ci_count {
+    /* width: 250px; */
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+
+    padding: 0.25rem 0.75rem;
+
+    border: 1px solid #ccc;
+    border-radius: 1.5rem;
+
+    font-size: 1.125rem;
+}
+
+.ci_count_btn {
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    width: 2rem;
+    font-size: 1.125rem;
 }
 
 /* CART CHECKOUT */

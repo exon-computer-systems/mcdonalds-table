@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Menu.module.css";
 
 import SubmenuItem from "./SubmenuItem";
@@ -13,6 +13,8 @@ import twoForUBkg from "../../assets/2foru.jpg";
 import iceScreamBkg from "../../assets/icescreamBkg.jpg";
 import coffeeBkg from "../../assets/coffeeBkg.jpg";
 import friesBkg from "../../assets/friesBkg.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const Menu = () => {
     const menuRef = useScrollToStart(60000, () => handleUserInactivity());
@@ -23,6 +25,7 @@ const Menu = () => {
     const [selectedCategory, setSelectedCategory] = useState("");
     const [filter, setFilter] = useState("");
     const [userOrder, setUserOrder] = useState({});
+    const [orderQuantity, setOrderQuantity] = useState(0);
 
     const [menu, setMenu] = useState({
         burgers: {
@@ -438,6 +441,18 @@ const Menu = () => {
         setUserOrder({});
     };
 
+    useEffect(() => {
+        let quantity = 0;
+
+        const categories = Object.keys(userOrder);
+
+        categories.map((category) =>
+            userOrder[category].map((el) => (quantity += el.quantity))
+        );
+
+        setOrderQuantity(quantity);
+    }, [userOrder]);
+
     return (
         <>
             {showCart ? (
@@ -445,15 +460,36 @@ const Menu = () => {
                     userOrder={userOrder}
                     setShowCart={setShowCart}
                     setUserOrder={setUserOrder}
+                    setShowItemPreview={setShowItemPreview}
                 />
             ) : (
                 <section className={styles.container}>
-                    <h1
-                        className={styles.heading}
-                        onClick={() => setShowCart(true)}
-                    >
-                        Menu
-                    </h1>
+                    <section className={styles.heading_cont}>
+                        <section className={styles.heading_blank}></section>
+                        <h1
+                            className={styles.heading}
+                            onClick={() => console.log(userOrder)}
+                        >
+                            Menu
+                        </h1>
+                        <section className={styles.heading_cart_btn_cont}>
+                            {orderQuantity > 0 && (
+                                <button
+                                    className={styles.heading_cart_btn}
+                                    onClick={() => setShowCart(true)}
+                                >
+                                    <FontAwesomeIcon icon={faShoppingCart} />
+                                    <span
+                                        className={
+                                            styles.heading_cart_btn_quantity
+                                        }
+                                    >
+                                        {orderQuantity}
+                                    </span>
+                                </button>
+                            )}
+                        </section>
+                    </section>
 
                     {showItemPreview ? (
                         <ProductPreview

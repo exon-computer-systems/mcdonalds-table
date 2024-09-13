@@ -36,7 +36,7 @@ const QuarterScreen = () => {
     return (
         <section
             className={styles.quarter}
-            style={{ backgroundImage: `url(${bg})` }}
+            // style={{ backgroundImage: `url(${bg})` }}
         >
             <Navigation switchComponent={switchComponent} />
 

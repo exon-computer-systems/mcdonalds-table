@@ -36,7 +36,7 @@ const HalfScreen = () => {
     return (
         <section
             className={styles.half}
-            style={{ backgroundImage: `url(${bg})` }}
+            // style={{ backgroundImage: `url(${bg})` }}
         >
             <Navigation switchComponent={switchComponent} />
 
