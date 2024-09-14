@@ -58,11 +58,11 @@ const Navigation = ({ switchComponent }) => {
             <button onClick={() => switchComponent("application")}>
               Aplikacja
             </button>
-            <button>Kelner</button>
+            <button onClick={() => switchComponent("messages")}>Kelner</button>
             <button onClick={() => switchComponent("promotions")}>
               Promocje
             </button>
-            <button onClick={() => switchComponent("messages")}>Gry</button>
+            <button onClick={() => switchComponent("game")}>Gry</button>
           </motion.section>
         </section>
       </motion.section>

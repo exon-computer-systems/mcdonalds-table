@@ -6,6 +6,7 @@ import Messages from "../messages/Messages";
 import ShoppingCart from "../shoppingCart/ShoppingCart";
 import Navigation from "../navigation/Navigation";
 import Application from "../application/Application";
+import MemoryGame from "../memoryGame/MemoryGame";
 const HalfScreen = () => {
   const [activeComponent, setActiveComponent] = useState("menu");
   const switchComponent = componentName => {
@@ -13,7 +14,7 @@ const HalfScreen = () => {
       case "menu":
         setActiveComponent("menu");
         break;
-      case "shoppingCart":
+      case "game":
         setActiveComponent("shoppingCart");
         break;
       case "promotions":
@@ -34,7 +35,7 @@ const HalfScreen = () => {
       <Navigation switchComponent={switchComponent} />
 
       {activeComponent === "menu" && <Menu />}
-      {activeComponent === "shoppingCart" && <ShoppingCart />}
+      {activeComponent === "game" && <MemoryGame />}
       {activeComponent === "promotions" && <Promotions />}
       {activeComponent === "messages" && <Messages />}
       {activeComponent === "application" && <Application />}

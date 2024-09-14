@@ -6,6 +6,7 @@ import Messages from "../messages/Messages";
 import ShoppingCart from "../shoppingCart/ShoppingCart";
 import Navigation from "../navigation/Navigation";
 import Application from "../application/Application";
+import MemoryGame from "../memoryGame/MemoryGame";
 
 const QuarterScreen = () => {
   const [activeComponent, setActiveComponent] = useState("menu");
@@ -13,9 +14,6 @@ const QuarterScreen = () => {
     switch (componentName) {
       case "menu":
         setActiveComponent("menu");
-        break;
-      case "shoppingCart":
-        setActiveComponent("shoppingCart");
         break;
       case "promotions":
         setActiveComponent("promotions");
@@ -26,8 +24,11 @@ const QuarterScreen = () => {
       case "application":
         setActiveComponent("application");
         break;
+      case "game":
+        setActiveComponent("game");
+        break;
       default:
-        setActiveComponent("menu");
+        setActiveComponent("game");
     }
   };
   return (
@@ -35,10 +36,10 @@ const QuarterScreen = () => {
       <Navigation switchComponent={switchComponent} />
 
       {activeComponent === "menu" && <Menu />}
-      {activeComponent === "shoppingCart" && <ShoppingCart />}
       {activeComponent === "promotions" && <Promotions />}
       {activeComponent === "messages" && <Messages />}
       {activeComponent === "application" && <Application />}
+      {activeComponent === "game" && <MemoryGame />}
     </section>
   );
 };
