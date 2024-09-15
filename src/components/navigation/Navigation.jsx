@@ -1,6 +1,14 @@
 import styles from "./Navigation.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleUp,
+  faComments,
+  faGamepad,
+  faMobileScreenButton,
+  faTags,
+  faUser,
+  faUtensils,
+} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -54,15 +62,48 @@ const Navigation = ({ switchComponent }) => {
             animate={isClicked ? { opacity: 1 } : { opacity: 0 }}
             className={styles.btns_wrapper}
           >
-            <button onClick={() => switchComponent("menu")}>Menu</button>
-            <button onClick={() => switchComponent("application")}>
-              Aplikacja
+            <button
+              className={styles.btn}
+              onClick={() => switchComponent("menu")}
+            >
+              <FontAwesomeIcon className={styles.btn_icon} icon={faUtensils} />
+              <span className={styles.btn_text}>menu</span>
             </button>
-            <button onClick={() => switchComponent("messages")}>Kelner</button>
-            <button onClick={() => switchComponent("promotions")}>
-              Promocje
+            <button
+              className={styles.btn}
+              onClick={() => switchComponent("application")}
+            >
+              <FontAwesomeIcon
+                className={styles.btn_icon}
+                icon={faMobileScreenButton}
+              />
+              <span className={styles.btn_text}>aplikacja</span>
             </button>
-            <button onClick={() => switchComponent("game")}>Gry</button>
+            <button className={styles.btn}>
+              <FontAwesomeIcon className={styles.btn_icon} icon={faUser} />
+              <span className={styles.btn_text}>Kelner</span>
+            </button>
+            <button
+              className={styles.btn}
+              onClick={() => switchComponent("promotions")}
+            >
+              <FontAwesomeIcon className={styles.btn_icon} icon={faTags} />
+              <span className={styles.btn_text}>Promocje</span>
+            </button>
+            <button
+              className={styles.btn}
+              onClick={() => switchComponent("games")}
+            >
+              <FontAwesomeIcon className={styles.btn_icon} icon={faGamepad} />
+              <span className={styles.btn_text}>Gry</span>
+            </button>
+            <button
+              className={styles.btn}
+              onClick={() => switchComponent("messages")}
+            >
+              <FontAwesomeIcon className={styles.btn_icon} icon={faComments} />
+              <span className={styles.btn_text}>Wyślij wiadomość</span>
+            </button>
           </motion.section>
         </section>
       </motion.section>
