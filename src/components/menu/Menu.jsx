@@ -13,12 +13,14 @@ import twoForUBkg from "../../assets/2foru.jpg";
 import iceScreamBkg from "../../assets/icescreamBkg.jpg";
 import coffeeBkg from "../../assets/coffeeBkg.jpg";
 import friesBkg from "../../assets/friesBkg.jpg";
+import papperBag from "../../assets/papper-bag-icon.png";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const Menu = () => {
-    const menuRef = useScrollToStart(60000, () => handleUserInactivity());
-    // const menuRef = useRef();
+    // const menuRef = useScrollToStart(60000, () => handleUserInactivity());
+    const menuRef = useRef();
 
     const [showItemPreview, setShowItemPreview] = useState(false);
     const [showCart, setShowCart] = useState(false);
@@ -478,7 +480,11 @@ const Menu = () => {
                                     className={styles.heading_cart_btn}
                                     onClick={() => setShowCart(true)}
                                 >
-                                    <FontAwesomeIcon icon={faShoppingCart} />
+                                    <img
+                                        className={styles.heading_cart_icon}
+                                        src={papperBag}
+                                        alt="shopping cart icon"
+                                    />
                                     <span
                                         className={
                                             styles.heading_cart_btn_quantity
