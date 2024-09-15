@@ -15,7 +15,7 @@ const HalfScreen = () => {
         setActiveComponent("menu");
         break;
       case "game":
-        setActiveComponent("shoppingCart");
+        setActiveComponent("game");
         break;
       case "promotions":
         setActiveComponent("promotions");

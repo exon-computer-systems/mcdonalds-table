@@ -1,21 +1,25 @@
 import styles from "./Card.module.css";
 import cardcover from "../../assets/memoryCards/mcdlogo.png";
+
 const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled }) => {
   const handleClick = () => {
-    !isFlipped && !isDisabled && onClick(index);
+    if (!isFlipped && !isDisabled) {
+      onClick(index);
+    }
   };
+
   return (
     <section
-      className={`${styles.card} ${isFlipped && styles.is_flipped} ${
-        isInactive && styles.is_inactive
-      } `}
+      className={`${styles.card} ${isFlipped ? styles["is-flipped"] : ""} ${
+        isInactive ? styles["is-inactive"] : ""
+      }`}
       onClick={handleClick}
     >
-      <section className={`${styles.card_face} ${styles.card_font_face}`}>
+      <section className={`${styles.card_face} ${styles.card_front_face}`}>
         <img src={cardcover} alt="card cover" />
       </section>
       <section className={`${styles.card_face} ${styles.card_back_face}`}>
-        <img src={card.image} alt="card cover" />
+        <img src={card.image} alt="card back" />
       </section>
     </section>
   );

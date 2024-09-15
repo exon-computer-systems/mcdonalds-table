@@ -28,7 +28,7 @@ const QuarterScreen = () => {
         setActiveComponent("game");
         break;
       default:
-        setActiveComponent("game");
+        setActiveComponent("menu");
     }
   };
   return (
