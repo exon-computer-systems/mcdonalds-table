@@ -7,7 +7,7 @@ import ShoppingCart from "../shoppingCart/ShoppingCart";
 import Navigation from "../navigation/Navigation";
 import Application from "../application/Application";
 import MemoryGame from "../memoryGame/MemoryGame";
-const HalfScreen = () => {
+const HalfScreen = ({ rotate }) => {
     const [activeComponent, setActiveComponent] = useState("menu");
     const switchComponent = (componentName) => {
         switch (componentName) {
@@ -31,7 +31,7 @@ const HalfScreen = () => {
         }
     };
     return (
-        <section className={styles.half}>
+        <section className={`${styles.half} ${rotate && styles.rotate}`}>
             <Navigation switchComponent={switchComponent} />
             {activeComponent === "menu" && <Menu />}
             {activeComponent === "promotions" && <Promotions />}

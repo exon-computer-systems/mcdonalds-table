@@ -16,3 +16,7 @@
     background-position: center;
     background-size: cover;
 }
+
+.rotate {
+    transform: rotateX(180deg);
+}

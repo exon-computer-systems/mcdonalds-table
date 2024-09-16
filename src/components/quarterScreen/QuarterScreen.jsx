@@ -8,7 +8,7 @@ import Navigation from "../navigation/Navigation";
 import Application from "../application/Application";
 import MemoryGame from "../memoryGame/MemoryGame";
 
-const QuarterScreen = () => {
+const QuarterScreen = ({ rotate }) => {
     const [activeComponent, setActiveComponent] = useState("menu");
     const switchComponent = (componentName) => {
         switch (componentName) {
@@ -33,9 +33,8 @@ const QuarterScreen = () => {
     };
 
     return (
-        <section className={styles.quarter}>
+        <section className={`${styles.quarter} ${rotate && styles.rotate}`}>
             <Navigation switchComponent={switchComponent} />
-
             {activeComponent === "menu" && <Menu />}
             {activeComponent === "promotions" && <Promotions />}
             {activeComponent === "messages" && <Messages />}
