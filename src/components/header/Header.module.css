@@ -4,13 +4,23 @@
     align-items: center;
     justify-content: space-between;
 
-    height: 80.5px;
-    max-height: 80.5px;
+    height: 60px;
+    max-height: 60px;
 }
 
 .heading {
     font-size: var(--heading-font-size);
     text-align: left;
+    background: #910063;
+    background: linear-gradient(
+        to right,
+        #910063 0%,
+        #db0007 50%,
+        #e8720a 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .heading_btns {
@@ -25,8 +35,7 @@
 
 .btn_cont {
     height: 100%;
-    width: 80.5px;
-    aspect-ratio: 1/1;
+    width: 80px;
 
     display: flex;
     flex-direction: column;
@@ -39,11 +48,14 @@
 
 .btn {
     width: 100%;
-    height: 60px;
+    height: 75%;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    flex-grow: 0;
+    flex-shrink: 0;
 
     font-size: 2.5rem;
     position: relative;
@@ -54,7 +66,7 @@
 }
 
 .btn_text {
-    height: 20px;
+    height: 25%;
     text-align: center;
     text-transform: uppercase;
     font-size: 0.75rem;
@@ -67,7 +79,7 @@
 
 .cart {
     width: 100%;
-    height: 60px;
+    height: 75%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,8 +102,8 @@
     justify-content: center;
 
     position: absolute;
-    top: 0px;
-    left: 12px;
+    top: -3px;
+    left: 15px;
 
     font-size: 0.75rem;
     color: #fff;
@@ -99,12 +111,15 @@
 
 @keyframes pulse {
     0% {
+        color: #db0007;
         opacity: 1;
     }
     50% {
+        color: #db0007;
         opacity: 0.3;
     }
     100% {
+        color: #db0007;
         opacity: 1;
     }
 }

@@ -7,7 +7,7 @@ import ShoppingCart from "../shoppingCart/ShoppingCart";
 import Navigation from "../navigation/Navigation";
 import Application from "../application/Application";
 import MemoryGame from "../memoryGame/MemoryGame";
-import Nav from "../nav/Nav";
+import Header from "../header/Header";
 import Inactive from "../inactive/Inactive";
 
 const QuarterScreen = ({
@@ -41,7 +41,7 @@ const QuarterScreen = ({
                 break;
             case "application":
                 setActiveComponent("application");
-                setActiveTitle("Pobierz naszą aplikację");
+                setActiveTitle("Pobierz naszą apkę");
                 break;
             case "games":
                 setActiveComponent("games");
@@ -60,7 +60,7 @@ const QuarterScreen = ({
                 flex: leftSectionFlex ? leftSectionFlex : rightSectionFlex,
             }}
         >
-            {size1 === size2 ? (
+            {/* {size1 === size2 ? (
                 <>
                     <Nav
                         title={activeTitle}
@@ -120,6 +120,47 @@ const QuarterScreen = ({
                                         ? leftSectionFlex
                                         : rightSectionFlex
                                 }
+                            />
+                        )}
+                        {activeComponent === "promotions" && <Promotions />}
+                        {activeComponent === "messages" && <Messages />}
+                        {activeComponent === "application" && <Application />}
+                        {activeComponent === "games" && <MemoryGame />}
+                    </section>
+                </>
+            ) : (
+                <Inactive handleClick={reset} />
+            )} */}
+
+            {size1 === size2 || size1 > size2 ? (
+                <>
+                    <Header
+                        title={activeTitle}
+                        enlarge={enlargeLeft ? enlargeLeft : enlargeRight}
+                        reset={reset}
+                        size={
+                            leftSectionFlex ? leftSectionFlex : rightSectionFlex
+                        }
+                        setShowCart={setShowCart}
+                        orderQuantity={orderQuantity}
+                    />
+                    <Navigation switchComponent={switchComponent} />
+                    <section className={styles.content}>
+                        {activeComponent === "menu" && (
+                            <Menu
+                                enlarge={
+                                    enlargeLeft ? enlargeLeft : enlargeRight
+                                }
+                                reset={reset}
+                                size={
+                                    leftSectionFlex
+                                        ? leftSectionFlex
+                                        : rightSectionFlex
+                                }
+                                showCart={showCart}
+                                setShowCart={setShowCart}
+                                orderQuantity={orderQuantity}
+                                setOrderQuantity={setOrderQuantity}
                             />
                         )}
                         {activeComponent === "promotions" && <Promotions />}
