@@ -18,37 +18,37 @@
 } */
 
 .screen {
-    background-color: white;
+  background-color: white;
 
-    flex-grow: 0;
-    flex-shrink: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
 
-    height: 100%; /* 656px */
-    width: calc((100% - 32px) / 8);
+  height: 100%; /* 656px */
+  width: calc((100% - 32px) / 8);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
 
-    position: relative;
-    z-index: 5;
+  position: relative;
+  z-index: 5;
 
-    border-radius: 1.5rem;
-    padding: var(--main-gap);
+  border-radius: 1.5rem;
+  padding: var(--main-gap);
 
-    background-position: center;
-    background-size: cover;
+  background-position: center;
+  background-size: cover;
 
-    transition: 1.5s all ease-in-out;
-    /* transform: rotate(180deg); */
+  transition: 1.5s all ease-in-out;
+  /* transform: rotate(180deg); */
 }
 
 .content {
-    height: calc(100% - 60px - 0.75rem);
-    max-height: calc(100% - 60px - 0.75rem);
-    display: flex;
-    flex-direction: column;
+  height: calc(100% - 60px - 0.75rem);
+  max-height: calc(100% - 60px - 0.75rem);
+  display: flex;
+  flex-direction: column;
 
-    /* background-color: lightskyblue; */
+  /* background-color: lightskyblue; */
 }

@@ -61,7 +61,7 @@ const Navigation = ({ switchComponent, activeComponent }) => {
             animate={isClicked ? { opacity: 1 } : { opacity: 0 }}
             className={styles.btns_wrapper}
           >
-            <button
+            {/* <button
               className={`${styles.btn} ${
                 activeComponent === "menu" && styles.active
               }`}
@@ -72,7 +72,7 @@ const Navigation = ({ switchComponent, activeComponent }) => {
             >
               <FontAwesomeIcon className={styles.btn_icon} icon={faUtensils} />
               <span className={styles.btn_text}>menu</span>
-            </button>
+            </button> */}
             <button
               className={`${styles.btn} ${
                 activeComponent === "application" && styles.active
