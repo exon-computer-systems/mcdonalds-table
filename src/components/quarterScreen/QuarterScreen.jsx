@@ -9,6 +9,7 @@ import Application from "../application/Application";
 import MemoryGame from "../memoryGame/MemoryGame";
 import Header from "../header/Header";
 import Inactive from "../inactive/Inactive";
+import Cart from "../cart/Cart";
 
 const QuarterScreen = ({
     rotate,
@@ -47,6 +48,10 @@ const QuarterScreen = ({
                 setActiveComponent("games");
                 setActiveTitle("Gry");
                 break;
+            case "cart":
+                setActiveComponent("cart");
+                setActiveTitle("Koszyk");
+                break;
             default:
                 setActiveComponent("menu");
                 setActiveTitle("Menu");
@@ -55,7 +60,7 @@ const QuarterScreen = ({
 
     return (
         <section
-            className={`${styles.screen} ${rotate && styles.rotate}`}
+            className={`${styles.screen}`}
             style={{
                 flex: leftSectionFlex ? leftSectionFlex : rightSectionFlex,
             }}
@@ -143,6 +148,7 @@ const QuarterScreen = ({
                         }
                         setShowCart={setShowCart}
                         orderQuantity={orderQuantity}
+                        switchComponent={switchComponent}
                     />
                     <Navigation switchComponent={switchComponent} />
                     <section className={styles.content}>
@@ -163,6 +169,7 @@ const QuarterScreen = ({
                                 setOrderQuantity={setOrderQuantity}
                             />
                         )}
+                        {activeComponent === "cart" && <Cart />}
                         {activeComponent === "promotions" && <Promotions />}
                         {activeComponent === "messages" && <Messages />}
                         {activeComponent === "application" && <Application />}

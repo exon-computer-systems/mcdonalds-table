@@ -4,20 +4,16 @@ import styles from "./Header.module.css";
 import papperBag from "../../assets/papper-bag-icon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+    faBurger,
     faCommentDots,
     faDownLeftAndUpRightToCenter,
     faUpRightAndDownLeftFromCenter,
     faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Header = ({
-    title,
-    orderQuantity,
-    setShowCart,
-    enlarge,
-    reset,
-    size,
-}) => {
+// prettier-ignore
+const Header = ({title, orderQuantity, setShowCart, enlarge, reset, size, switchComponent }) => {
+
     const [activeWaiter, setActiveWaiter] = useState(false);
 
     useEffect(() => {
@@ -34,7 +30,9 @@ const Header = ({
     return (
         <header className={styles.heading_cont}>
             <h1 className={styles.heading}>{title}</h1>
+            {/* reverse row */}
             <section className={styles.heading_btns}>
+                {/* Resize button depends on current size */}
                 {size === 1 ? (
                     <button className={styles.btn_cont} onClick={enlarge}>
                         <span className={styles.btn}>
@@ -54,6 +52,8 @@ const Header = ({
                         <p className={styles.btn_text}>Pomniejsz</p>
                     </button>
                 )}
+
+                {/* Call waiter button */}
                 <button
                     className={styles.btn_cont}
                     onClick={() => setActiveWaiter((prev) => !prev)}
@@ -75,6 +75,8 @@ const Header = ({
                         <p className={styles.btn_text}>Kelner</p>
                     )}
                 </button>
+
+                {/* Chat button */}
                 <button className={styles.btn_cont}>
                     <span className={styles.btn}>
                         <FontAwesomeIcon icon={faCommentDots} />
@@ -86,6 +88,16 @@ const Header = ({
                         </span>
                     )} */}
                 </button>
+
+                {/* Menu button */}
+                <button className={styles.btn_cont}>
+                    <span className={styles.btn}>
+                        <FontAwesomeIcon icon={faBurger} />
+                    </span>
+                    <p className={styles.btn_text}>Menu</p>
+                </button>
+
+                {/* Cart button */}
                 <button
                     className={styles.btn_cont}
                     onClick={() => setShowCart(true)}

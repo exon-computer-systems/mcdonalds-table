@@ -18,8 +18,8 @@ const SubmenuItem = ({
     item,
     addToOrder,
     setShowItemPreview,
-    borderRight,
-    borderBottom,
+    borderLeft,
+    borderTop,
 }) => {
     const orderCategory = userOrder[category] || [];
     const orderItem = orderCategory.find(
@@ -30,9 +30,9 @@ const SubmenuItem = ({
     return (
         <>
             <section
-                className={`${styles.sb_item} ${
-                    borderRight && styles.sb_item_border_right
-                } ${borderBottom && styles.sb_item_border_bottom}`}
+                className={`${styles.sb_item} ${styles.sb_item_border} ${
+                    borderTop && styles.sb_item_border_top
+                } ${borderLeft && styles.sb_item_border_left}`}
             >
                 <section className={styles.sb_item_heading_cont}>
                     <span className={styles.sb_item_heading_wrapper}>

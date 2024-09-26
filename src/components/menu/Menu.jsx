@@ -15,7 +15,7 @@ import coffeeBkg from "../../assets/coffeeBkg.jpg";
 import friesBkg from "../../assets/friesBkg.jpg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Nav from "../header/Header";
 
 const Menu = ({
@@ -588,13 +588,18 @@ const Menu = ({
                                                         )
                                                     }
                                                 >
-                                                    {el.filterName}
+                                                    <span>{el.filterName}</span>
+                                                    {filter === el.filterId && (
+                                                        <FontAwesomeIcon
+                                                            icon={faXmark}
+                                                        />
+                                                    )}
                                                 </button>
                                             )
                                         )}
                                     </section>
 
-                                    <section className={styles.submenu}>
+                                    {/* <section className={styles.submenu}>
                                         {selectedCategory &&
                                             menu[selectedCategory].categoryMenu
                                                 .filter(
@@ -628,6 +633,49 @@ const Menu = ({
                                                         borderBottom={true}
                                                     />
                                                 ))}
+                                    </section> */}
+                                    <section className={styles.submenu}>
+                                        {selectedCategory &&
+                                            (() => {
+                                                const filteredItems = menu[
+                                                    selectedCategory
+                                                ].categoryMenu.filter(
+                                                    (fil) =>
+                                                        !filter ||
+                                                        fil.tag === filter
+                                                );
+
+                                                return filteredItems.map(
+                                                    (el, idx) => (
+                                                        <SubmenuItem
+                                                            key={idx}
+                                                            userOrder={
+                                                                userOrder
+                                                            }
+                                                            setOrder={
+                                                                setUserOrder
+                                                            }
+                                                            category={
+                                                                selectedCategory
+                                                            }
+                                                            item={el}
+                                                            addToOrder={
+                                                                addToOrder
+                                                            }
+                                                            setShowItemPreview={
+                                                                setShowItemPreview
+                                                            }
+                                                            // borderLeft={
+                                                            //     idx === 0 ||
+                                                            //     idx === 1
+                                                            // }
+                                                            borderTop={
+                                                                idx % 2 === 0
+                                                            }
+                                                        />
+                                                    )
+                                                );
+                                            })()}
                                     </section>
                                 </section>
                             )}
