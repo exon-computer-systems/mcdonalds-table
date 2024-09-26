@@ -1,9 +1,9 @@
-.quarter {
+/* .quarter {
     background-color: white;
 
-    flex: 0 0 calc((100% - 3 * var(--main-gap)) / 4); /* 920px */
+    flex: 0 0 calc((100% - 3 * var(--main-gap)) / 4);
     max-width: calc((100% - 3 * var(--main-gap)) / 4);
-    height: 100%; /* 656px */
+    height: 100%;
 
     display: flex;
     justify-content: center;
@@ -15,9 +15,35 @@
 
     background-position: center;
     background-size: cover;
+} */
+
+.screen {
+    background-color: white;
+
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    height: 100%; /* 656px */
+    width: calc((100% - 32px) / 8);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    position: relative;
+    z-index: 5;
+
+    border-radius: 1.5rem;
+    padding: var(--main-gap);
+
+    background-position: center;
+    background-size: cover;
+
+    transition: 1s all ease-in-out;
+    /* transform: rotate(180deg); */
 }
 
-.rotate {
-    /* transform: rotateY(180deg); */
-    transform: rotate(180deg);
+.content {
+    height: calc(100% - 80.5px);
+    /* background-color: lightskyblue; */
 }

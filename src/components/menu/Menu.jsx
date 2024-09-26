@@ -13,21 +13,27 @@ import twoForUBkg from "../../assets/2foru.jpg";
 import iceScreamBkg from "../../assets/icescreamBkg.jpg";
 import coffeeBkg from "../../assets/coffeeBkg.jpg";
 import friesBkg from "../../assets/friesBkg.jpg";
-import papperBag from "../../assets/papper-bag-icon.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import Nav from "../nav/Nav";
 
-const Menu = () => {
+const Menu = ({
+    enlarge,
+    reset,
+    size,
+    showCart,
+    setShowCart,
+    orderItem,
+    setOrderQuantity,
+}) => {
     // const menuRef = useScrollToStart(60000, () => handleUserInactivity());
     const menuRef = useRef();
 
     const [showItemPreview, setShowItemPreview] = useState(false);
-    const [showCart, setShowCart] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [filter, setFilter] = useState("");
     const [userOrder, setUserOrder] = useState({});
-    const [orderQuantity, setOrderQuantity] = useState(0);
 
     const [menu, setMenu] = useState({
         burgers: {
@@ -466,37 +472,6 @@ const Menu = () => {
                 />
             ) : (
                 <section className={styles.container}>
-                    <section className={styles.heading_cont}>
-                        <section className={styles.heading_blank}></section>
-                        <h1
-                            className={styles.heading}
-                            onClick={() => console.log(userOrder)}
-                        >
-                            Menu
-                        </h1>
-                        <section className={styles.heading_cart_btn_cont}>
-                            {orderQuantity > 0 && (
-                                <button
-                                    className={styles.heading_cart_btn}
-                                    onClick={() => setShowCart(true)}
-                                >
-                                    <img
-                                        className={styles.heading_cart_icon}
-                                        src={papperBag}
-                                        alt="shopping cart icon"
-                                    />
-                                    <span
-                                        className={
-                                            styles.heading_cart_btn_quantity
-                                        }
-                                    >
-                                        {orderQuantity}
-                                    </span>
-                                </button>
-                            )}
-                        </section>
-                    </section>
-
                     {showItemPreview ? (
                         <ProductPreview
                             showItemPreview={showItemPreview}
