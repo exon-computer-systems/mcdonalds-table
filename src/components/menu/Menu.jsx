@@ -16,7 +16,7 @@ import friesBkg from "../../assets/friesBkg.jpg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import Nav from "../nav/Nav";
+import Nav from "../header/Header";
 
 const Menu = ({
     enlarge,
@@ -457,7 +457,6 @@ const Menu = ({
         categories.map((category) =>
             userOrder[category].map((el) => (quantity += el.quantity))
         );
-
         setOrderQuantity(quantity);
     }, [userOrder]);
 

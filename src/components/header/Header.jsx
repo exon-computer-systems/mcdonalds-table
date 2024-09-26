@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Nav.module.css";
+import styles from "./Header.module.css";
 
 import papperBag from "../../assets/papper-bag-icon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +10,14 @@ import {
     faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Nav = ({ title, orderQuantity, setShowCart, enlarge, reset, size }) => {
+const Header = ({
+    title,
+    orderQuantity,
+    setShowCart,
+    enlarge,
+    reset,
+    size,
+}) => {
     const [activeWaiter, setActiveWaiter] = useState(false);
 
     useEffect(() => {
@@ -102,4 +109,4 @@ const Nav = ({ title, orderQuantity, setShowCart, enlarge, reset, size }) => {
     );
 };
 
-export default Nav;
+export default Header;
