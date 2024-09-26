@@ -1,6 +1,7 @@
 .container {
     width: 100%;
     height: 250px;
+    left: 0;
     bottom: 0;
     position: absolute;
     display: flex;
@@ -14,13 +15,15 @@
 }
 
 .slide_nav {
-    width: 0;
+    width: 100px;
     height: 0;
     display: flex;
     justify-content: center;
 
     position: absolute;
     bottom: 0;
+    left: 45%;
+    transform: translateX(-50%);
 
     border-left: 50px solid transparent;
     border-right: 50px solid transparent;

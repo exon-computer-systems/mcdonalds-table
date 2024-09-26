@@ -82,13 +82,7 @@ const Navigation = ({ switchComponent }) => {
                             />
                             <span className={styles.btn_text}>aplikacja</span>
                         </button>
-                        <button className={styles.btn}>
-                            <FontAwesomeIcon
-                                className={styles.btn_icon}
-                                icon={faUser}
-                            />
-                            <span className={styles.btn_text}>Kelner</span>
-                        </button>
+
                         <button
                             className={styles.btn}
                             onClick={() => switchComponent("promotions")}
