@@ -12,7 +12,7 @@ const PromoSlider2 = ({ promoSlider2 }) => {
   };
 
   return (
-    <section className={styles.scroll_container}>
+    <section className={styles.scroll_container2}>
       <h2>okazYeah</h2>
       <FontAwesomeIcon
         className={`${styles.icon_left} ${styles.icons}`}
@@ -25,7 +25,7 @@ const PromoSlider2 = ({ promoSlider2 }) => {
         onClick={() => handleScroll(200)}
       />
 
-      <section className={styles.scroll_wrapper}>
+      <section className={styles.scroll_wrapper} ref={ref}>
         {promoSlider2.map((el, index) => (
           <img
             src={el.itemImg}

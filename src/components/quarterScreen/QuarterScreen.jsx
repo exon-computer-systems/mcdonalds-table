@@ -11,56 +11,56 @@ import Header from "../header/Header";
 import Inactive from "../inactive/Inactive";
 
 const QuarterScreen = ({
-    rotate,
-    enlargeLeft,
-    enlargeRight,
-    leftSectionFlex,
-    rightSectionFlex,
-    reset,
-    size1,
-    size2,
+  rotate,
+  enlargeLeft,
+  enlargeRight,
+  leftSectionFlex,
+  rightSectionFlex,
+  reset,
+  size1,
+  size2,
 }) => {
-    const [showCart, setShowCart] = useState(false);
-    const [orderQuantity, setOrderQuantity] = useState(0);
+  const [showCart, setShowCart] = useState(false);
+  const [orderQuantity, setOrderQuantity] = useState(0);
 
-    const [activeComponent, setActiveComponent] = useState("menu");
-    const [activeTitle, setActiveTitle] = useState("Menu");
-    const switchComponent = (componentName) => {
-        switch (componentName) {
-            case "menu":
-                setActiveComponent("menu");
-                setActiveTitle("Menu");
-                break;
-            case "promotions":
-                setActiveComponent("promotions");
-                setActiveTitle("Promocje");
-                break;
-            case "messages":
-                setActiveComponent("messages");
-                setActiveTitle("Wybierz stół");
-                break;
-            case "application":
-                setActiveComponent("application");
-                setActiveTitle("Pobierz naszą apkę");
-                break;
-            case "games":
-                setActiveComponent("games");
-                setActiveTitle("Gry");
-                break;
-            default:
-                setActiveComponent("menu");
-                setActiveTitle("Menu");
-        }
-    };
+  const [activeComponent, setActiveComponent] = useState("menu");
+  const [activeTitle, setActiveTitle] = useState("Menu");
+  const switchComponent = componentName => {
+    switch (componentName) {
+      case "menu":
+        setActiveComponent("menu");
+        setActiveTitle("Menu");
+        break;
+      case "promotions":
+        setActiveComponent("promotions");
+        setActiveTitle("Promocje");
+        break;
+      case "messages":
+        setActiveComponent("messages");
+        setActiveTitle("Wybierz stół");
+        break;
+      case "application":
+        setActiveComponent("application");
+        setActiveTitle("Pobierz naszą apkę");
+        break;
+      case "games":
+        setActiveComponent("games");
+        setActiveTitle("Gry");
+        break;
+      default:
+        setActiveComponent("menu");
+        setActiveTitle("Menu");
+    }
+  };
 
-    return (
-        <section
-            className={`${styles.screen} ${rotate && styles.rotate}`}
-            style={{
-                flex: leftSectionFlex ? leftSectionFlex : rightSectionFlex,
-            }}
-        >
-            {/* {size1 === size2 ? (
+  return (
+    <section
+      className={`${styles.screen} ${rotate && styles.rotate}`}
+      style={{
+        flex: leftSectionFlex ? leftSectionFlex : rightSectionFlex,
+      }}
+    >
+      {/* {size1 === size2 ? (
                 <>
                     <Nav
                         title={activeTitle}
@@ -132,48 +132,43 @@ const QuarterScreen = ({
                 <Inactive handleClick={reset} />
             )} */}
 
-            {size1 === size2 || size1 > size2 ? (
-                <>
-                    <Header
-                        title={activeTitle}
-                        enlarge={enlargeLeft ? enlargeLeft : enlargeRight}
-                        reset={reset}
-                        size={
-                            leftSectionFlex ? leftSectionFlex : rightSectionFlex
-                        }
-                        setShowCart={setShowCart}
-                        orderQuantity={orderQuantity}
-                    />
-                    <Navigation switchComponent={switchComponent} />
-                    <section className={styles.content}>
-                        {activeComponent === "menu" && (
-                            <Menu
-                                enlarge={
-                                    enlargeLeft ? enlargeLeft : enlargeRight
-                                }
-                                reset={reset}
-                                size={
-                                    leftSectionFlex
-                                        ? leftSectionFlex
-                                        : rightSectionFlex
-                                }
-                                showCart={showCart}
-                                setShowCart={setShowCart}
-                                orderQuantity={orderQuantity}
-                                setOrderQuantity={setOrderQuantity}
-                            />
-                        )}
-                        {activeComponent === "promotions" && <Promotions />}
-                        {activeComponent === "messages" && <Messages />}
-                        {activeComponent === "application" && <Application />}
-                        {activeComponent === "games" && <MemoryGame />}
-                    </section>
-                </>
-            ) : (
-                <Inactive handleClick={reset} />
+      {size1 === size2 || size1 > size2 ? (
+        <>
+          <Header
+            title={activeTitle}
+            enlarge={enlargeLeft ? enlargeLeft : enlargeRight}
+            reset={reset}
+            size={leftSectionFlex ? leftSectionFlex : rightSectionFlex}
+            setShowCart={setShowCart}
+            orderQuantity={orderQuantity}
+          />
+          <Navigation
+            switchComponent={switchComponent}
+            activeComponent={activeComponent}
+          />
+          <section className={styles.content}>
+            {activeComponent === "menu" && (
+              <Menu
+                enlarge={enlargeLeft ? enlargeLeft : enlargeRight}
+                reset={reset}
+                size={leftSectionFlex ? leftSectionFlex : rightSectionFlex}
+                showCart={showCart}
+                setShowCart={setShowCart}
+                orderQuantity={orderQuantity}
+                setOrderQuantity={setOrderQuantity}
+              />
             )}
-        </section>
-    );
+            {activeComponent === "promotions" && <Promotions />}
+            {activeComponent === "messages" && <Messages />}
+            {activeComponent === "application" && <Application />}
+            {activeComponent === "games" && <MemoryGame />}
+          </section>
+        </>
+      ) : (
+        <Inactive handleClick={reset} />
+      )}
+    </section>
+  );
 };
 
 export default QuarterScreen;

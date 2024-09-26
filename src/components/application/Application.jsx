@@ -4,15 +4,13 @@ const Application = () => {
     <section className={styles.container}>
       <section className={styles.section_wrapper}>
         <section className={styles.desc_wrapper}>
-          <section className={styles.title}>
-            <div className={styles.qrImage}>
-              <img
-                src="https://cdn.mcdonalds.pl/uploads/20230823164713/pobierz-aplikacje-mcdonalds-kod-qr.png"
-                alt=""
-              />
-            </div>
-            <h2 className={styles.text}>Pobierz aplikację McDonald's</h2>
-          </section>
+          <div className={styles.qrImage}>
+            <img
+              src="https://cdn.mcdonalds.pl/uploads/20230823164713/pobierz-aplikacje-mcdonalds-kod-qr.png"
+              alt=""
+            />
+          </div>
+          <h2 className={styles.text}>Pobierz aplikację McDonald's</h2>
           <div className={styles.paragraph}>
             <p>
               Zobacz co przygotowaliśmy dla Ciebie, by Twoje wizyty w McDonald's
