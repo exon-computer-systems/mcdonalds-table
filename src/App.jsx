@@ -4,37 +4,38 @@ import QuarterScreen from "./components/quarterScreen/QuarterScreen";
 import HalfScreen from "./components/halfScreen/HalfScreen";
 
 const App = () => {
-    const [rotateQuarter, setRotateQuarter] = useState(false);
-    const [rotateHalf, setRotateHalf] = useState(false);
+  const [rotateQuarter, setRotateQuarter] = useState(false);
+  const [rotateHalf, setRotateHalf] = useState(false);
 
-    useEffect(() => {
-        const rotateScreen = (e) => {
-            console.log(e.keyCode);
+  useEffect(() => {
+    const rotateScreen = e => {
+      console.log(e.keyCode);
 
-            if (e.keyCode === 49) {
-                setRotateQuarter((prev) => !prev);
-                console.log(rotateQuarter);
-            }
+      if (e.keyCode === 49) {
+        setRotateQuarter(prev => !prev);
+        console.log(rotateQuarter);
+      }
 
-            if (e.keyCode === 50) {
-                setRotateHalf((prev) => !prev);
-                console.log(rotateHalf);
-            }
-        };
+      if (e.keyCode === 50) {
+        setRotateHalf(prev => !prev);
+        console.log(rotateHalf);
+      }
+    };
 
-        window.addEventListener("keydown", rotateScreen);
+    window.addEventListener("keydown", rotateScreen);
 
-        return () => {
-            window.removeEventListener("keydown", rotateScreen);
-        };
-    });
+    return () => {
+      window.removeEventListener("keydown", rotateScreen);
+    };
+  });
 
-    return (
-        <section className="home">
-            <QuarterScreen rotate={rotateQuarter} />
-            <HalfScreen rotate={rotateHalf} />
-        </section>
-    );
+  return (
+    <section className="home">
+      <QuarterScreen rotate={rotateQuarter} />
+      <QuarterScreen rotate={rotateQuarter} />
+      <HalfScreen rotate={rotateHalf} />
+    </section>
+  );
 };
 
 export default App;
