@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./Header.module.css";
 
 import papperBag from "../../assets/papper-bag-icon.png";
@@ -10,11 +10,15 @@ import {
   faUpRightAndDownLeftFromCenter,
   faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
+import Popup from "./Popup";
 
 // prettier-ignore
-const Header = ({title, orderQuantity, setShowCart, enlarge, reset, size, switchComponent }) => {
+const Header = ({title, orderQuantity, enlarge, reset, size, switchComponent }) => {
 
     const [activeWaiter, setActiveWaiter] = useState(false);
+    const [activeChatBox, setActiveChatBox] = useState(false);
+    const [messages, setMessages] = useState([]);
+    const timeoutRef = useRef();
 
     useEffect(() => {
         let timeout;
@@ -26,6 +30,20 @@ const Header = ({title, orderQuantity, setShowCart, enlarge, reset, size, switch
             clearTimeout(timeout);
         }
     }, [activeWaiter]);
+
+    // useEffect(() => {
+        
+    //     const addMessage = () => {
+    //         console.log("test")
+    //         setMessages(prev => [...prev, "test"]);
+
+    //         timeoutRef.current = setTimeout(addMessage, Math.floor(Math.random() * (30000 - 10000 + 1) - 10000))
+    //     }
+
+    //     addMessage();
+
+    //     return () => clearTimeout(timeoutRef.current)
+    // }, [])
 
     return (
         <header className={styles.heading_cont}>
@@ -77,20 +95,19 @@ const Header = ({title, orderQuantity, setShowCart, enlarge, reset, size, switch
                 </button>
 
                 {/* Chat button */}
-                <button className={styles.btn_cont}>
+                <button className={styles.btn_cont} onClick={() => setActiveChatBox(prev => !prev)}>
                     <span className={styles.btn}>
                         <FontAwesomeIcon icon={faCommentDots} />
                     </span>
                     <p className={styles.btn_text}>Czat</p>
-                    {/* {orderQuantity > 0 && (
-                        <span className={styles.cart_quantity}>
-                            {orderQuantity}
-                        </span>
-                    )} */}
+                    
+                        <span className={styles.message_not}></span>
+                    
+                    {activeChatBox && <Popup switchComponent={switchComponent} messages={messages} />}
                 </button>
 
                 {/* Menu button */}
-                <button className={styles.btn_cont}>
+                <button className={styles.btn_cont} onClick={() => switchComponent("menu")}>
                     <span className={styles.btn}>
                         <FontAwesomeIcon icon={faBurger} />
                     </span>
@@ -100,7 +117,8 @@ const Header = ({title, orderQuantity, setShowCart, enlarge, reset, size, switch
                 {/* Cart button */}
                 <button
                     className={styles.btn_cont}
-                    onClick={() => setShowCart(true)}
+                    // onClick={() => setShowCart(true)}
+                    onClick={() => switchComponent("cart")}
                 >
                     <span className={styles.cart}>
                         <img

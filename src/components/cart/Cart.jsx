@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import styles from "./Cart.module.css";
 import CartItem from "./CartItem";
 
-const Cart = ({ userOrder, setShowCart, setUserOrder, setShowItemPreview }) => {
+const Cart = ({
+    userOrder,
+    setUserOrder,
+    setShowItemPreview,
+    switchComponent,
+}) => {
     const [order, setOrder] = useState(userOrder);
     const [overallPrice, setOverallPrice] = useState(0);
 
@@ -62,14 +67,14 @@ const Cart = ({ userOrder, setShowCart, setUserOrder, setShowItemPreview }) => {
             <section className={styles.cart}>
                 {categories.map((category) =>
                     userOrder[category]?.length > 0
-                        ? userOrder[category].map((item) => (
+                        ? userOrder[category].map((item, idx) => (
                               <CartItem
                                   key={item.itemId}
                                   item={item}
                                   category={category}
                                   removeItem={removeItem}
                                   setShowItemPreview={setShowItemPreview}
-                                  setShowCart={setShowCart}
+                                  switchComponent={switchComponent}
                                   modifyOrder={modifyOrder}
                               />
                           ))
@@ -92,7 +97,7 @@ const Cart = ({ userOrder, setShowCart, setUserOrder, setShowItemPreview }) => {
                     <section className={styles.cc_btns}>
                         <button
                             className={`${styles.cc_btn} ${styles.cc_btn_1}`}
-                            onClick={() => setShowCart(false)}
+                            onClick={() => switchComponent("menu")}
                         >
                             Dobierz produkty
                         </button>

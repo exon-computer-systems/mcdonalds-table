@@ -12,11 +12,11 @@ const CartItem = ({
     category,
     removeItem,
     setShowItemPreview,
-    setShowCart,
+    switchComponent,
     modifyOrder,
 }) => {
     return (
-        <section className={styles.cart_item}>
+        <section className={`${styles.cart_item} `}>
             <section className={styles.ci_info}>
                 <img
                     className={styles.ci_info_img}
@@ -30,7 +30,7 @@ const CartItem = ({
                     className={styles.ci_options_btn}
                     onClick={() => {
                         setShowItemPreview(item);
-                        setShowCart(false);
+                        switchComponent("menu");
                     }}
                 >
                     <FontAwesomeIcon icon={faPencil} />
