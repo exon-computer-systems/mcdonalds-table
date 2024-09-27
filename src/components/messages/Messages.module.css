@@ -37,7 +37,7 @@
 
 .message {
   max-width: 1000px;
-  min-width: 500px;
+  width: 600px;
 }
 
 .messages_slider {
@@ -65,7 +65,7 @@
 
 .emojis {
   max-width: 1000px;
-  width: 500px;
+  width: 400px;
 }
 
 .emojis_slider {
