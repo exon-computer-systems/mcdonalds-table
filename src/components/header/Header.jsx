@@ -4,20 +4,23 @@ import styles from "./Header.module.css";
 import papperBag from "../../assets/papper-bag-icon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBurger,
-  faCommentDots,
-  faDownLeftAndUpRightToCenter,
-  faUpRightAndDownLeftFromCenter,
-  faUserTie,
+    faBurger,
+    faCommentDots,
+    faDownLeftAndUpRightToCenter,
+    faUpRightAndDownLeftFromCenter,
+    faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
 import Popup from "./Popup";
 
 // prettier-ignore
 const Header = ({title, orderQuantity, enlarge, reset, size, switchComponent }) => {
-
+    const buttonRef = useRef();
+    const activeChatBoxRef = useRef();
+    
     const [activeWaiter, setActiveWaiter] = useState(false);
     const [activeChatBox, setActiveChatBox] = useState(false);
     const [messages, setMessages] = useState([]);
+    const [messageNotification, setMessageNotification] = useState(false);
     const timeoutRef = useRef();
 
     useEffect(() => {
@@ -31,19 +34,30 @@ const Header = ({title, orderQuantity, enlarge, reset, size, switchComponent }) 
         }
     }, [activeWaiter]);
 
-    // useEffect(() => {
+    useEffect(() => {
+        activeChatBoxRef.current = activeChatBox;
+    }, [activeChatBox])
+
+    // function to get messages after random time between 2-3 minutes
+    useEffect(() => {
         
-    //     const addMessage = () => {
-    //         console.log("test")
-    //         setMessages(prev => [...prev, "test"]);
+        const addMessage = () => {
+            // adding message to beginning of array
+            setMessages(prev => ["test", ...prev]);
+            
+            if(!activeChatBoxRef.current) {
+                setMessageNotification(true);
+            }
+        }
 
-    //         timeoutRef.current = setTimeout(addMessage, Math.floor(Math.random() * (30000 - 10000 + 1) - 10000))
-    //     }
+        // setting timeout
+        timeoutRef.current = setTimeout(addMessage,  Math.floor(Math.random() * (180000 - 120000 + 1) + 120000));
+        // timeoutRef.current = setTimeout(addMessage,  Math.floor(Math.random() * (10000 - 9000 + 1) + 9000));
+        
 
-    //     addMessage();
-
-    //     return () => clearTimeout(timeoutRef.current)
-    // }, [])
+        // cleanup function to clear timeout
+        return () => clearTimeout(timeoutRef.current)
+    }, [messages])
 
     return (
         <header className={styles.heading_cont}>
@@ -95,15 +109,21 @@ const Header = ({title, orderQuantity, enlarge, reset, size, switchComponent }) 
                 </button>
 
                 {/* Chat button */}
-                <button className={styles.btn_cont} onClick={() => setActiveChatBox(prev => !prev)}>
+                <button className={styles.btn_cont} 
+                    onClick={() => { 
+                        setActiveChatBox(prev => !prev);
+                        setMessageNotification(false); 
+                    }} 
+                    ref={buttonRef}
+                >
                     <span className={styles.btn}>
                         <FontAwesomeIcon icon={faCommentDots} />
                     </span>
                     <p className={styles.btn_text}>Czat</p>
                     
-                        <span className={styles.message_not}></span>
+                        {messageNotification && <span className={styles.message_not}></span>}
                     
-                    {activeChatBox && <Popup switchComponent={switchComponent} messages={messages} />}
+                    {activeChatBox && <Popup switchComponent={switchComponent} messages={messages} setActiveChatBox={setActiveChatBox} buttonRef={buttonRef}  />}
                 </button>
 
                 {/* Menu button */}
