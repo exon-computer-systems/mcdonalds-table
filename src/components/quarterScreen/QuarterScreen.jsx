@@ -22,10 +22,14 @@ const QuarterScreen = ({
     size2,
 }) => {
     const [showCart, setShowCart] = useState(false);
+    const [showItemPreview, setShowItemPreview] = useState(false);
+
+    const [userOrder, setUserOrder] = useState({});
     const [orderQuantity, setOrderQuantity] = useState(0);
 
     const [activeComponent, setActiveComponent] = useState("menu");
     const [activeTitle, setActiveTitle] = useState("Menu");
+
     const switchComponent = (componentName) => {
         switch (componentName) {
             case "menu":
@@ -167,9 +171,21 @@ const QuarterScreen = ({
                                 setShowCart={setShowCart}
                                 orderQuantity={orderQuantity}
                                 setOrderQuantity={setOrderQuantity}
+                                userOrder={userOrder}
+                                setUserOrder={setUserOrder}
+                                showItemPreview={showItemPreview}
+                                setShowItemPreview={setShowItemPreview}
                             />
                         )}
-                        {activeComponent === "cart" && <Cart />}
+                        {activeComponent === "cart" && (
+                            <Cart
+                                userOrder={userOrder}
+                                setShowCart={setShowCart}
+                                setUserOrder={setUserOrder}
+                                setShowItemPreview={setShowItemPreview}
+                                switchComponent={switchComponent}
+                            />
+                        )}
                         {activeComponent === "promotions" && <Promotions />}
                         {activeComponent === "messages" && <Messages />}
                         {activeComponent === "application" && <Application />}

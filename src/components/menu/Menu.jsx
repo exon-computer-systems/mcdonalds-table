@@ -26,14 +26,17 @@ const Menu = ({
     setShowCart,
     orderItem,
     setOrderQuantity,
+    userOrder,
+    setUserOrder,
+    showItemPreview,
+    setShowItemPreview,
 }) => {
     // const menuRef = useScrollToStart(60000, () => handleUserInactivity());
     const menuRef = useRef();
 
-    const [showItemPreview, setShowItemPreview] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [filter, setFilter] = useState("");
-    const [userOrder, setUserOrder] = useState({});
+    // const [userOrder, setUserOrder] = useState({});
 
     const [menu, setMenu] = useState({
         burgers: {
@@ -462,144 +465,136 @@ const Menu = ({
 
     return (
         <>
-            {showCart ? (
-                <Cart
-                    userOrder={userOrder}
-                    setShowCart={setShowCart}
-                    setUserOrder={setUserOrder}
-                    setShowItemPreview={setShowItemPreview}
-                />
-            ) : (
-                <section className={styles.container}>
-                    {showItemPreview ? (
-                        <ProductPreview
-                            showItemPreview={showItemPreview}
-                            setShowItemPreview={setShowItemPreview}
-                            setUserOrder={setUserOrder}
-                            category={selectedCategory}
-                        />
-                    ) : (
-                        <>
-                            <section className={styles.menu_category_cont}>
-                                <section
-                                    className={`${
-                                        selectedCategory
-                                            ? styles.menu_category_mini
-                                            : styles.menu_category
-                                    }`}
-                                    ref={menuRef}
-                                >
-                                    <MenuCategory
-                                        category="burgers"
-                                        title="Burgery"
-                                        bkg={burgerBkg}
-                                        selectedCategory={selectedCategory}
-                                        active={
-                                            selectedCategory === "burgers"
-                                                ? true
-                                                : false
-                                        }
-                                        onClick={() => {
-                                            setSelectedCategory("burgers");
-                                            setFilter("");
-                                        }}
-                                    />
-                                    <MenuCategory
-                                        category="coffee"
-                                        title="McCafé"
-                                        bkg={coffeeBkg}
-                                        selectedCategory={selectedCategory}
-                                        active={
-                                            selectedCategory === "mccafe"
-                                                ? true
-                                                : false
-                                        }
-                                        onClick={() => {
-                                            setSelectedCategory("mccafe");
-                                            setFilter("");
-                                        }}
-                                    />
-                                    <MenuCategory
-                                        category="2foru"
-                                        title="2forU"
-                                        bkg={twoForUBkg}
-                                        selectedCategory={selectedCategory}
-                                        active={
-                                            selectedCategory === "2foru"
-                                                ? true
-                                                : false
-                                        }
-                                        // onClick={() => {
-                                        //     setSelectedCategory("2foru");
-                                        //     setFilter("");
-                                        // }}
-                                    />
-                                    <MenuCategory
-                                        category="icescream"
-                                        title="Lody"
-                                        bkg={iceScreamBkg}
-                                        selectedCategory={selectedCategory}
-                                        active={
-                                            selectedCategory === "icescream"
-                                                ? true
-                                                : false
-                                        }
-                                        // onClick={() => {
-                                        //     setSelectedCategory("icescream");
-                                        //     setFilter("");
-                                        // }}
-                                    />
-                                    <MenuCategory
-                                        category="fries"
-                                        title="Dodatki"
-                                        bkg={friesBkg}
-                                        selectedCategory={selectedCategory}
-                                        active={
-                                            selectedCategory === "fries"
-                                                ? true
-                                                : false
-                                        }
-                                        // onClick={() => {
-                                        //     setSelectedCategory("fries");
-                                        //     setFilter("");
-                                        // }}
-                                    />
-                                </section>
+            <section className={styles.container}>
+                {showItemPreview ? (
+                    <ProductPreview
+                        showItemPreview={showItemPreview}
+                        setShowItemPreview={setShowItemPreview}
+                        setUserOrder={setUserOrder}
+                        category={selectedCategory}
+                    />
+                ) : (
+                    <>
+                        <section className={styles.menu_category_cont}>
+                            <section
+                                className={`${
+                                    selectedCategory
+                                        ? styles.menu_category_mini
+                                        : styles.menu_category
+                                }`}
+                                ref={menuRef}
+                            >
+                                <MenuCategory
+                                    category="burgers"
+                                    title="Burgery"
+                                    bkg={burgerBkg}
+                                    selectedCategory={selectedCategory}
+                                    active={
+                                        selectedCategory === "burgers"
+                                            ? true
+                                            : false
+                                    }
+                                    onClick={() => {
+                                        setSelectedCategory("burgers");
+                                        setFilter("");
+                                    }}
+                                />
+                                <MenuCategory
+                                    category="coffee"
+                                    title="McCafé"
+                                    bkg={coffeeBkg}
+                                    selectedCategory={selectedCategory}
+                                    active={
+                                        selectedCategory === "mccafe"
+                                            ? true
+                                            : false
+                                    }
+                                    onClick={() => {
+                                        setSelectedCategory("mccafe");
+                                        setFilter("");
+                                    }}
+                                />
+                                <MenuCategory
+                                    category="2foru"
+                                    title="2forU"
+                                    bkg={twoForUBkg}
+                                    selectedCategory={selectedCategory}
+                                    active={
+                                        selectedCategory === "2foru"
+                                            ? true
+                                            : false
+                                    }
+                                    // onClick={() => {
+                                    //     setSelectedCategory("2foru");
+                                    //     setFilter("");
+                                    // }}
+                                />
+                                <MenuCategory
+                                    category="icescream"
+                                    title="Lody"
+                                    bkg={iceScreamBkg}
+                                    selectedCategory={selectedCategory}
+                                    active={
+                                        selectedCategory === "icescream"
+                                            ? true
+                                            : false
+                                    }
+                                    // onClick={() => {
+                                    //     setSelectedCategory("icescream");
+                                    //     setFilter("");
+                                    // }}
+                                />
+                                <MenuCategory
+                                    category="fries"
+                                    title="Dodatki"
+                                    bkg={friesBkg}
+                                    selectedCategory={selectedCategory}
+                                    active={
+                                        selectedCategory === "fries"
+                                            ? true
+                                            : false
+                                    }
+                                    // onClick={() => {
+                                    //     setSelectedCategory("fries");
+                                    //     setFilter("");
+                                    // }}
+                                />
                             </section>
-                            {selectedCategory && (
-                                <section className={styles.submenu_cont}>
-                                    <section className={styles.submenu_btns}>
-                                        {menu[selectedCategory].filters.map(
-                                            (el, idx) => (
-                                                <button
-                                                    key={idx}
-                                                    className={`${
-                                                        styles.submenu_btn
-                                                    } ${
-                                                        filter === el.filterId
-                                                            ? styles.submenu_btn_active
+                        </section>
+                        {selectedCategory && (
+                            <section className={styles.submenu_cont}>
+                                <section className={styles.submenu_btns}>
+                                    {menu[selectedCategory].filters.map(
+                                        (el, idx) => (
+                                            <button
+                                                key={idx}
+                                                className={`${
+                                                    styles.submenu_btn
+                                                } ${
+                                                    filter === el.filterId
+                                                        ? styles.submenu_btn_active
+                                                        : ""
+                                                }`}
+                                                onClick={() =>
+                                                    setFilter((prev) =>
+                                                        prev !== el.filterId
+                                                            ? el.filterId
                                                             : ""
-                                                    }`}
-                                                    onClick={() =>
-                                                        setFilter((prev) =>
-                                                            prev !== el.filterId
-                                                                ? el.filterId
-                                                                : ""
-                                                        )
-                                                    }
-                                                >
-                                                    <span>{el.filterName}</span>
-                                                    {filter === el.filterId && (
-                                                        <FontAwesomeIcon
-                                                            icon={faXmark}
-                                                        />
-                                                    )}
-                                                </button>
-                                            )
-                                        )}
-                                    </section>
+                                                    )
+                                                }
+                                            >
+                                                <span>{el.filterName}</span>
+                                                {filter === el.filterId && (
+                                                    <FontAwesomeIcon
+                                                        icon={faXmark}
+                                                    />
+                                                )}
+                                            </button>
+                                        )
+                                    )}
+                                </section>
 
-                                    {/* <section className={styles.submenu}>
+                                {/* <section className={styles.submenu}>
                                         {selectedCategory &&
                                             menu[selectedCategory].categoryMenu
                                                 .filter(
@@ -634,55 +629,48 @@ const Menu = ({
                                                     />
                                                 ))}
                                     </section> */}
-                                    <section className={styles.submenu}>
-                                        {selectedCategory &&
-                                            (() => {
-                                                const filteredItems = menu[
-                                                    selectedCategory
-                                                ].categoryMenu.filter(
-                                                    (fil) =>
-                                                        !filter ||
-                                                        fil.tag === filter
-                                                );
+                                <section className={styles.submenu}>
+                                    {selectedCategory &&
+                                        (() => {
+                                            const filteredItems = menu[
+                                                selectedCategory
+                                            ].categoryMenu.filter(
+                                                (fil) =>
+                                                    !filter ||
+                                                    fil.tag === filter
+                                            );
 
-                                                return filteredItems.map(
-                                                    (el, idx) => (
-                                                        <SubmenuItem
-                                                            key={idx}
-                                                            userOrder={
-                                                                userOrder
-                                                            }
-                                                            setOrder={
-                                                                setUserOrder
-                                                            }
-                                                            category={
-                                                                selectedCategory
-                                                            }
-                                                            item={el}
-                                                            addToOrder={
-                                                                addToOrder
-                                                            }
-                                                            setShowItemPreview={
-                                                                setShowItemPreview
-                                                            }
-                                                            // borderLeft={
-                                                            //     idx === 0 ||
-                                                            //     idx === 1
-                                                            // }
-                                                            borderTop={
-                                                                idx % 2 === 0
-                                                            }
-                                                        />
-                                                    )
-                                                );
-                                            })()}
-                                    </section>
+                                            return filteredItems.map(
+                                                (el, idx) => (
+                                                    <SubmenuItem
+                                                        key={idx}
+                                                        userOrder={userOrder}
+                                                        setOrder={setUserOrder}
+                                                        category={
+                                                            selectedCategory
+                                                        }
+                                                        item={el}
+                                                        addToOrder={addToOrder}
+                                                        setShowItemPreview={
+                                                            setShowItemPreview
+                                                        }
+                                                        // borderLeft={
+                                                        //     idx === 0 ||
+                                                        //     idx === 1
+                                                        // }
+                                                        borderTop={
+                                                            idx % 2 === 0
+                                                        }
+                                                    />
+                                                )
+                                            );
+                                        })()}
                                 </section>
-                            )}
-                        </>
-                    )}
-                </section>
-            )}
+                            </section>
+                        )}
+                    </>
+                )}
+            </section>
         </>
     );
 };
