@@ -1,0 +1,65 @@
+/* TABLE MAP */
+
+.table_map_container {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 0rem 4rem;
+}
+
+.table {
+  width: 200px;
+  height: 120px;
+  background-color: white;
+  border-radius: 1rem;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 2px solid #06300a;
+  overflow: hidden;
+}
+
+.place {
+  width: 97px;
+  height: 58px;
+  background-color: white;
+  color: black;
+  z-index: 5;
+  /* border: 0.5px solid black; */
+  border-radius: inherit;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.place::before,
+.place::after {
+  content: "";
+  position: absolute;
+  background-color: black;
+  z-index: 1;
+}
+.place::after {
+  width: 100vw;
+  height: 1px;
+  left: 0;
+  top: -1px;
+}
+
+.place::before {
+  width: 1px;
+  height: 100vh;
+  left: -1px;
+  top: 0;
+}
+
+.place:hover {
+  background-color: #ffbc08;
+  border: 1px solid #ffbc08;
+}

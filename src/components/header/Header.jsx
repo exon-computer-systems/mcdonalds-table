@@ -4,11 +4,11 @@ import styles from "./Header.module.css";
 import papperBag from "../../assets/papper-bag-icon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faBurger,
-    faCommentDots,
-    faDownLeftAndUpRightToCenter,
-    faUpRightAndDownLeftFromCenter,
-    faUserTie,
+  faBurger,
+  faCommentDots,
+  faDownLeftAndUpRightToCenter,
+  faUpRightAndDownLeftFromCenter,
+  faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
 import Popup from "./Popup";
 

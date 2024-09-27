@@ -619,7 +619,8 @@ const Menu = ({
                                                         //     // prettier-ignore
                                                         //     idx !== menu[selectedCategory].categoryMenu.length - 1
                                                         //         &&
-                                                        //     (idx !== menu[selectedCategory].categoryMenu.length - 2 || idx % 2 !== 0)
+                                                        //     (idx !== menu[selectedCategory].categoryMenu.length - 2 ||
+ idx % 2 !== 0)
                                                         // }
                                                         // borderBottom={
                                                         //     idx % 2 === 0
