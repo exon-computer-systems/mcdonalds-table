@@ -42,7 +42,7 @@
 .place::after {
   content: "";
   position: absolute;
-  background-color: black;
+  background-color: rgb(198, 196, 196);
   z-index: 1;
 }
 .place::after {
