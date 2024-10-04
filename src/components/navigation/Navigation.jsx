@@ -30,7 +30,9 @@ const Navigation = ({ switchComponent, activeComponent }) => {
               }
             : { x: 0, y: 0 }
         }
-        transition={{ type: "tween" }}
+        transition={
+          isClicked ? { type: "tween" } : { delay: 0.3, type: "tween" }
+        }
         className={styles.slide_nav}
       >
         <motion.button
@@ -55,6 +57,7 @@ const Navigation = ({ switchComponent, activeComponent }) => {
               }
             : { x: 0, y: 0 }
         }
+        transition={isClicked === false && { delay: 0.3 }}
       >
         <section className={styles.wrapper}>
           <motion.section
@@ -112,18 +115,6 @@ const Navigation = ({ switchComponent, activeComponent }) => {
             >
               <FontAwesomeIcon className={styles.btn_icon} icon={faGamepad} />
               <span className={styles.btn_text}>Gry</span>
-            </button>
-            <button
-              className={`${styles.btn} ${
-                activeComponent === "messages" && styles.active
-              }`}
-              onClick={() => {
-                switchComponent("messages");
-                handleClick();
-              }}
-            >
-              <FontAwesomeIcon className={styles.btn_icon} icon={faComments} />
-              <span className={styles.btn_text}>Wyślij wiadomość</span>
             </button>
           </motion.section>
         </section>
