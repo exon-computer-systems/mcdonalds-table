@@ -1,19 +1,25 @@
 import styles from "./WelcomePage.module.css";
-import { motion } from "framer-motion";
+import { delay, motion } from "framer-motion";
 // import mclogo from "../../assets/logo/mc_logo.svg";
 
 const WelcomePage = () => {
   return (
     <motion.section
       initial={{ x: 0, y: 0, zIndex: 10 }}
-      animate={{ x: 5000, y: 0 }}
-      transition={{ duration: 1, delay: 6 }}
+      animate={{ x: [-5000, 0, 0, 5000], y: 0 }}
+      transition={{
+        x: {
+          duration: 8,
+          times: [0, 0.2, 0.8, 1, 0.2, 0.3, 1],
+          ease: "easeInOut",
+        },
+      }}
       className={styles.container}
     >
       <motion.section
         initial={{ x: 0, y: 520 }}
         animate={{ x: 0, y: 0, scale: 1.2 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 1, delay: 2 }}
         className={styles.logo_wrapper}
       >
         <motion.svg
@@ -25,14 +31,15 @@ const WelcomePage = () => {
           animate={{ scale: [1.3, 1.1, 1, 0.9, 1.1, 1.2], x: [0, -500, 500] }}
           transition={{
             scale: {
-              duration: 6, // Total duration of scale animation
+              duration: 4, // Total duration of scale animation
               times: [0.4, 0.9, 0.4, 0.6, 0.8, 1], // Specify the timing for each scale step
               ease: "easeInOut", // Easing for smooth transition
+              delay: 2,
             },
             x: {
-              duration: 3, // Same duration for x movement
-              times: [0, 0.3, 1], // Timing for each x movement stage
-              delay: 4.5,
+              duration: 4, // Same duration for x movement
+              times: [0, 0.4, 1], // Timing for each x movement stage
+              delay: 3,
               ease: "easeInOut", // Smooth easing
             },
           }}
