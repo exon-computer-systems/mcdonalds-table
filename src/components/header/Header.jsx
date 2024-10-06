@@ -11,14 +11,15 @@ import {
     faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
 import Popup from "./Popup";
+import { messages as messagesData } from "../../data/messages";
 
 // prettier-ignore
-const Header = ({title, orderQuantity, enlarge, reset, size, switchComponent }) => {
+const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent, activeChatBox, setActiveChatBox }) => {
     const buttonRef = useRef();
     const activeChatBoxRef = useRef();
     
     const [activeWaiter, setActiveWaiter] = useState(false);
-    const [activeChatBox, setActiveChatBox] = useState(false);
+    
     const [messages, setMessages] = useState([]);
     const [messageNotification, setMessageNotification] = useState(false);
     const timeoutRef = useRef();
@@ -42,8 +43,12 @@ const Header = ({title, orderQuantity, enlarge, reset, size, switchComponent }) 
     useEffect(() => {
         
         const addMessage = () => {
+
+            let randomText = messagesData.text[Math.floor(Math.random() * messagesData.text.length)];
+            let randomEmoji = messagesData.emojis[Math.floor(Math.random() * messagesData.emojis.length)];
+
             // adding message to beginning of array
-            setMessages(prev => ["test", ...prev]);
+            setMessages(prev => [`${randomText} ${randomEmoji}`, ...prev]);
             
             if(!activeChatBoxRef.current) {
                 setMessageNotification(true);
@@ -58,6 +63,7 @@ const Header = ({title, orderQuantity, enlarge, reset, size, switchComponent }) 
         // cleanup function to clear timeout
         return () => clearTimeout(timeoutRef.current)
     }, [messages])
+    
 
     return (
         <header className={styles.heading_cont}>
@@ -110,7 +116,8 @@ const Header = ({title, orderQuantity, enlarge, reset, size, switchComponent }) 
 
                 {/* Chat button */}
                 <button className={styles.btn_cont} 
-                    onClick={() => { 
+                    onClick={(e) => { 
+                        e.stopPropagation();
                         setActiveChatBox(prev => !prev);
                         setMessageNotification(false); 
                     }} 
@@ -123,7 +130,13 @@ const Header = ({title, orderQuantity, enlarge, reset, size, switchComponent }) 
                     
                         {messageNotification && <span className={styles.message_not}></span>}
                     
-                    {activeChatBox && <Popup switchComponent={switchComponent} messages={messages} setActiveChatBox={setActiveChatBox} buttonRef={buttonRef}  />}
+                    {activeChatBox && 
+                    <Popup 
+                    switchComponent={switchComponent} 
+                    messages={messages} 
+                    setActiveChatBox={setActiveChatBox} 
+                    setMessages={setMessages}
+                      />}
                 </button>
 
                 {/* Menu button */}
