@@ -17,8 +17,8 @@
   display: flex;
   flex-direction: column;
 
-  width: 100%;
-  height: 100%;
+  width: 70%;
+  height: 70%;
   gap: 1rem;
 }
 
@@ -35,6 +35,17 @@
 
 .message {
   max-width: 80%;
+  position: relative;
+}
+.message::after {
+  content: "";
+  background-color: black;
+  position: absolute;
+  /* width: 5px; */
+  height: 100%;
+  box-shadow: 1px 8px 23px 10px #ffbc08;
+  right: 0;
+  top: 0;
 }
 
 .messages_slider {
@@ -43,7 +54,6 @@
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
-  padding: 0.5rem 0;
 }
 
 .messages_slider > button {
@@ -63,7 +73,8 @@
 }
 
 .emojis {
-  max-width: 70%;
+  max-width: 80%;
+  position: relative;
 }
 
 .emojis_slider {
@@ -71,7 +82,29 @@
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
-  padding: 0.5rem 0;
+  box-shadow: inset 0 3px -3px #00000030;
+  /* padding: 0rem 0; */
+}
+
+.emojis::before {
+  content: "";
+  background-color: black;
+  position: absolute;
+  /* width: 5px; */
+  height: 100%;
+  box-shadow: 1px 8px 23px 8px #ffbc08;
+  left: 0;
+  top: 0;
+}
+.emojis::after {
+  content: "";
+  background-color: black;
+  position: absolute;
+  /* width: 5px; */
+  height: 100%;
+  box-shadow: 1px 8px 23px 10px #ffbc08;
+  right: 0;
+  top: 0;
 }
 
 .emojis_slider > button {
@@ -88,8 +121,8 @@
 }
 
 .send_msg_btn {
-  max-width: 100%;
-
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   display: flex;
   justify-content: center;
@@ -97,7 +130,8 @@
 
 .send_msg_btn > button {
   border: 3px solid white;
-  padding: 1rem 3rem;
+  height: 100%;
+  /* padding: 3rem 3rem; */
   background-color: white;
   font-weight: 700;
   font-size: 1.3rem;
