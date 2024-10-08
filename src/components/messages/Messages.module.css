@@ -30,11 +30,12 @@
   border-radius: 1rem;
   display: flex;
   flex-direction: row;
+  gap: 2rem;
   padding: 2rem 2rem;
 }
 
 .message {
-  max-width: 80%;
+  max-width: 100%;
   position: relative;
 }
 .message::after {
@@ -73,7 +74,7 @@
 }
 
 .emojis {
-  max-width: 80%;
+  max-width: 100%;
   position: relative;
 }
 
@@ -130,7 +131,10 @@
 
 .send_msg_btn > button {
   border: 3px solid white;
+
   height: 100%;
+  max-width: 182px;
+  min-width: 182px;
   /* padding: 3rem 3rem; */
   background-color: white;
   font-weight: 700;
