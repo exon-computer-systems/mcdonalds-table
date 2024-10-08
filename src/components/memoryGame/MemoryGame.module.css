@@ -13,7 +13,7 @@
 
 .heading > h2 {
   text-align: center;
-  font-size: 2.4rem;
+  font-size: var(--heading-font-size);
 }
 
 .cards_wrapper {
