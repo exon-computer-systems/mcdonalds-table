@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./Menu.module.css";
+import { v4 as uuidv4 } from "uuid";
 
 import useImage from "../../hooks/useImage";
 
@@ -33,7 +34,7 @@ const ProductPreview = ({
 
     const addToCart = (item, category) => {
         setUserOrder((prev) => {
-            const newItem = { ...item, quantity: itemOrder };
+            const newItem = { ...item, quantity: itemOrder, itemId: uuidv4() };
 
             return {
                 ...prev,

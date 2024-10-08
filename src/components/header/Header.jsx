@@ -11,17 +11,17 @@ import {
     faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
 import Popup from "./Popup";
+import { messages as messagesData } from "../../data/messages";
 
 // prettier-ignore
-const Header = ({title, orderQuantity, enlarge, reset, size, switchComponent }) => {
+const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent, activeChatBox, setActiveChatBox}) => {
     const buttonRef = useRef();
     const activeChatBoxRef = useRef();
     
     const [activeWaiter, setActiveWaiter] = useState(false);
-    const [activeChatBox, setActiveChatBox] = useState(false);
-    const [messages, setMessages] = useState([]);
+    
     const [messageNotification, setMessageNotification] = useState(false);
-    const timeoutRef = useRef();
+    
 
     useEffect(() => {
         let timeout;
@@ -38,26 +38,7 @@ const Header = ({title, orderQuantity, enlarge, reset, size, switchComponent }) 
         activeChatBoxRef.current = activeChatBox;
     }, [activeChatBox])
 
-    // function to get messages after random time between 2-3 minutes
-    useEffect(() => {
-        
-        const addMessage = () => {
-            // adding message to beginning of array
-            setMessages(prev => ["test", ...prev]);
-            
-            if(!activeChatBoxRef.current) {
-                setMessageNotification(true);
-            }
-        }
-
-        // setting timeout
-        timeoutRef.current = setTimeout(addMessage,  Math.floor(Math.random() * (180000 - 120000 + 1) + 120000));
-        // timeoutRef.current = setTimeout(addMessage,  Math.floor(Math.random() * (10000 - 9000 + 1) + 9000));
-        
-
-        // cleanup function to clear timeout
-        return () => clearTimeout(timeoutRef.current)
-    }, [messages])
+    
 
     return (
         <header className={styles.heading_cont}>
@@ -110,7 +91,8 @@ const Header = ({title, orderQuantity, enlarge, reset, size, switchComponent }) 
 
                 {/* Chat button */}
                 <button className={styles.btn_cont} 
-                    onClick={() => { 
+                    onClick={(e) => { 
+                        e.stopPropagation();
                         setActiveChatBox(prev => !prev);
                         setMessageNotification(false); 
                     }} 
@@ -123,7 +105,12 @@ const Header = ({title, orderQuantity, enlarge, reset, size, switchComponent }) 
                     
                         {messageNotification && <span className={styles.message_not}></span>}
                     
-                    {activeChatBox && <Popup switchComponent={switchComponent} messages={messages} setActiveChatBox={setActiveChatBox} buttonRef={buttonRef}  />}
+                    {activeChatBox && 
+                    <Popup 
+                        id={id}
+                        switchComponent={switchComponent} 
+                        // setActiveChatBox={setActiveChatBox} 
+                    />}
                 </button>
 
                 {/* Menu button */}
