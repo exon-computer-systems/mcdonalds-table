@@ -4,13 +4,11 @@ import styles from "./Header.module.css";
 import avatar from "../../assets/avatar2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import useMessage from "../../hooks/useMessage";
 
-const Popup = ({
-    switchComponent,
-    messages,
-    setActiveChatBox,
-    setMessages,
-}) => {
+const Popup = ({ id, switchComponent }) => {
+    const { usersMessage, removeMessage } = useMessage();
+
     return (
         <section className={styles.pp_cont}>
             <button
@@ -20,11 +18,11 @@ const Popup = ({
                 Wyślij wiadomość
             </button>
             <section className={styles.pp_messages}>
-                {messages.length > 0 &&
-                    messages.map((el, idx) => (
+                {usersMessage["seat" + id].length > 0 &&
+                    usersMessage["seat" + id].map((el, idx) => (
                         <section
                             className={`${styles.pp_message_cont} ${
-                                idx < messages.length - 1 &&
+                                idx < usersMessage["seat" + id].length - 1 &&
                                 styles.pp_border_bottom
                             }`}
                             key={idx}
@@ -38,24 +36,20 @@ const Popup = ({
                                             alt="avatar"
                                         />
                                         <p className={styles.pp_user}>
-                                            Stół{" "}
-                                            {Math.floor(Math.random() * 8 + 1)},
-                                            użytkownik{" "}
-                                            {Math.floor(Math.random() * 4 + 1)}
+                                            {el.author}
                                         </p>
                                     </span>
                                     <span className={styles.pp_row}>
-                                        <p className={styles.pp_text}>{el}</p>
+                                        <p className={styles.pp_text}>
+                                            {el.message}
+                                        </p>
                                     </span>
                                 </section>
                                 <button
                                     className={styles.pp_message_btn_cont}
                                     onClick={(e) => {
-                                        setMessages((prev) =>
-                                            prev.filter(
-                                                (_, index) => index !== idx
-                                            )
-                                        );
+                                        e.stopPropagation();
+                                        removeMessage(id, el.id);
                                     }}
                                 >
                                     <FontAwesomeIcon

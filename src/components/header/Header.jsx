@@ -14,15 +14,14 @@ import Popup from "./Popup";
 import { messages as messagesData } from "../../data/messages";
 
 // prettier-ignore
-const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent, activeChatBox, setActiveChatBox }) => {
+const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent, activeChatBox, setActiveChatBox}) => {
     const buttonRef = useRef();
     const activeChatBoxRef = useRef();
     
     const [activeWaiter, setActiveWaiter] = useState(false);
     
-    const [messages, setMessages] = useState([]);
     const [messageNotification, setMessageNotification] = useState(false);
-    const timeoutRef = useRef();
+    
 
     useEffect(() => {
         let timeout;
@@ -39,30 +38,6 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
         activeChatBoxRef.current = activeChatBox;
     }, [activeChatBox])
 
-    // function to get messages after random time between 2-3 minutes
-    useEffect(() => {
-        
-        const addMessage = () => {
-
-            let randomText = messagesData.text[Math.floor(Math.random() * messagesData.text.length)];
-            let randomEmoji = messagesData.emojis[Math.floor(Math.random() * messagesData.emojis.length)];
-
-            // adding message to beginning of array
-            setMessages(prev => [`${randomText} ${randomEmoji}`, ...prev]);
-            
-            if(!activeChatBoxRef.current) {
-                setMessageNotification(true);
-            }
-        }
-
-        // setting timeout
-        timeoutRef.current = setTimeout(addMessage,  Math.floor(Math.random() * (180000 - 120000 + 1) + 120000));
-        // timeoutRef.current = setTimeout(addMessage,  Math.floor(Math.random() * (10000 - 9000 + 1) + 9000));
-        
-
-        // cleanup function to clear timeout
-        return () => clearTimeout(timeoutRef.current)
-    }, [messages])
     
 
     return (
@@ -132,11 +107,10 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
                     
                     {activeChatBox && 
                     <Popup 
-                    switchComponent={switchComponent} 
-                    messages={messages} 
-                    setActiveChatBox={setActiveChatBox} 
-                    setMessages={setMessages}
-                      />}
+                        id={id}
+                        switchComponent={switchComponent} 
+                        // setActiveChatBox={setActiveChatBox} 
+                    />}
                 </button>
 
                 {/* Menu button */}
