@@ -3,7 +3,6 @@ import styles from "./QuarterScreen.module.css";
 import Menu from "../menu/Menu";
 import Promotions from "../promotions/Promotions";
 import Messages from "../messages/Messages";
-import ShoppingCart from "../shoppingCart/ShoppingCart";
 import Navigation from "../navigation/Navigation";
 import Application from "../application/Application";
 import MemoryGame from "../memoryGame/MemoryGame";

@@ -1,0 +1,21 @@
+.confirmation_cont {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1rem;
+  z-index: 5;
+}
+
+.confirmation_cont > h2 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.confirmation_cont > span {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
