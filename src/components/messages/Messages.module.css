@@ -59,13 +59,14 @@
 .msg_btn {
   width: 100%;
   border: 3px solid white;
-  padding: 0rem 3rem;
+  padding: 2.3rem 3rem;
   color: black;
   font-weight: 700;
   font-size: 1.3rem;
   background-color: var(--main-green);
   color: white;
   border-radius: 1rem;
+  white-space: nowrap;
 }
 
 .message > button:hover {
