@@ -24,7 +24,9 @@ const Cart = ({
     setIsBuy(true);
     setTimeout(() => {
       setIsBuy(false);
-    }, 7000);
+      switchComponent("menu");
+      setUserOrder({});
+    }, 5000);
   };
 
   const modifyOrder = (item, category, action) => {
@@ -63,6 +65,7 @@ const Cart = ({
 
   const categories = Object.keys(userOrder);
   const totalPrice = calculateTotal();
+  console.log(categories);
 
   return (
     <>
@@ -71,20 +74,24 @@ const Cart = ({
       ) : (
         <section className={styles.container}>
           <section className={styles.cart}>
-            {categories.map(category =>
-              userOrder[category]?.length > 0
-                ? userOrder[category].map((item, idx) => (
-                    <CartItem
-                      key={item.itemId}
-                      item={item}
-                      category={category}
-                      removeItem={removeItem}
-                      setShowItemPreview={setShowItemPreview}
-                      switchComponent={switchComponent}
-                      modifyOrder={modifyOrder}
-                    />
-                  ))
-                : null
+            {categories === null ? (
+              categories.map(category =>
+                userOrder[category]?.length > 0
+                  ? userOrder[category].map((item, idx) => (
+                      <CartItem
+                        key={item.itemId}
+                        item={item}
+                        category={category}
+                        removeItem={removeItem}
+                        setShowItemPreview={setShowItemPreview}
+                        switchComponent={switchComponent}
+                        modifyOrder={modifyOrder}
+                      />
+                    ))
+                  : null
+              )
+            ) : (
+              <h1 className={styles.empty_cart}>Koszyk pusty :(</h1>
             )}
           </section>
           <section className={styles.cart_checkout_cont}>
