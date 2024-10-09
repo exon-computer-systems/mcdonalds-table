@@ -1,186 +1,209 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import QuarterScreen from "./components/quarterScreen/QuarterScreen";
-import HalfScreen from "./components/halfScreen/HalfScreen";
 import WelcomePage from "./components/welcomePage/WelcomePage";
-import { v4 as uuidv4 } from "uuid";
 import useMessages from "./hooks/useMessage";
+import Advertisements from "./components/advertisements/Advertisements";
+import axios from "axios";
 
 const App = () => {
     const { addMessage } = useMessages();
 
-    const [rotateQuarter, setRotateQuarter] = useState(false);
-    const [rotateHalf, setRotateHalf] = useState(false);
     // const [inactive, setInactive] = useState(true);
-    const [leftSectionFlex, setLeftSectionFlex] = useState([1, 1]);
-    const [rightSectionFlex, setRightSectionFlex] = useState([1, 1]);
+    const [sectionFlex, setSectionFlex] = useState({
+        left1: 1,
+        left2: 1,
+        right1: 1,
+        right2: 1,
+    });
 
-    // const sensors = [
-    //     {
-    //         name: "sensor_1",
-    //         distance: 175,
-    //         isSitTaken: false,
-    //     },
-    //     {
-    //         name: "sensor_2",
-    //         distance: 175,
-    //         isSitTaken: false,
-    //     },
-    //     {
-    //         name: "sensor_3",
-    //         distance: 175,
-    //         isSitTaken: true,
-    //     },
-    //     {
-    //         name: "sensor_4",
-    //         distance: 175,
-    //         isSitTaken: false,
-    //     },
-    // ];
-
-    const sensors = {
-        sensor_1: {
+    const [playAds, setPlayAds] = useState(true);
+    const [playWelcome, setPlayWelcome] = useState(false);
+    const [sensors, setSensors] = useState([
+        {
             name: "sensor_1",
-            distance: 37,
-            isSitTaken: true,
-        },
-        sensor_2: {
-            name: "sensor_2",
-            distance: 37,
-            isSitTaken: true,
-        },
-        sensor_3: {
-            name: "sensor_3",
-            distance: 37,
+            distance: 175,
             isSitTaken: false,
         },
-        sensor_4: {
-            name: "sensor_4",
-            distance: 37,
-            isSitTaken: true,
+        {
+            name: "sensor_2",
+            distance: 175,
+            isSitTaken: false,
         },
-    };
+        {
+            name: "sensor_3",
+            distance: 175,
+            isSitTaken: false,
+        },
+        {
+            name: "sensor_4",
+            distance: 175,
+            isSitTaken: false,
+        },
+    ]);
 
-    // const initialMessages = {
-    //     1: [],
-    //     2: [],
-    //     3: [],
-    //     4: [],
+    // const sensors = {
+    //     sensor_1: {
+    //         name: "sensor_1",
+    //         distance: 37,
+    //         isSitTaken: true,
+    //     },
+    //     sensor_2: {
+    //         name: "sensor_2",
+    //         distance: 37,
+    //         isSitTaken: true,
+    //     },
+    //     sensor_3: {
+    //         name: "sensor_3",
+    //         distance: 37,
+    //         isSitTaken: false,
+    //     },
+    //     sensor_4: {
+    //         name: "sensor_4",
+    //         distance: 37,
+    //         isSitTaken: true,
+    //     },
     // };
 
-    // const reducer = (state, action) => {
-    //     switch(action.type) {
-    //         case "SEND_MESSAGES": {
-    //             console.log(action.ids);
-
-    //             ids.array.forEach(el => {
-    //                 initialMessages.el = [action.message, ]
-    //             });
-    //         }
-    //     }
-    // }
-
-    // const sendMessage = (ids, message) => {
-    //     setUsersMessages((prev) => {
-    //         ids.forEach((el) => {
-    //             console.log(prev["seat" + el]);
-    //             prev["seat" + el] = [
-    //                 { id: uuidv4(), ...message },
-    //                 ...prev["seat" + el],
-    //             ];
-    //             return prev["seat" + el];
-    //         });
-    //         return prev;
-    //     });
-    // };
-
-    const enlargeLeft = (leftIndex) => {
-        leftIndex === 1
-            ? setLeftSectionFlex([7, 1])
-            : setLeftSectionFlex([1, 7]);
+    // Control size of left screens using flexbox grow
+    const enlargeLeft = (section) => {
+        setSectionFlex({
+            ...sectionFlex,
+            left1: section === "left1" ? 7 : 1,
+            left2: section === "left2" ? 7 : 1,
+        });
     };
 
+    // Control size of right screens using flexbox grow
+    const enlargeRight = (section) => {
+        setSectionFlex({
+            ...sectionFlex,
+            right1: section === "right1" ? 7 : 1,
+            right2: section === "right2" ? 7 : 1,
+        });
+    };
+
+    // Reset left screens to default 1:1
     const resetLeft = () => {
-        setLeftSectionFlex([1, 1]);
+        setSectionFlex({
+            ...sectionFlex,
+            left1: 1,
+            left2: 1,
+        });
     };
 
-    const enlargeRight = (leftIndex) => {
-        leftIndex === 1
-            ? setRightSectionFlex([7, 1])
-            : setRightSectionFlex([1, 7]);
-    };
-
+    // Reset right screens to default 1:1
     const resetRight = () => {
-        setRightSectionFlex([1, 1]);
+        setSectionFlex({
+            ...sectionFlex,
+            right1: 1,
+            right2: 1,
+        });
     };
+
+    useEffect(() => {
+        let timeout;
+        if (sensors.find((el) => el.isSitTaken === true)) {
+            setPlayWelcome(true);
+            timeout = setTimeout(() => {
+                setPlayAds(false);
+                // setPlayWelcome(false);
+            }, 2000);
+            setTimeout(() => setPlayWelcome(false), 15000);
+        } else {
+            setPlayAds(true);
+            setPlayWelcome(false);
+        }
+
+        return () => clearTimeout(timeout);
+    }, [sensors]);
+
+    // useEffect(() => {
+    //     const fetchSensors = async () => {
+    //         try {
+    //             const res = await axios.get(
+    //                 "http://localhost:3000/sensors/api"
+    //             );
+
+    //             if (res) {
+    //                 setSensors(data.sensors);
+    //             }
+    //         } catch (err) {
+    //             // console.warn(err);
+    //         }
+    //     };
+
+    //     const intervalId = setInterval(fetchSensors, 100);
+    //     return () => clearInterval(intervalId);
+    // }, []);
 
     return (
         <>
-            <section
-                className="home"
-                onClick={() =>
-                    addMessage([1, 2], {
-                        author: "Patrys",
-                        message: "Siemanko",
-                    })
-                }
-            >
-                {/* <WelcomePage /> */}
-                <section className="home-1">
-                    {sensors.sensor_1.isSitTaken && (
-                        <QuarterScreen
-                            id={1}
-                            enlargeLeft={() => enlargeLeft(1)}
-                            leftSectionFlex={leftSectionFlex[0]}
-                            reset={resetLeft}
-                            size1={leftSectionFlex[0]}
-                            size2={leftSectionFlex[1]}
-                            // usersMessage={usersMessage}
-                            // sendMessage={sendMessage}
-                        />
-                    )}
+            {playWelcome && <WelcomePage />}
+            {playAds ? (
+                <Advertisements setSensors={setSensors} />
+            ) : (
+                <section className="home">
+                    <section className="home-1">
+                        {sensors[0].isSitTaken && (
+                            <QuarterScreen
+                                id={1}
+                                enlarge={() => enlargeLeft("left1")}
+                                reset={resetLeft}
+                                size={sectionFlex.left1}
+                                isReduced={
+                                    sectionFlex.left1 < sectionFlex.left2 &&
+                                    sectionFlex.left1 < 7
+                                }
+                                isSingle={!sensors[1].isSitTaken}
+                            />
+                        )}
 
-                    {sensors.sensor_2.isSitTaken && (
-                        <QuarterScreen
-                            id={2}
-                            enlargeLeft={() => enlargeLeft(2)}
-                            leftSectionFlex={leftSectionFlex[1]}
-                            reset={resetLeft}
-                            size1={leftSectionFlex[1]}
-                            size2={leftSectionFlex[0]}
-                            // usersMessage={usersMessage}
-                            // sendMessage={sendMessage}
-                        />
-                    )}
-                </section>
-                <section className="home-2">
-                    {sensors.sensor_3.isSitTaken && (
-                        <QuarterScreen
-                            id={3}
-                            enlargeRight={() => enlargeRight(1)}
-                            rightSectionFlex={rightSectionFlex[0]}
-                            reset={resetRight}
-                            size1={rightSectionFlex[0]}
-                            size2={rightSectionFlex[1]}
-                            // usersMessage={usersMessage}
-                            // sendMessage={sendMessage}
-                        />
-                    )}
+                        {sensors[1].isSitTaken && (
+                            <QuarterScreen
+                                id={2}
+                                enlarge={() => enlargeLeft("left2")}
+                                reset={resetLeft}
+                                size={sectionFlex.left2}
+                                isReduced={
+                                    sectionFlex.left2 < sectionFlex.left1 &&
+                                    sectionFlex.left2 < 7
+                                }
+                                isSingle={!sensors[0].isSitTaken}
+                            />
+                        )}
+                    </section>
+                    <section className="home-2">
+                        {sensors[2].isSitTaken && (
+                            <QuarterScreen
+                                id={3}
+                                enlarge={() => enlargeRight("right1")}
+                                reset={resetRight}
+                                size={sectionFlex.right1}
+                                isReduced={
+                                    sectionFlex.right1 < sectionFlex.right2 &&
+                                    sectionFlex.right1 < 7
+                                }
+                                isSingle={!sensors[3].isSitTaken}
+                            />
+                        )}
 
-                    {sensors.sensor_4.isSitTaken && (
-                        <QuarterScreen
-                            id={4}
-                            enlargeRight={() => enlargeRight(2)}
-                            rightSectionFlex={rightSectionFlex[1]}
-                            reset={resetRight}
-                            size1={rightSectionFlex[1]}
-                            size2={rightSectionFlex[0]}
-                            // usersMessage={usersMessage}
-                            // sendMessage={sendMessage}
-                        />
-                    )}
+                        {sensors[3].isSitTaken && (
+                            <QuarterScreen
+                                id={4}
+                                enlarge={() => enlargeRight("right2")}
+                                reset={resetRight}
+                                size={sectionFlex.right2}
+                                isReduced={
+                                    sectionFlex.right2 < sectionFlex.right1 &&
+                                    sectionFlex.right2 < 7
+                                }
+                                isSingle={!sensors[2].isSitTaken}
+                            />
+                        )}
+                    </section>
                 </section>
-            </section>
+            )}
         </>
     );
 };
