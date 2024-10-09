@@ -19,7 +19,7 @@ const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
 
     const [showCart, setShowCart] = useState(false);
     const [showItemPreview, setShowItemPreview] = useState(false);
-    const [activeChatBox, setActiveChatBox] = useState(true);
+    const [activeChatBox, setActiveChatBox] = useState(false);
 
     const [userOrder, setUserOrder] = useState({});
     const [orderQuantity, setOrderQuantity] = useState(0);
