@@ -479,7 +479,7 @@ const Menu = ({
         ) : (
           <>
             <section className={styles.menu_category_cont}>
-              <FontAwesomeIcon
+              {/* <FontAwesomeIcon
                 className={`${styles.icon_left} ${styles.icons}`}
                 icon={faAngleLeft}
                 onClick={() => handleScroll(-200)}
@@ -488,7 +488,7 @@ const Menu = ({
                 className={`${styles.icon_right} ${styles.icons}`}
                 icon={faAngleRight}
                 onClick={() => handleScroll(200)}
-              />
+              /> */}
               <section
                 className={`${
                   selectedCategory
