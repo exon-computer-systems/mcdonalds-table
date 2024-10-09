@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import QuarterScreen from "./components/quarterScreen/QuarterScreen";
-import HalfScreen from "./components/halfScreen/HalfScreen";
 import WelcomePage from "./components/welcomePage/WelcomePage";
-import { v4 as uuidv4 } from "uuid";
 import useMessages from "./hooks/useMessage";
 import Advertisements from "./components/advertisements/Advertisements";
+import axios from "axios";
 
 const App = () => {
     const { addMessage } = useMessages();
@@ -119,21 +118,32 @@ const App = () => {
         return () => clearTimeout(timeout);
     }, [sensors]);
 
+    // useEffect(() => {
+    //     const fetchSensors = async () => {
+    //         try {
+    //             const res = await axios.get(
+    //                 "http://localhost:3000/sensors/api"
+    //             );
+
+    //             if (res) {
+    //                 setSensors(data.sensors);
+    //             }
+    //         } catch (err) {
+    //             // console.warn(err);
+    //         }
+    //     };
+
+    //     const intervalId = setInterval(fetchSensors, 100);
+    //     return () => clearInterval(intervalId);
+    // }, []);
+
     return (
         <>
             {playWelcome && <WelcomePage />}
             {playAds ? (
                 <Advertisements setSensors={setSensors} />
             ) : (
-                <section
-                    className="home"
-                    onClick={() =>
-                        addMessage([1, 2], {
-                            author: "Patrys",
-                            message: "Siemanko",
-                        })
-                    }
-                >
+                <section className="home">
                     <section className="home-1">
                         {sensors[0].isSitTaken && (
                             <QuarterScreen

@@ -64,6 +64,7 @@ const WelcomePage = () => {
             transition={{
               duration: 3,
               ease: "easeInOut",
+              delay: 1,
             }}
           />
           <motion.path
@@ -73,8 +74,8 @@ const WelcomePage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{
-              delay: 3,
-              duration: 0.5,
+              delay: 3.5,
+              duration: 1.5,
             }}
           />
         </motion.svg>

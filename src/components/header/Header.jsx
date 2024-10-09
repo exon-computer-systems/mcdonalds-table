@@ -12,15 +12,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Popup from "./Popup";
 import { messages as messagesData } from "../../data/messages";
+import useMessage from "../../hooks/useMessage";
 
 // prettier-ignore
 const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent, activeChatBox, setActiveChatBox, isSingle}) => {
     const buttonRef = useRef();
     const activeChatBoxRef = useRef();
+    const {usersMessage} = useMessage();
     
     const [activeWaiter, setActiveWaiter] = useState(false);
     
-    const [messageNotification, setMessageNotification] = useState(false);
+    
     
 
     useEffect(() => {
@@ -92,18 +94,19 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
                 {/* Chat button */}
                 <button className={styles.btn_cont} 
                     onClick={(e) => { 
+                        console.log("active popup");
                         e.stopPropagation();
                         setActiveChatBox(prev => !prev);
-                        setMessageNotification(false); 
+                        
                     }} 
                     ref={buttonRef}
                 >
                     <span className={styles.btn}>
                         <FontAwesomeIcon icon={faCommentDots} />
+                        {usersMessage["seat" + id].length > 0 && <span className={styles.message_not}></span>}
                     </span>
                     <p className={styles.btn_text}>Czat</p>
                     
-                        {messageNotification && <span className={styles.message_not}></span>}
                     
                     {activeChatBox && 
                     <Popup 
