@@ -3,9 +3,15 @@ import styles from "./Inactive.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandPointer } from "@fortawesome/free-solid-svg-icons";
 
-const Inactive = ({ handleClick }) => {
+const Inactive = ({ reset, setActiveComponent }) => {
     return (
-        <section className={styles.container} onClick={handleClick}>
+        <section
+            className={styles.container}
+            onClick={() => {
+                setActiveComponent("menu");
+                reset();
+            }}
+        >
             <section className={styles.info}>
                 <h3 className={styles.text}>
                     Dotknij

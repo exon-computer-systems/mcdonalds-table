@@ -13,18 +13,7 @@ import Cart from "../cart/Cart";
 import { messages as messagesData } from "../../data/messages";
 import useMessage from "../../hooks/useMessage";
 
-const QuarterScreen = ({
-    id,
-    enlargeLeft,
-    enlargeRight,
-    leftSectionFlex,
-    rightSectionFlex,
-    reset,
-    size1,
-    size2,
-    // usersMessage,
-    sendMessage,
-}) => {
+const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
     const timeoutRef = useRef();
 
     const { usersMessage, addMessage } = useMessage();
@@ -113,51 +102,38 @@ const QuarterScreen = ({
         return () => clearTimeout(timeoutRef.current);
     }, [usersMessage]);
 
+    console.log(size);
+
     return (
         <section
             key={id}
             className={`${styles.screen} ${id % 2 !== 0 && styles.rotated}`}
             // className={`${styles.screen}`}
             style={{
-                flex: leftSectionFlex ? leftSectionFlex : rightSectionFlex,
+                flex: size,
             }}
-            // onClick={handleClosePopup}
-            onClick={() => {
-                console.log(size2, size1);
-            }}
+            onClick={handleClosePopup}
         >
-            {size1 === size2 || size1 > size2 ? (
+            {!isReduced ? (
                 <>
                     <Header
                         id={id}
                         title={activeTitle}
-                        enlarge={enlargeLeft ? enlargeLeft : enlargeRight}
+                        // enlarge={enlargeLeft ? enlargeLeft : enlargeRight}
+                        enlarge={enlarge}
                         reset={reset}
-                        size={
-                            leftSectionFlex ? leftSectionFlex : rightSectionFlex
-                        }
+                        size={size}
                         setShowCart={setShowCart}
                         orderQuantity={orderQuantity}
                         switchComponent={switchComponent}
                         activeChatBox={activeChatBox}
                         setActiveChatBox={setActiveChatBox}
+                        isSingle={isSingle}
                     />
                     <Navigation switchComponent={switchComponent} />
                     <section className={`${styles.content}`}>
                         {activeComponent === "menu" && (
                             <Menu
-                                enlarge={
-                                    enlargeLeft ? enlargeLeft : enlargeRight
-                                }
-                                reset={reset}
-                                size={
-                                    leftSectionFlex
-                                        ? leftSectionFlex
-                                        : rightSectionFlex
-                                }
-                                showCart={showCart}
-                                setShowCart={setShowCart}
-                                orderQuantity={orderQuantity}
                                 setOrderQuantity={setOrderQuantity}
                                 userOrder={userOrder}
                                 setUserOrder={setUserOrder}
@@ -181,7 +157,10 @@ const QuarterScreen = ({
                     </section>
                 </>
             ) : (
-                <Inactive handleClick={reset} />
+                <Inactive
+                    reset={reset}
+                    setActiveComponent={setActiveComponent}
+                />
             )}
         </section>
     );
