@@ -146,7 +146,7 @@
 .selected {
   width: 100%;
   border: 3px solid var(--main-yellow);
-  padding: 2.3 rem 3rem;
+  padding: 2.3rem 3rem;
   color: var(--main-yellow);
   font-weight: 700;
   font-size: 1.3rem;
