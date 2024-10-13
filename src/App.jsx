@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./App.css";
 import QuarterScreen from "./components/quarterScreen/QuarterScreen";
 import WelcomePage from "./components/welcomePage/WelcomePage";
@@ -9,8 +9,6 @@ import Advertisements from "./components/advertisements/Advertisements";
 
 const App = () => {
   const { addMessage } = useMessages();
-
-  // const [inactive, setInactive] = useState(true);
   const [sectionFlex, setSectionFlex] = useState({
     left1: 1,
     left2: 1,
@@ -18,55 +16,21 @@ const App = () => {
     right2: 1,
   });
 
-  const [playAds, setPlayAds] = useState(true);
   const [playWelcome, setPlayWelcome] = useState(false);
+  const [showScreens, setShowsScreen] = useState(false);
+
+  const prevSensors = useRef([]);
+  const hasDetectedTrue = useRef(false);
+  const timeoutRef = useRef(null);
+  const intervalRef = useRef(null);
+
   const [sensors, setSensors] = useState([
-    {
-      name: "sensor_1",
-      distance: 175,
-      isSitTaken: false,
-    },
-    {
-      name: "sensor_2",
-      distance: 175,
-      isSitTaken: false,
-    },
-    {
-      name: "sensor_3",
-      distance: 175,
-      isSitTaken: false,
-    },
-    {
-      name: "sensor_4",
-      distance: 175,
-      isSitTaken: false,
-    },
+    { name: "sensor_1", distance: 175, isSitTaken: false },
+    { name: "sensor_2", distance: 175, isSitTaken: false },
+    { name: "sensor_3", distance: 175, isSitTaken: false },
+    { name: "sensor_4", distance: 175, isSitTaken: false },
   ]);
 
-  // const sensors = {
-  //     sensor_1: {
-  //         name: "sensor_1",
-  //         distance: 37,
-  //         isSitTaken: true,
-  //     },
-  //     sensor_2: {
-  //         name: "sensor_2",
-  //         distance: 37,
-  //         isSitTaken: true,
-  //     },
-  //     sensor_3: {
-  //         name: "sensor_3",
-  //         distance: 37,
-  //         isSitTaken: false,
-  //     },
-  //     sensor_4: {
-  //         name: "sensor_4",
-  //         distance: 37,
-  //         isSitTaken: true,
-  //     },
-  // };
-
-  // Control size of left screens using flexbox grow
   const enlargeLeft = section => {
     setSectionFlex({
       ...sectionFlex,
@@ -75,7 +39,6 @@ const App = () => {
     });
   };
 
-  // Control size of right screens using flexbox grow
   const enlargeRight = section => {
     setSectionFlex({
       ...sectionFlex,
@@ -84,7 +47,6 @@ const App = () => {
     });
   };
 
-  // Reset left screens to default 1:1
   const resetLeft = () => {
     setSectionFlex({
       ...sectionFlex,
@@ -93,7 +55,6 @@ const App = () => {
     });
   };
 
-  // Reset right screens to default 1:1
   const resetRight = () => {
     setSectionFlex({
       ...sectionFlex,
@@ -102,46 +63,87 @@ const App = () => {
     });
   };
 
+  const simulateApi = () => {
+    const updatedSensors = sensors.map(sensor => {
+      // Losowa wartość true/false dla isSitTaken
+      const isSitTaken = Math.random() > 0.8;
+      return { ...sensor, isSitTaken };
+    });
+    return { sensors: updatedSensors };
+  };
+
   useEffect(() => {
-    let timeout;
-    if (sensors.find(el => el.isSitTaken === true)) {
-      setPlayWelcome(true);
-      timeout = setTimeout(() => {
-        setPlayAds(false);
-        // setPlayWelcome(false);
-      }, 2000);
-      setTimeout(() => setPlayWelcome(false), 15000);
-    } else {
-      setPlayAds(true);
-      setPlayWelcome(false);
-    }
+    const fetchSensors = async () => {
+      try {
+        // const res = await axios.get(
+        //     "http://localhost:3000/sensors/api"
+        // );
 
-    return () => clearTimeout(timeout);
-  }, [sensors]);
+        // const newSensors = res.data.sensors;
 
-  // useEffect(() => {
-  //     const fetchSensors = async () => {
-  //         try {
-  //             const res = await axios.get(
-  //                 "http://localhost:3000/sensors/api"
-  //             );
+        const res = simulateApi();
+        console.log(res);
 
-  //             if (res) {
-  //                 setSensors(data.sensors);
-  //             }
-  //         } catch (err) {
-  //             // console.warn(err);
-  //         }
-  //     };
+        const newSensors = res.sensors;
 
-  //     const intervalId = setInterval(fetchSensors, 100);
-  //     return () => clearInterval(intervalId);
-  // }, []);
+        // check is any sensor is set on true
+        const anySensorsTrue = newSensors.some(
+          sensor => sensor.isSitTaken === true
+        );
+
+        // check is all sensors are set on false
+        const allSensorsFalse = newSensors.every(
+          sensor => sensor.isSitTaken === false
+        );
+
+        if (!hasDetectedTrue.current && anySensorsTrue) {
+          setPlayWelcome(true);
+          setTimeout(() => setShowsScreen(true), 2000);
+
+          hasDetectedTrue.current = true;
+
+          if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+            timeoutRef.current = null;
+          }
+        }
+
+        if (hasDetectedTrue.current && allSensorsFalse) {
+          if (!timeoutRef.current) {
+            timeoutRef.current = setTimeout(() => {
+              setPlayWelcome(true);
+
+              setTimeout(() => setShowsScreen(false), 2000);
+              hasDetectedTrue.current = false;
+              timeoutRef.current = null;
+            }, 5000);
+          }
+        }
+
+        if (
+          !prevSensors.current.length ||
+          newSensors.some(
+            (sensor, index) => sensor !== prevSensors.current[index]
+          )
+        ) {
+          setSensors(newSensors);
+        }
+
+        prevSensors.current = newSensors;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    intervalRef.current = setInterval(fetchSensors, 10000);
+
+    return () => clearInterval(intervalRef.current);
+  }, []);
 
   return (
     <>
-      {playWelcome && <WelcomePage />}
-      {playAds ? (
+      {playWelcome && <WelcomePage setPlayWelcome={setPlayWelcome} />}
+      {!showScreens ? (
         <Advertisements setSensors={setSensors} />
       ) : (
         <section className="home">
