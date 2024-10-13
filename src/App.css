@@ -1,112 +1,118 @@
 * {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 *::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 :root {
-    --heading-font-size: 3rem;
-    --main-gap: 2rem;
-    --main-padding: 2rem;
-    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1),
-        0 8px 10px -6px rgb(0 0 0 / 0.1);
-    --main-yellow: #ffbc08;
-    --main-green: #06300a;
+  --heading-font-size: 3rem;
+  --main-gap: 2rem;
+  --main-padding: 2rem;
+  --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --main-yellow: #ffbc08;
+  --main-green: #06300a;
+  --background-gradient: linear-gradient(
+    to right,
+    #910063 0%,
+    #db0007 50%,
+    #e8720a 100%
+  );
 }
 @font-face {
-    font-display: swap;
-    font-family: SpeedeeW;
-    font-style: normal;
-    font-weight: 400;
-    src: url(../src/fonts/Speedee_W_Rg.d4666f74.woff) format("woff2"),
-        url(../src/fonts/Speedee_W_Rg.d4666f74.woff) format("woff");
-}
-
-@font-face {
-    font-display: swap;
-    font-family: SpeedeeW;
-    font-style: italic;
-    font-weight: 400;
-    src: url(../src/fonts/Speedee_W_It.e52b0bee.woff) format("woff2"),
-        url(../src/fonts/Speedee_W_It.e52b0bee.woff) format("woff");
+  font-display: swap;
+  font-family: SpeedeeW;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../src/fonts/Speedee_W_Rg.d4666f74.woff) format("woff2"),
+    url(../src/fonts/Speedee_W_Rg.d4666f74.woff) format("woff");
 }
 
 @font-face {
-    font-display: swap;
-    font-family: SpeedeeW;
-    font-style: normal;
-    font-weight: 300;
-    src: url(../src/fonts/src/Speedee_W_Lt.a3724126.woff) format("woff2"),
-        url(../src/fonts/Speedee_W_Lt.a3724126.woff) format("woff");
+  font-display: swap;
+  font-family: SpeedeeW;
+  font-style: italic;
+  font-weight: 400;
+  src: url(../src/fonts/Speedee_W_It.e52b0bee.woff) format("woff2"),
+    url(../src/fonts/Speedee_W_It.e52b0bee.woff) format("woff");
 }
 
 @font-face {
-    font-display: swap;
-    font-family: SpeedeeW;
-    font-style: italic;
-    font-weight: 300;
-    src: url(../src/fonts/Speedee_W_LtIt.dba926d5.woff) format("woff2"),
-        url(../src/fonts/Speedee_W_LtIt.dba926d5.woff) format("woff");
+  font-display: swap;
+  font-family: SpeedeeW;
+  font-style: normal;
+  font-weight: 300;
+  src: url(../src/fonts/src/Speedee_W_Lt.a3724126.woff) format("woff2"),
+    url(../src/fonts/Speedee_W_Lt.a3724126.woff) format("woff");
 }
 
 @font-face {
-    font-display: swap;
-    font-family: SpeedeeW;
-    font-style: normal;
-    font-weight: 700;
-    src: url(../src/fonts/Speedee_W_Bd.45c87a1a.woff) format("woff2"),
-        url(../src/fonts/Speedee_W_Bd.45c87a1a.woff) format("woff");
+  font-display: swap;
+  font-family: SpeedeeW;
+  font-style: italic;
+  font-weight: 300;
+  src: url(../src/fonts/Speedee_W_LtIt.dba926d5.woff) format("woff2"),
+    url(../src/fonts/Speedee_W_LtIt.dba926d5.woff) format("woff");
 }
 
 @font-face {
-    font-display: swap;
-    font-family: SpeedeeW;
-    font-style: italic;
-    font-weight: 700;
-    src: url(../src/fonts/Speedee_W_BdIt.9abeac3e.woff) format("woff2"),
-        url(../src/fonts/Speedee_W_BdIt.9abeac3e.woff) format("woff");
+  font-display: swap;
+  font-family: SpeedeeW;
+  font-style: normal;
+  font-weight: 700;
+  src: url(../src/fonts/Speedee_W_Bd.45c87a1a.woff) format("woff2"),
+    url(../src/fonts/Speedee_W_Bd.45c87a1a.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: SpeedeeW;
+  font-style: italic;
+  font-weight: 700;
+  src: url(../src/fonts/Speedee_W_BdIt.9abeac3e.woff) format("woff2"),
+    url(../src/fonts/Speedee_W_BdIt.9abeac3e.woff) format("woff");
 }
 body {
-    font-family: "SpeedeeW";
-    touch-action: none;
-    overflow: hidden;
+  font-family: "SpeedeeW";
+  touch-action: none;
+  overflow: hidden;
 }
 
 .home {
-    width: 3840px;
-    height: 720px;
+  width: 3840px;
+  height: 720px;
 
-    z-index: -1;
+  z-index: -1;
 
-    background-color: #ffbc08;
-    background-image: url("./assets/bkg.jpg");
-    background-repeat: repeat;
-    background-size: 150px 221px;
+  background-color: #ffbc08;
+  background-image: url("./assets/bkg.jpg");
+  background-repeat: repeat;
+  background-size: 150px 221px;
 
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
 
-    padding: var(--main-padding);
-    gap: var(--main-gap);
+  padding: var(--main-padding);
+  gap: var(--main-gap);
 
-    animation: moveBackground 10s linear infinite;
+  animation: moveBackground 10s linear infinite;
 }
 
 .home-1,
 .home-2 {
-    width: 100%;
-    height: 100%;
-    max-width: 1872px;
+  width: 100%;
+  height: 100%;
+  max-width: 1872px;
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: var(--main-gap);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--main-gap);
 }
 
 /* .home {
@@ -130,10 +136,10 @@ body {
 } */
 
 @keyframes moveBackground {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: -150px -221px;
-    }
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -150px -221px;
+  }
 }
