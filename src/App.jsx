@@ -4,6 +4,7 @@ import QuarterScreen from "./components/quarterScreen/QuarterScreen";
 import WelcomePage from "./components/welcomePage/WelcomePage";
 import useMessages from "./hooks/useMessage";
 import Advertisements from "./components/advertisements/Advertisements";
+
 // import axios from "axios";
 
 const App = () => {
