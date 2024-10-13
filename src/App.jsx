@@ -17,7 +17,7 @@ const App = () => {
   });
 
   const [playWelcome, setPlayWelcome] = useState(false);
-  const [showScreens, setShowsScreen] = useState(false);
+  const [showScreens, setShowsScreen] = useState(true);
 
   const prevSensors = useRef([]);
   const hasDetectedTrue = useRef(false);
@@ -25,10 +25,10 @@ const App = () => {
   const intervalRef = useRef(null);
 
   const [sensors, setSensors] = useState([
-    { name: "sensor_1", distance: 175, isSitTaken: false },
-    { name: "sensor_2", distance: 175, isSitTaken: false },
+    { name: "sensor_1", distance: 175, isSitTaken: true },
+    { name: "sensor_2", distance: 175, isSitTaken: true },
     { name: "sensor_3", distance: 175, isSitTaken: false },
-    { name: "sensor_4", distance: 175, isSitTaken: false },
+    { name: "sensor_4", distance: 175, isSitTaken: true },
   ]);
 
   const enlargeLeft = section => {
@@ -63,14 +63,14 @@ const App = () => {
     });
   };
 
-  const simulateApi = () => {
-    const updatedSensors = sensors.map(sensor => {
-      // Losowa wartość true/false dla isSitTaken
-      const isSitTaken = Math.random() > 0.8;
-      return { ...sensor, isSitTaken };
-    });
-    return { sensors: updatedSensors };
-  };
+  //   const simulateApi = () => {
+  //     const updatedSensors = sensors.map(sensor => {
+  //       // Losowa wartość true/false dla isSitTaken
+  //       const isSitTaken = Math.random() > 0.8;
+  //       return { ...sensor, isSitTaken };
+  //     });
+  //     return { sensors: updatedSensors };
+  //   };
 
   useEffect(() => {
     const fetchSensors = async () => {
@@ -142,7 +142,7 @@ const App = () => {
 
   return (
     <>
-      {playWelcome && <WelcomePage setPlayWelcome={setPlayWelcome} />}
+      {/* {playWelcome && <WelcomePage setPlayWelcome={setPlayWelcome} />} */}
       {!showScreens ? (
         <Advertisements setSensors={setSensors} />
       ) : (
