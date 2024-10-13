@@ -23,7 +23,7 @@ const Advertisements = ({ setSensors }) => {
                     {
                         name: "sensor_3",
                         distance: 175,
-                        isSitTaken: false,
+                        isSitTaken: true,
                     },
                     {
                         name: "sensor_4",
