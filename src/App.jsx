@@ -145,33 +145,7 @@ const App = () => {
             {!showScreens ? (
                 <Advertisements setSensors={setSensors} />
             ) : (
-                <section
-                    className="home"
-                    // onClick={() => {
-                    //     setSensors([
-                    //         {
-                    //             name: "sensor_1",
-                    //             distance: 175,
-                    //             isSitTaken: false,
-                    //         },
-                    //         {
-                    //             name: "sensor_2",
-                    //             distance: 175,
-                    //             isSitTaken: false,
-                    //         },
-                    //         {
-                    //             name: "sensor_3",
-                    //             distance: 175,
-                    //             isSitTaken: false,
-                    //         },
-                    //         {
-                    //             name: "sensor_4",
-                    //             distance: 175,
-                    //             isSitTaken: false,
-                    //         },
-                    //     ]);
-                    // }}
-                >
+                <section className="home">
                     <section className="home-1">
                         {sensors[0].isSitTaken && (
                             <QuarterScreen
