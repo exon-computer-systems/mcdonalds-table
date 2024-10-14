@@ -3,12 +3,16 @@ import styles from "./Messages.module.css";
 import { messages } from "../../data/messages";
 import useMessage from "../../hooks/useMessage";
 import TableMap from "./tableMap/TableMap";
+import { delay, motion } from "framer-motion";
+import AlertMsg from "../alertMsg/AlertMsg";
 
 const Messages = () => {
   const { addMessage } = useMessage();
   const [selectedPlaces, setSelectedPlaces] = useState([]);
   const [selectedMessage, setSelectedMessage] = useState("");
   const [selectedEmoji, setSelectedEmoji] = useState("");
+  const [failAlert, setFailAlert] = useState(false);
+  const [alert, setAlert] = useState({ type: "", message: "" });
 
   // Function to handle table/place selection
   const handlePlaceClick = placeId => {
@@ -49,13 +53,24 @@ const Messages = () => {
       setSelectedPlaces([]);
       setSelectedMessage("");
       setSelectedEmoji("");
+      setAlert({ type: "success", message: "Wiadomość została wysłana" });
     } else {
-      alert("Please select at least one seat and a message to send.");
+      setAlert({
+        type: "fail",
+        message: "Wybierz co najmniej jedno miejsce i wiadomość",
+      });
     }
+    setTimeout(() => {
+      setAlert({ type: "", message: "" });
+    }, 2000);
   };
 
   return (
     <section className={styles.container}>
+      {alert.message && (
+        <AlertMsg alertType={alert.type}>{alert.message}</AlertMsg>
+      )}
+
       <TableMap
         selectedPlaces={selectedPlaces}
         handlePlaceClick={handlePlaceClick}

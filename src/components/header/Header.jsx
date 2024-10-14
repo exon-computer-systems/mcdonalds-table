@@ -71,6 +71,7 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
             const data = snapshot.val();
             if (data && data.isDone) {
                 // here popup 
+                setActiveWaiter(false)
                 console.log(`Status with ID ${newStatusId} is done.`);
             }
         });

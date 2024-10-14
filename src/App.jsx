@@ -16,7 +16,7 @@ const App = () => {
     });
 
     const [playWelcome, setPlayWelcome] = useState(false);
-    const [showScreens, setShowsScreen] = useState(false);
+    const [showScreens, setShowsScreen] = useState(true);
 
     const prevSensors = useRef([]);
     const hasDetectedTrue = useRef(false);
@@ -71,73 +71,73 @@ const App = () => {
         return { sensors: updatedSensors };
     };
 
-    useEffect(() => {
-        const fetchSensors = async () => {
-            try {
-                // const res = await axios.get(
-                //     "http://localhost:3000/sensors/api"
-                // );
+    // useEffect(() => {
+    //     const fetchSensors = async () => {
+    //         try {
+    //             // const res = await axios.get(
+    //             //     "http://localhost:3000/sensors/api"
+    //             // );
 
-                // const newSensors = res.data.sensors;
+    //             // const newSensors = res.data.sensors;
 
-                const res = simulateApi();
-                console.log(res);
+    //             const res = simulateApi();
+    //             console.log(res);
 
-                const newSensors = res.sensors;
+    //             const newSensors = res.sensors;
 
-                // check is any sensor is set on true
-                const anySensorsTrue = newSensors.some(
-                    (sensor) => sensor.isSitTaken === true
-                );
+    //             // check is any sensor is set on true
+    //             const anySensorsTrue = newSensors.some(
+    //                 (sensor) => sensor.isSitTaken === true
+    //             );
 
-                // check is all sensors are set on false
-                const allSensorsFalse = newSensors.every(
-                    (sensor) => sensor.isSitTaken === false
-                );
+    //             // check is all sensors are set on false
+    //             const allSensorsFalse = newSensors.every(
+    //                 (sensor) => sensor.isSitTaken === false
+    //             );
 
-                if (!hasDetectedTrue.current && anySensorsTrue) {
-                    setPlayWelcome(true);
-                    setTimeout(() => setShowsScreen(true), 2000);
+    //             if (!hasDetectedTrue.current && anySensorsTrue) {
+    //                 setPlayWelcome(true);
+    //                 setTimeout(() => setShowsScreen(true), 2000);
 
-                    hasDetectedTrue.current = true;
+    //                 hasDetectedTrue.current = true;
 
-                    if (timeoutRef.current) {
-                        clearTimeout(timeoutRef.current);
-                        timeoutRef.current = null;
-                    }
-                }
+    //                 if (timeoutRef.current) {
+    //                     clearTimeout(timeoutRef.current);
+    //                     timeoutRef.current = null;
+    //                 }
+    //             }
 
-                if (hasDetectedTrue.current && allSensorsFalse) {
-                    if (!timeoutRef.current) {
-                        timeoutRef.current = setTimeout(() => {
-                            setPlayWelcome(true);
+    //             if (hasDetectedTrue.current && allSensorsFalse) {
+    //                 if (!timeoutRef.current) {
+    //                     timeoutRef.current = setTimeout(() => {
+    //                         setPlayWelcome(true);
 
-                            setTimeout(() => setShowsScreen(false), 2000);
-                            hasDetectedTrue.current = false;
-                            timeoutRef.current = null;
-                        }, 5000);
-                    }
-                }
+    //                         setTimeout(() => setShowsScreen(false), 2000);
+    //                         hasDetectedTrue.current = false;
+    //                         timeoutRef.current = null;
+    //                     }, 5000);
+    //                 }
+    //             }
 
-                if (
-                    !prevSensors.current.length ||
-                    newSensors.some(
-                        (sensor, index) => sensor !== prevSensors.current[index]
-                    )
-                ) {
-                    setSensors(newSensors);
-                }
+    //             if (
+    //                 !prevSensors.current.length ||
+    //                 newSensors.some(
+    //                     (sensor, index) => sensor !== prevSensors.current[index]
+    //                 )
+    //             ) {
+    //                 setSensors(newSensors);
+    //             }
 
-                prevSensors.current = newSensors;
-            } catch (err) {
-                console.log(err);
-            }
-        };
+    //             prevSensors.current = newSensors;
+    //         } catch (err) {
+    //             console.log(err);
+    //         }
+    //     };
 
-        intervalRef.current = setInterval(fetchSensors, 10000);
+    //     intervalRef.current = setInterval(fetchSensors, 10000);
 
-        return () => clearInterval(intervalRef.current);
-    }, []);
+    //     return () => clearInterval(intervalRef.current);
+    // }, []);
 
     return (
         <>
