@@ -1,36 +1,39 @@
 .failed {
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  max-width: 450px;
-  font-weight: 700;
-  border-radius: 1rem;
-  background-color: black;
-  z-index: 5;
-  color: white;
-  font-size: 1.5rem;
-  padding: 1rem;
+    max-width: 450px;
+    font-weight: 700;
+    border-radius: 1rem;
+    background-color: #ed4337;
+    z-index: 5;
+    color: white;
+    font-size: 1.5rem;
+    padding: 1rem;
 
-  left: 0;
-  right: 0;
-  margin: 0 auto;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
 }
 
 .success {
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 450px;
-  font-weight: 700;
-  border-radius: 1rem;
-  background-color: #4bb543;
-  z-index: 5;
-  color: white;
-  font-size: 1.5rem;
-  padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    font-weight: 700;
+    border-radius: 1rem;
+    background-color: #4bb543;
+    z-index: 5;
+    color: white;
+    font-size: 1.5rem;
+    padding: 1rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
 }

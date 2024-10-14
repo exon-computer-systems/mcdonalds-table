@@ -15,6 +15,7 @@ import { messages as messagesData } from "../../data/messages";
 import useMessage from "../../hooks/useMessage";
 import { v4 as uuidv4 } from "uuid";
 import { database, set, ref, onValue } from "../../../firebase";
+import AlertMsg from "../alertMsg/AlertMsg";
 
 // prettier-ignore
 const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent, activeChatBox, setActiveChatBox, isSingle}) => {
@@ -25,6 +26,7 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
     
     const [activeWaiter, setActiveWaiter] = useState(false);
     const [statusId, setStatusId] = useState(null); 
+    const [alert, setAlert] = useState({ type: "", message: "" });
 
 
     useEffect(() => {
@@ -54,6 +56,9 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
     // }
 
     const pushStatusToFirebase = (id, status) => {
+
+        setAlert({});
+
         const statusData = { 
             table: 1, 
             seat: id, 
@@ -70,7 +75,7 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
         onValue(statusRef, (snapshot) => {
             const data = snapshot.val();
             if (data && data.isDone) {
-                // here popup 
+                setAlert({type: "success", message: "Kelner przyjął zawiadomienie" })
                 setActiveWaiter(false)
                 console.log(`Status with ID ${newStatusId} is done.`);
             }
@@ -91,6 +96,12 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
     
 
     return (
+        <>
+
+        {
+            alert.message && <AlertMsg alertType={alert.type}>{alert.message}</AlertMsg>
+        }
+
         <header className={styles.heading_cont}>
             <h1 className={styles.heading}>{title}</h1>
             {/* reverse row */}
@@ -194,6 +205,7 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
                 </button>
             </section>
         </header>
+        </>
     );
 };
 
