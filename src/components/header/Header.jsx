@@ -13,17 +13,19 @@ import {
 import Popup from "./Popup";
 import { messages as messagesData } from "../../data/messages";
 import useMessage from "../../hooks/useMessage";
+import { v4 as uuidv4 } from "uuid";
+import { database, set, ref, onValue } from "../../../firebase";
 
 // prettier-ignore
 const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent, activeChatBox, setActiveChatBox, isSingle}) => {
     const buttonRef = useRef();
     const activeChatBoxRef = useRef();
+    const timeoutRef = useRef();
     const {usersMessage} = useMessage();
     
     const [activeWaiter, setActiveWaiter] = useState(false);
-    
-    
-    
+    const [statusId, setStatusId] = useState(null); 
+
 
     useEffect(() => {
         let timeout;
@@ -40,6 +42,52 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
         activeChatBoxRef.current = activeChatBox;
     }, [activeChatBox])
 
+    // const pushStatusToFirebase = (id, status) => {
+    //     const statusData = { 
+    //         table: 1, 
+    //         seat: id, 
+    //         message: status, 
+    //         isDone: false}
+    //     console.log(statusData)
+    //     set(ref(database, `status/${uuidv4()}`), statusData);
+        
+    // }
+
+    const pushStatusToFirebase = (id, status) => {
+        const statusData = { 
+            table: 1, 
+            seat: id, 
+            message: status, 
+            isDone: false
+        };
+        
+        const newStatusId = uuidv4();  
+        set(ref(database, `status/${newStatusId}`), statusData);  
+        setStatusId(newStatusId);
+
+        // Start listening for changes in isDone field
+        const statusRef = ref(database, `status/${newStatusId}`);
+        onValue(statusRef, (snapshot) => {
+            const data = snapshot.val();
+            if (data && data.isDone) {
+                // here popup 
+                setActiveWaiter(false)
+                console.log(`Status with ID ${newStatusId} is done.`);
+            }
+        });
+    }
+
+    const callWaiter = (id, status) => {
+        setActiveWaiter(prev => {
+            if (!prev) {
+                timeoutRef.current = setTimeout(() => pushStatusToFirebase(id, status), 10000);
+            }
+            else {
+                clearTimeout(timeoutRef.current);
+            }
+            return !prev;
+        });
+    }
     
 
     return (
@@ -71,7 +119,7 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
                 {/* Call waiter button */}
                 <button
                     className={styles.btn_cont}
-                    onClick={() => setActiveWaiter((prev) => !prev)}
+                    onClick={() => callWaiter(id, "Rachunek")}
                 >
                     <span
                         className={`${styles.btn} ${
