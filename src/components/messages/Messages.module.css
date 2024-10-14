@@ -130,6 +130,7 @@
   /* background-color: white; */
   border-radius: 50%;
   font-size: 2rem;
+  text-align: center;
   border: 3px solid white;
 }
 
@@ -161,7 +162,6 @@
 }
 
 .selected {
-  width: 100%;
   border: 3px solid var(--main-yellow);
   padding: 2.3rem 3rem;
   color: var(--main-yellow);
@@ -177,7 +177,7 @@
 
 @keyframes moveBackground {
   0% {
-    background-position: 0, 0;
+    background-position: 0 0;
   }
   100% {
     background-position: -150px -221px;
