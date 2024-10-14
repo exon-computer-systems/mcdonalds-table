@@ -5,7 +5,7 @@ import WelcomePage from "./components/welcomePage/WelcomePage";
 import useMessages from "./hooks/useMessage";
 import Advertisements from "./components/advertisements/Advertisements";
 
-// import axios from "axios";
+import axios from "axios";
 
 const App = () => {
   const { addMessage } = useMessages();
@@ -17,7 +17,7 @@ const App = () => {
   });
 
   const [playWelcome, setPlayWelcome] = useState(false);
-  const [showScreens, setShowsScreen] = useState(true);
+  const [showScreens, setShowsScreen] = useState(false);
 
   const prevSensors = useRef([]);
   const hasDetectedTrue = useRef(false);
@@ -25,10 +25,10 @@ const App = () => {
   const intervalRef = useRef(null);
 
   const [sensors, setSensors] = useState([
-    { name: "sensor_1", distance: 175, isSitTaken: true },
-    { name: "sensor_2", distance: 175, isSitTaken: true },
+    { name: "sensor_1", distance: 175, isSitTaken: false },
+    { name: "sensor_2", distance: 175, isSitTaken: false },
     { name: "sensor_3", distance: 175, isSitTaken: false },
-    { name: "sensor_4", distance: 175, isSitTaken: true },
+    { name: "sensor_4", distance: 175, isSitTaken: false },
   ]);
 
   const enlargeLeft = (section) => {
@@ -72,7 +72,7 @@ const App = () => {
     return { sensors: updatedSensors };
   };
 
-  useEffeuseEffect(() => {
+  useEffect(() => {
     const fetchSensors = async () => {
       try {
         const res = await axios.get("http://localhost:3000/sensors/api");
