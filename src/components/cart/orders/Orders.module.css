@@ -145,22 +145,22 @@ h2 {
   margin: 0 10px;
 }
 
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  padding: 2px;
+  background-clip: content-box;
+  border: 1.5px solid #000000;
+  border-radius: 6px;
+  background-color: #e7e6e7;
+  -webkit-tap-highlight-color: transparent;
+}
 
-input[type=checkbox] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    padding: 2px;
-    background-clip: content-box;
-    border: 1.5px solid #000000;
-    border-radius: 6px;
-    background-color: #e7e6e7;
-
-    &:checked{
-        background-color: #004a00;
-    }
-
+input[type="checkbox"]:checked {
+  background-color: #004a00 !important;
+  -webkit-background-color: #004a00 !important;
 }
