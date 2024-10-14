@@ -7,6 +7,7 @@ import { useRef, useEffect } from "react";
 const PromoSlider = ({ promoSlider }) => {
   const ref = useRef(null);
   const intervalRef = useRef(null);
+
   const handleScroll = offset => {
     ref.current.scrollLeft += offset;
   };

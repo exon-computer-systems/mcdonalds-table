@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 const AlertMsg = ({ children, alertType }) => {
   return (
     <motion.section
-      initial={{ x: 200, y: 0, opacity: 0 }}
-      animate={{ x: 200, y: -100, opacity: [1, 0], display: "none" }}
+      initial={{ y: 0, opacity: 0 }}
+      animate={{ y: -100, opacity: [1, 0], display: "none" }}
       transition={{
         opacity: {
           duration: 3,
