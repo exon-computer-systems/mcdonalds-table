@@ -1,0 +1,32 @@
+.container {
+  width: 100%;
+  height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  align-items: center;
+
+  /* padding: 2rem; */
+}
+
+.slick-slider div {
+  height: 100vh !important;
+}
+.container div {
+  width: 100%;
+  height: 100vh !important;
+  /* object-fit: contain; */
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+}
+
+.img {
+  object-fit: cover;
+
+  width: 100%;
+  height: 100%;
+}

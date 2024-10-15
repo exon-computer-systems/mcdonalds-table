@@ -4,11 +4,11 @@ import styles from "./Header.module.css";
 import papperBag from "../../assets/papper-bag-icon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faBurger,
-    faCommentDots,
-    faDownLeftAndUpRightToCenter,
-    faUpRightAndDownLeftFromCenter,
-    faUserTie,
+  faBurger,
+  faCommentDots,
+  faDownLeftAndUpRightToCenter,
+  faUpRightAndDownLeftFromCenter,
+  faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
 import Popup from "./Popup";
 import { messages as messagesData } from "../../data/messages";
@@ -162,7 +162,7 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
                 >
                     <span className={styles.btn}>
                         <FontAwesomeIcon icon={faCommentDots} />
-                        {usersMessage["seat" + id].length > 0 && <span className={styles.message_not}></span>}
+                        {usersMessage["seat" + id].messages.length > 0 && <span className={styles.message_not}></span>}
                     </span>
                     <p className={styles.btn_text}>Czat</p>
                     

@@ -4,59 +4,74 @@ import { v4 as uuidv4 } from "uuid";
 const MessageContext = createContext({});
 
 export const MessageProvider = ({ children }) => {
-    const [usersMessage, setUsersMessage] = useState({
-        seat1: [
-            {
-                id: 1,
-                author: "Patrys",
-                message: "lol",
-            },
-        ],
-        seat2: [],
-        seat3: [],
-        seat4: [],
+  const [usersMessage, setUsersMessage] = useState({
+    seat1: { messages: [], muted: false },
+    seat2: { messages: [], muted: false },
+    seat3: { messages: [], muted: false },
+    seat4: { messages: [], muted: false },
+  });
+
+  const addMessage = (ids, message) => {
+    setUsersMessage((prev) => {
+      // Create copy of messages state
+      const newMessages = { ...prev };
+
+      ids.forEach((el) => {
+        const seatKey = "seat" + el;
+
+        if (!newMessages[seatKey].muted) {
+          // Create a new array for messages to ensure immutability
+          const updatedMessages = [
+            { id: uuidv4(), ...message },
+            ...prev[seatKey].messages,
+          ];
+
+          newMessages[seatKey] = {
+            ...prev[seatKey],
+            // Assign the new array
+            messages: updatedMessages,
+          };
+        }
+      });
+
+      // return new array to state
+      return newMessages;
     });
+  };
 
-    // Funkcja dodawania wiadomości
-    const addMessage = (ids, message) => {
-        setUsersMessage((prev) => {
-            const newMessages = { ...prev }; // Tworzymy nową kopię stanu
+  const removeMessage = (seatId, messageId) => {
+    setUsersMessage((prev) => {
+      const seatKey = "seat" + seatId;
+      const newMessages = { ...prev };
 
-            ids.forEach((el) => {
-                const seatKey = "seat" + el;
+      // Filtrujemy wiadomości bezpośrednio na kopii stanu
+      newMessages[seatKey].messages = prev[seatKey].messages.filter(
+        (msg) => msg.id !== messageId
+      );
 
-                // Tworzymy nową tablicę dla każdej zmienionej "seat"
-                newMessages[seatKey] = [
-                    { id: uuidv4(), ...message },
-                    ...(prev[seatKey] || []),
-                ];
-            });
+      return newMessages; // Zwracamy nową kopię obiektu stanu
+    });
+  };
 
-            return newMessages; // Zwracamy nową kopię obiektu stanu
-        });
-    };
+  const muteUser = (seatId) => {
+    setUsersMessage((prev) => {
+      const seatKey = "seat" + seatId;
 
-    const removeMessage = (seatId, messageId) => {
-        setUsersMessage((prev) => {
-            const seatKey = "seat" + seatId;
-            const newMessages = { ...prev };
+      const newMessages = { ...prev };
 
-            // Filtrujemy wiadomości bezpośrednio na kopii stanu
-            newMessages[seatKey] = prev[seatKey].filter(
-                (msg) => msg.id !== messageId
-            );
+      newMessages[seatKey].muted = !prev[seatKey].muted;
 
-            return newMessages; // Zwracamy nową kopię obiektu stanu
-        });
-    };
+      return newMessages;
+    });
+  };
 
-    return (
-        <MessageContext.Provider
-            value={{ usersMessage, addMessage, removeMessage }}
-        >
-            {children}
-        </MessageContext.Provider>
-    );
+  return (
+    <MessageContext.Provider
+      value={{ usersMessage, addMessage, removeMessage, muteUser }}
+    >
+      {children}
+    </MessageContext.Provider>
+  );
 };
 
 export default MessageContext;
