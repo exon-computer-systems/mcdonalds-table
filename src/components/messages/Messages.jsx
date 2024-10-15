@@ -6,16 +6,18 @@ import TableMap from "./tableMap/TableMap";
 import { delay, motion } from "framer-motion";
 import AlertMsg from "../alertMsg/AlertMsg";
 
-const Messages = () => {
+const Messages = ({ id }) => {
   const { addMessage } = useMessage();
   const [selectedPlaces, setSelectedPlaces] = useState([]);
   const [selectedMessage, setSelectedMessage] = useState("");
+  const [selectedSeat, setSelectedSeat] = useState([]);
   const [selectedEmoji, setSelectedEmoji] = useState("");
   const [failAlert, setFailAlert] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
+  console.log(selectedPlaces);
 
-  // Function to handle table/place selection
-  const handlePlaceClick = placeId => {
+  const handlePlaceClick = (tableId, seatNum) => {
+    const placeId = `${tableId}-${seatNum}`;
     if (selectedPlaces.includes(placeId)) {
       setSelectedPlaces(selectedPlaces.filter(place => place !== placeId));
     } else {
@@ -34,35 +36,36 @@ const Messages = () => {
   const handleSendMessage = () => {
     if (selectedPlaces.length > 0 && selectedMessage) {
       selectedPlaces.forEach(placeId => {
-        const randomTable = Math.floor(Math.random() * 8 + 1);
-        const randomUser = Math.floor(Math.random() * 4 + 1);
-
-        const author = `Stół ${randomTable}, użytkownik ${randomUser}`;
+        const [tableNum, seatNum] = placeId.split("-");
+        setSelectedSeat(seatNum);
+        const author = `Stół ${1}, Miejsce ${id}`;
         const randomText = selectedMessage;
         const randomEmoji = selectedEmoji;
         const fullMessage = `${randomText} ${randomEmoji}`;
 
         console.log(author, fullMessage, placeId);
 
-        addMessage([placeId], {
+        addMessage(selectedSeat, {
           author: author,
           message: fullMessage,
+          table: 1,
+          seat: id,
         });
+        setSelectedPlaces([]);
+        setSelectedMessage("");
+        setSelectedEmoji("");
+        setAlert({ type: "success", message: "Wiadomość została wysłana" });
       });
-
-      setSelectedPlaces([]);
-      setSelectedMessage("");
-      setSelectedEmoji("");
-      setAlert({ type: "success", message: "Wiadomość została wysłana" });
     } else {
+      setFailAlert(true);
       setAlert({
-        type: "fail",
-        message: "Wybierz co najmniej jedno miejsce i wiadomość",
+        type: "error",
+        message: "Select a place and enter a message!",
       });
     }
     setTimeout(() => {
       setAlert({ type: "", message: "" });
-    }, 2000);
+    }, 4000);
   };
 
   return (

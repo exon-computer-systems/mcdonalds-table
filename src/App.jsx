@@ -17,7 +17,7 @@ const App = () => {
   });
 
   const [playWelcome, setPlayWelcome] = useState(false);
-  const [showScreens, setShowsScreen] = useState(false);
+  const [showScreens, setShowsScreen] = useState(true);
 
   const prevSensors = useRef([]);
   const hasDetectedTrue = useRef(false);
@@ -25,13 +25,13 @@ const App = () => {
   const intervalRef = useRef(null);
 
   const [sensors, setSensors] = useState([
-    { name: "sensor_1", distance: 175, isSitTaken: false },
+    { name: "sensor_1", distance: 175, isSitTaken: true },
     { name: "sensor_2", distance: 175, isSitTaken: false },
     { name: "sensor_3", distance: 175, isSitTaken: false },
-    { name: "sensor_4", distance: 175, isSitTaken: false },
+    { name: "sensor_4", distance: 175, isSitTaken: true },
   ]);
 
-  const enlargeLeft = (section) => {
+  const enlargeLeft = section => {
     setSectionFlex({
       ...sectionFlex,
       left1: section === "left1" ? 7 : 1,
@@ -39,7 +39,7 @@ const App = () => {
     });
   };
 
-  const enlargeRight = (section) => {
+  const enlargeRight = section => {
     setSectionFlex({
       ...sectionFlex,
       right1: section === "right1" ? 7 : 1,
@@ -64,7 +64,7 @@ const App = () => {
   };
 
   const simulateApi = () => {
-    const updatedSensors = sensors.map((sensor) => {
+    const updatedSensors = sensors.map(sensor => {
       // Losowa wartość true/false dla isSitTaken
       const isSitTaken = Math.random() > 0.8;
       return { ...sensor, isSitTaken };
@@ -75,7 +75,7 @@ const App = () => {
   useEffect(() => {
     const fetchSensors = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/sensors/api");
+        const res = await axios.get("http://192.168.68.205:3000/sensors/api");
         const newSensors = res.data.sensors;
 
         // Porównaj nowe sensory z poprzednimi
@@ -87,10 +87,10 @@ const App = () => {
         // Aktualizuj stan tylko, jeśli dane się zmieniły
         if (hasChanged) {
           const anySensorsTrue = newSensors.some(
-            (sensor) => sensor.isSitTaken === true
+            sensor => sensor.isSitTaken === true
           );
           const allSensorsFalse = newSensors.every(
-            (sensor) => sensor.isSitTaken === false
+            sensor => sensor.isSitTaken === false
           );
 
           if (!hasDetectedTrue.current && anySensorsTrue) {
@@ -127,6 +127,20 @@ const App = () => {
     intervalRef.current = setInterval(fetchSensors, 10000);
 
     return () => clearInterval(intervalRef.current);
+  }, []);
+
+  useEffect(() => {
+    const handleWindow = () => {
+      let timeout = setTimeout(() => {}, 30000);
+    };
+
+    window.addEventListener("click", handleWindow);
+    window.addEventListener("touch", handleWindow);
+
+    return () => {
+      window.removeEventListener("click", handleWindow);
+      window.removeEventListener("touch", handleWindow);
+    };
   }, []);
 
   return (
