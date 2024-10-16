@@ -17,7 +17,7 @@ const App = () => {
   });
 
   const [playWelcome, setPlayWelcome] = useState(false);
-  const [showScreens, setShowsScreen] = useState(true);
+  const [showScreens, setShowsScreen] = useState(false);
 
   const prevSensors = useRef([]);
   const hasDetectedTrue = useRef(false);
@@ -124,7 +124,7 @@ const App = () => {
       }
     };
 
-    intervalRef.current = setInterval(fetchSensors, 10000);
+    intervalRef.current = setInterval(fetchSensors, 100);
 
     return () => clearInterval(intervalRef.current);
   }, []);

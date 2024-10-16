@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Advertisements.module.css";
 
-import ad1 from "../../assets/video/mc_ad1.mp4";
-import ad2 from "../../assets/video/mc_ad2.mp4";
+import ad1 from "../../assets/video/mc_ad1.webm";
+import ad2 from "../../assets/video/mc_ad2.webm";
 
 import { database, set, ref, onValue } from "../../../firebase";
 
