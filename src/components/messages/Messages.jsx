@@ -33,6 +33,7 @@ const Messages = () => {
 
   const handleSendMessage = () => {
     if (selectedPlaces.length > 0 && selectedMessage) {
+<<<<<<< HEAD
       selectedPlaces.forEach((placeId) => {
         const author = `Stół ${randomTable}, użytkownik ${randomUser}`;
 
@@ -44,6 +45,27 @@ const Messages = () => {
         });
       });
 
+=======
+      let selectedSeats = [];
+
+      selectedPlaces.forEach(placeId => {
+        const [tableNum, seatNum] = placeId.split("-");
+
+        selectedSeats.push(seatNum);
+
+        const author = `Stół ${tableNum}, Miejsce ${seatNum}`;
+        const fullMessage = `${selectedMessage} ${selectedEmoji}`;
+
+        console.log(author, fullMessage, placeId);
+      });
+
+      addMessage(selectedSeats, {
+        author: `Stół ${id}`,
+        message: `${selectedMessage} ${selectedEmoji}`,
+        table: selectedPlaces[0].split("-")[0],
+      });
+
+>>>>>>> 3416714183f68e199a51b5facb864e57d88eec9c
       setSelectedPlaces([]);
       setSelectedMessage("");
       setSelectedEmoji("");
@@ -54,6 +76,7 @@ const Messages = () => {
         message: "Wybierz co najmniej jedno miejsce i wiadomość",
       });
     }
+
     setTimeout(() => {
       setAlert({ type: "", message: "" });
     }, 2000);

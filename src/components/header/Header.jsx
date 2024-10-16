@@ -23,7 +23,6 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
     const activeChatBoxRef = useRef();
     const timeoutRef = useRef();
     const {usersMessage} = useMessage();
-    
     const [activeWaiter, setActiveWaiter] = useState(false);
     const [statusId, setStatusId] = useState(null); 
     const [alert, setAlert] = useState({ type: "", message: "" });
@@ -109,7 +108,7 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
                 {/* Resize button depends on current size */}
 
                 {
-  !isSingle && size === 1 ? (
+  !isSingle ? (
     <button className={styles.btn_cont} onClick={enlarge}>
       <span className={styles.btn}>
         <FontAwesomeIcon icon={faUpRightAndDownLeftFromCenter} />
@@ -117,12 +116,7 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
       <p className={styles.btn_text}>Powiększ</p>
     </button>
   ) : (
-    <button className={styles.btn_cont} onClick={reset}>
-      <span className={styles.btn}>
-        <FontAwesomeIcon icon={faDownLeftAndUpRightToCenter} />
-      </span>
-      <p className={styles.btn_text}>Pomniejsz</p>
-    </button>
+    null
   )
 }
                 

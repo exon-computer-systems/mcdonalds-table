@@ -25,8 +25,13 @@ const App = () => {
   const intervalRef = useRef(null);
 
   const [sensors, setSensors] = useState([
+<<<<<<< HEAD
     { name: "sensor_1", distance: 175, isSitTaken: false },
     { name: "sensor_2", distance: 175, isSitTaken: false },
+=======
+    { name: "sensor_1", distance: 175, isSitTaken: true },
+    { name: "sensor_2", distance: 175, isSitTaken: true },
+>>>>>>> 3416714183f68e199a51b5facb864e57d88eec9c
     { name: "sensor_3", distance: 175, isSitTaken: false },
     { name: "sensor_4", distance: 175, isSitTaken: false },
   ]);
