@@ -56,7 +56,7 @@ const Messages = ({ id }) => {
       addMessage(selectedSeats, {
         author: `Stół ${id}`,
         message: `${selectedMessage} ${selectedEmoji}`,
-        // table: table,
+        table: "1",
         seat: id,
       });
 
@@ -86,6 +86,7 @@ const Messages = ({ id }) => {
       <TableMap
         selectedPlaces={selectedPlaces}
         handlePlaceClick={handlePlaceClick}
+        id={id}
       />
 
       <section className={styles.messages_wrapper}>

@@ -77,9 +77,11 @@ const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
     const callMessage = () => {
       console.log("Function call");
       addMessage([id], {
-        author: `Stół ${Math.floor(
-          Math.random() * 8 + 1
-        )}, użytkownik ${Math.floor(Math.random() * 4 + 1)}`,
+        table: Math.floor(Math.random() * 8 + 1),
+        seat: Math.floor(Math.random() * 4 + 1),
+        // author: `Stół ${Math.floor(
+        //   Math.random() * 8 + 1
+        // )}, użytkownik ${Math.floor(Math.random() * 4 + 1)}`,
         message: `${randomText} ${randomEmoji}`,
       });
     };
