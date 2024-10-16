@@ -26,7 +26,7 @@ const App = () => {
 
   const [sensors, setSensors] = useState([
     { name: "sensor_1", distance: 175, isSitTaken: true },
-    { name: "sensor_2", distance: 175, isSitTaken: false },
+    { name: "sensor_2", distance: 175, isSitTaken: true },
     { name: "sensor_3", distance: 175, isSitTaken: false },
     { name: "sensor_4", distance: 175, isSitTaken: true },
   ]);

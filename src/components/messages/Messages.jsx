@@ -35,27 +35,29 @@ const Messages = ({ id }) => {
 
   const handleSendMessage = () => {
     if (selectedPlaces.length > 0 && selectedMessage) {
+      let selectedSeats = [];
+
       selectedPlaces.forEach(placeId => {
         const [tableNum, seatNum] = placeId.split("-");
-        setSelectedSeat(seatNum);
-        const author = `Stół ${1}, Miejsce ${id}`;
-        const randomText = selectedMessage;
-        const randomEmoji = selectedEmoji;
-        const fullMessage = `${randomText} ${randomEmoji}`;
+
+        selectedSeats.push(seatNum);
+
+        const author = `Stół ${tableNum}, Miejsce ${seatNum}`;
+        const fullMessage = `${selectedMessage} ${selectedEmoji}`;
 
         console.log(author, fullMessage, placeId);
-
-        addMessage(selectedSeat, {
-          author: author,
-          message: fullMessage,
-          table: 1,
-          seat: id,
-        });
-        setSelectedPlaces([]);
-        setSelectedMessage("");
-        setSelectedEmoji("");
-        setAlert({ type: "success", message: "Wiadomość została wysłana" });
       });
+
+      addMessage(selectedSeats, {
+        author: `Stół ${id}`,
+        message: `${selectedMessage} ${selectedEmoji}`,
+        table: selectedPlaces[0].split("-")[0],
+      });
+
+      setSelectedPlaces([]);
+      setSelectedMessage("");
+      setSelectedEmoji("");
+      setAlert({ type: "success", message: "Wiadomość została wysłana" });
     } else {
       setFailAlert(true);
       setAlert({
@@ -63,6 +65,7 @@ const Messages = ({ id }) => {
         message: "Select a place and enter a message!",
       });
     }
+
     setTimeout(() => {
       setAlert({ type: "", message: "" });
     }, 4000);
