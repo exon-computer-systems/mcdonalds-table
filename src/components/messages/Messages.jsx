@@ -36,13 +36,18 @@ const Messages = ({ id }) => {
   const handleSendMessage = () => {
     if (selectedPlaces.length > 0 && selectedMessage) {
       let selectedSeats = [];
+      let table;
+      let seat;
 
       selectedPlaces.forEach((placeId) => {
         const [tableNum, seatNum] = placeId.split("-");
 
         selectedSeats.push(seatNum);
 
-        const author = `Stół ${tableNum}, Miejsce ${seatNum}`;
+        table = tableNum;
+        seat = seatNum;
+
+        const author = `Stół ${id}, Miejsce ${seatNum}`;
         const fullMessage = `${selectedMessage} ${selectedEmoji}`;
 
         console.log(author, fullMessage, placeId);
@@ -51,7 +56,8 @@ const Messages = ({ id }) => {
       addMessage(selectedSeats, {
         author: `Stół ${id}`,
         message: `${selectedMessage} ${selectedEmoji}`,
-        table: selectedPlaces[0].split("-")[0],
+        // table: table,
+        seat: id,
       });
 
       setSelectedPlaces([]);
