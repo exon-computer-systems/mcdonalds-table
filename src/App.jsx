@@ -31,7 +31,7 @@ const App = () => {
     { name: "sensor_4", distance: 175, isSitTaken: false },
   ]);
 
-  const enlargeLeft = (section) => {
+  const enlargeLeft = section => {
     setSectionFlex({
       ...sectionFlex,
       left1: section === "left1" ? 7 : 1,
@@ -39,7 +39,7 @@ const App = () => {
     });
   };
 
-  const enlargeRight = (section) => {
+  const enlargeRight = section => {
     setSectionFlex({
       ...sectionFlex,
       right1: section === "right1" ? 7 : 1,
@@ -64,7 +64,7 @@ const App = () => {
   };
 
   const simulateApi = () => {
-    const updatedSensors = sensors.map((sensor) => {
+    const updatedSensors = sensors.map(sensor => {
       // Losowa wartość true/false dla isSitTaken
       const isSitTaken = Math.random() > 0.8;
       return { ...sensor, isSitTaken };

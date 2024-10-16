@@ -19,17 +19,17 @@ const Messages = ({ id }) => {
   const handlePlaceClick = (tableId, seatNum) => {
     const placeId = `${tableId}-${seatNum}`;
     if (selectedPlaces.includes(placeId)) {
-      setSelectedPlaces(selectedPlaces.filter((place) => place !== placeId));
+      setSelectedPlaces(selectedPlaces.filter(place => place !== placeId));
     } else {
       setSelectedPlaces([...selectedPlaces, placeId]);
     }
   };
 
-  const handleTextMessageClick = (message) => {
+  const handleTextMessageClick = message => {
     setSelectedMessage(message);
   };
 
-  const handleEmojiClick = (emoji) => {
+  const handleEmojiClick = emoji => {
     setSelectedEmoji(emoji);
   };
 
@@ -39,7 +39,7 @@ const Messages = ({ id }) => {
       let table;
       let seat;
 
-      selectedPlaces.forEach((placeId) => {
+      selectedPlaces.forEach(placeId => {
         const [tableNum, seatNum] = placeId.split("-");
 
         selectedSeats.push(seatNum);
@@ -100,7 +100,7 @@ const Messages = ({ id }) => {
           {/* Message selection */}
           <section className={styles.message}>
             <section className={styles.messages_slider}>
-              {messages.text.map((el) => (
+              {messages.text.map(el => (
                 <button
                   key={el}
                   className={
@@ -117,7 +117,7 @@ const Messages = ({ id }) => {
           {/* Emoji selection */}
           <section className={styles.emojis}>
             <section className={styles.emojis_slider}>
-              {messages.emojis.map((el) => (
+              {messages.emojis.map(el => (
                 <button
                   key={el}
                   className={selectedEmoji === el ? styles.selected : ""}
