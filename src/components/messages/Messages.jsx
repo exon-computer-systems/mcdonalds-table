@@ -62,7 +62,7 @@ const Messages = ({ id }) => {
       setFailAlert(true);
       setAlert({
         type: "error",
-        message: "Select a place and enter a message!",
+        message: "Wybierz co najmniej jedno miejsce i wiadomość",
       });
     }
 
