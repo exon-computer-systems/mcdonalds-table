@@ -89,7 +89,13 @@ const Messages = ({ id }) => {
         id={id}
       />
 
-      <section className={styles.messages_wrapper}>
+      <section
+        className={`${styles.messages_wrapper} ${
+          id % 2 === 0
+            ? styles.messages_wrapper_normal
+            : styles.messages_wrapper_inverted
+        }`}
+      >
         <section className={styles.messages_container}>
           {/* Message selection */}
           <section className={styles.message}>
