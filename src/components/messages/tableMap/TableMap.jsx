@@ -12,7 +12,7 @@ const TableMap = ({ selectedPlaces, handlePlaceClick, id }) => {
       {tables.map((el) => (
         <section key={el.id} className={styles.table}>
           {id % 2 !== 0
-            ? el.seats.map((seat) => {
+            ? el.invertedSeats.map((seat) => {
                 const placeId = `${el.id}-${seat}`;
                 return (
                   <span
@@ -26,7 +26,7 @@ const TableMap = ({ selectedPlaces, handlePlaceClick, id }) => {
                   </span>
                 );
               })
-            : el.invertedSeats.map((seat) => {
+            : el.seats.map((seat) => {
                 const placeId = `${el.id}-${seat}`;
                 return (
                   <span
@@ -40,35 +40,6 @@ const TableMap = ({ selectedPlaces, handlePlaceClick, id }) => {
                   </span>
                 );
               })}
-          {/* {el.seats.map((seat) => {
-            const placeId = `${el.id}-${seat}`;
-            return (
-              <span
-                key={placeId}
-                className={`${styles.place} ${
-                  selectedPlaces.includes(placeId) ? styles.active : ""
-                }`}
-                onClick={() => handlePlaceClick(el.id, seat)}
-              >
-                {seat}
-              </span>
-            );
-          })} */}
-          :
-          {el.seats.map((seat) => {
-            const placeId = `${el.id}-${seat}`;
-            return (
-              <span
-                key={placeId}
-                className={`${styles.place} ${
-                  selectedPlaces.includes(placeId) ? styles.active : ""
-                }`}
-                onClick={() => handlePlaceClick(el.id, seat)}
-              >
-                {seat}
-              </span>
-            );
-          })}
         </section>
       ))}
     </section>
