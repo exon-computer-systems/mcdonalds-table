@@ -26,7 +26,7 @@ const TableMap = ({ selectedPlaces, handlePlaceClick, id }) => {
                   </span>
                 );
               })
-            : el.invertedSeat.map((seat) => {
+            : el.invertedSeats.map((seat) => {
                 const placeId = `${el.id}-${seat}`;
                 return (
                   <span
