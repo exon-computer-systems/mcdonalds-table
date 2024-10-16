@@ -34,7 +34,14 @@
   flex-direction: row;
   gap: 2rem;
   padding: 1.2rem 1.5rem;
+  /* animation: moveBackground 10s linear infinite; */
+}
+
+.messages_wrapper_normal {
   animation: moveBackground 10s linear infinite;
+}
+.messages_wrapper_inverted {
+  animation: invertedMoveBackground 10s linear infinite;
 }
 
 .message {
@@ -181,5 +188,14 @@
   }
   100% {
     background-position: -150px -221px;
+  }
+}
+
+@keyframes invertedMoveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 150px 221px;
   }
 }

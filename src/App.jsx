@@ -72,62 +72,62 @@ const App = () => {
     return { sensors: updatedSensors };
   };
 
-  // useEffect(() => {
-  //   const fetchSensors = async () => {
-  //     try {
-  //       const res = await axios.get("http://192.168.68.205:3000/sensors/api");
-  //       const newSensors = res.data.sensors;
+  useEffect(() => {
+    const fetchSensors = async () => {
+      try {
+        const res = await axios.get("http://localhost:3000/sensors/api");
+        const newSensors = res.data.sensors;
 
-  //       // Porównaj nowe sensory z poprzednimi
-  //       const hasChanged = newSensors.some(
-  //         (sensor, index) =>
-  //           sensor.isSitTaken !== prevSensors.current[index]?.isSitTaken
-  //       );
+        // Porównaj nowe sensory z poprzednimi
+        const hasChanged = newSensors.some(
+          (sensor, index) =>
+            sensor.isSitTaken !== prevSensors.current[index]?.isSitTaken
+        );
 
-  // Aktualizuj stan tylko, jeśli dane się zmieniły
-  // if (hasChanged) {
-  //   const anySensorsTrue = newSensors.some(
-  //     sensor => sensor.isSitTaken === true
-  //   );
-  //   const allSensorsFalse = newSensors.every(
-  //     sensor => sensor.isSitTaken === false
-  //   );
+        // Aktualizuj stan tylko, jeśli dane się zmieniły
+        if (hasChanged) {
+          const anySensorsTrue = newSensors.some(
+            (sensor) => sensor.isSitTaken === true
+          );
+          const allSensorsFalse = newSensors.every(
+            (sensor) => sensor.isSitTaken === false
+          );
 
-  //         if (!hasDetectedTrue.current && anySensorsTrue) {
-  //           setPlayWelcome(true);
-  //           setTimeout(() => setShowsScreen(true), 2000);
+          if (!hasDetectedTrue.current && anySensorsTrue) {
+            setPlayWelcome(true);
+            setTimeout(() => setShowsScreen(true), 2000);
 
-  //           hasDetectedTrue.current = true;
+            hasDetectedTrue.current = true;
 
-  //           if (timeoutRef.current) {
-  //             clearTimeout(timeoutRef.current);
-  //             timeoutRef.current = null;
-  //           }
-  //         }
+            if (timeoutRef.current) {
+              clearTimeout(timeoutRef.current);
+              timeoutRef.current = null;
+            }
+          }
 
-  //         if (hasDetectedTrue.current && allSensorsFalse) {
-  //           if (!timeoutRef.current) {
-  //             timeoutRef.current = setTimeout(() => {
-  //               setPlayWelcome(true);
-  //               setTimeout(() => setShowsScreen(false), 2000);
-  //               hasDetectedTrue.current = false;
-  //               timeoutRef.current = null;
-  //             }, 5000);
-  //           }
-  //         }
+          if (hasDetectedTrue.current && allSensorsFalse) {
+            if (!timeoutRef.current) {
+              timeoutRef.current = setTimeout(() => {
+                setPlayWelcome(true);
+                setTimeout(() => setShowsScreen(false), 2000);
+                hasDetectedTrue.current = false;
+                timeoutRef.current = null;
+              }, 5000);
+            }
+          }
 
-  //         setSensors(newSensors); // Aktualizuj stan, jeśli są zmiany
-  //         prevSensors.current = newSensors; // Zaktualizuj poprzednie sensory
-  //       }
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
+          setSensors(newSensors); // Aktualizuj stan, jeśli są zmiany
+          prevSensors.current = newSensors; // Zaktualizuj poprzednie sensory
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
-  //   intervalRef.current = setInterval(fetchSensors, 10000);
+    intervalRef.current = setInterval(fetchSensors, 10000);
 
-  //   return () => clearInterval(intervalRef.current);
-  // }, []);
+    return () => clearInterval(intervalRef.current);
+  }, []);
 
   // useEffect(() => {
   //   const handleWindow = () => {
@@ -143,19 +143,19 @@ const App = () => {
   //   };
   // }, []);
 
-  useEffect(() => {
-    const handleWindow = () => {
-      let timeout = setTimeout(() => {}, 30000);
-    };
+  // useEffect(() => {
+  //   const handleWindow = () => {
+  //     let timeout = setTimeout(() => {}, 30000);
+  //   };
 
-    window.addEventListener("click", handleWindow);
-    window.addEventListener("touch", handleWindow);
+  //   window.addEventListener("click", handleWindow);
+  //   window.addEventListener("touch", handleWindow);
 
-    return () => {
-      window.removeEventListener("click", handleWindow);
-      window.removeEventListener("touch", handleWindow);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("click", handleWindow);
+  //     window.removeEventListener("touch", handleWindow);
+  //   };
+  // }, []);
 
   return (
     <>

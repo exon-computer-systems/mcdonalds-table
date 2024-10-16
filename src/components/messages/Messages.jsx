@@ -36,13 +36,18 @@ const Messages = ({ id }) => {
   const handleSendMessage = () => {
     if (selectedPlaces.length > 0 && selectedMessage) {
       let selectedSeats = [];
+      let table;
+      let seat;
 
       selectedPlaces.forEach(placeId => {
         const [tableNum, seatNum] = placeId.split("-");
 
         selectedSeats.push(seatNum);
 
-        const author = `Stół ${tableNum}, Miejsce ${seatNum}`;
+        table = tableNum;
+        seat = seatNum;
+
+        const author = `Stół ${id}, Miejsce ${seatNum}`;
         const fullMessage = `${selectedMessage} ${selectedEmoji}`;
 
         console.log(author, fullMessage, placeId);
@@ -51,7 +56,8 @@ const Messages = ({ id }) => {
       addMessage(selectedSeats, {
         author: `Stół ${id}`,
         message: `${selectedMessage} ${selectedEmoji}`,
-        table: selectedPlaces[0].split("-")[0],
+        table: "1",
+        seat: id,
       });
 
       setSelectedPlaces([]);
@@ -62,7 +68,7 @@ const Messages = ({ id }) => {
       setFailAlert(true);
       setAlert({
         type: "error",
-        message: "Select a place and enter a message!",
+        message: "Wybierz co najmniej jedno miejsce i wiadomość",
       });
     }
 
@@ -80,9 +86,16 @@ const Messages = ({ id }) => {
       <TableMap
         selectedPlaces={selectedPlaces}
         handlePlaceClick={handlePlaceClick}
+        id={id}
       />
 
-      <section className={styles.messages_wrapper}>
+      <section
+        className={`${styles.messages_wrapper} ${
+          id % 2 === 0
+            ? styles.messages_wrapper_normal
+            : styles.messages_wrapper_inverted
+        }`}
+      >
         <section className={styles.messages_container}>
           {/* Message selection */}
           <section className={styles.message}>
