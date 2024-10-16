@@ -6,16 +6,18 @@ import TableMap from "./tableMap/TableMap";
 import { delay, motion } from "framer-motion";
 import AlertMsg from "../alertMsg/AlertMsg";
 
-const Messages = () => {
+const Messages = ({ id }) => {
   const { addMessage } = useMessage();
   const [selectedPlaces, setSelectedPlaces] = useState([]);
   const [selectedMessage, setSelectedMessage] = useState("");
+  const [selectedSeat, setSelectedSeat] = useState([]);
   const [selectedEmoji, setSelectedEmoji] = useState("");
   const [failAlert, setFailAlert] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
+  console.log(selectedPlaces);
 
-  // Function to handle table/place selection
-  const handlePlaceClick = (placeId) => {
+  const handlePlaceClick = (tableId, seatNum) => {
+    const placeId = `${tableId}-${seatNum}`;
     if (selectedPlaces.includes(placeId)) {
       setSelectedPlaces(selectedPlaces.filter((place) => place !== placeId));
     } else {
@@ -33,22 +35,9 @@ const Messages = () => {
 
   const handleSendMessage = () => {
     if (selectedPlaces.length > 0 && selectedMessage) {
-<<<<<<< HEAD
-      selectedPlaces.forEach((placeId) => {
-        const author = `Stół ${randomTable}, użytkownik ${randomUser}`;
-
-        console.log(author, fullMessage, placeId);
-
-        addMessage([placeId], {
-          author: author,
-          message: fullMessage,
-        });
-      });
-
-=======
       let selectedSeats = [];
 
-      selectedPlaces.forEach(placeId => {
+      selectedPlaces.forEach((placeId) => {
         const [tableNum, seatNum] = placeId.split("-");
 
         selectedSeats.push(seatNum);
@@ -65,21 +54,21 @@ const Messages = () => {
         table: selectedPlaces[0].split("-")[0],
       });
 
->>>>>>> 3416714183f68e199a51b5facb864e57d88eec9c
       setSelectedPlaces([]);
       setSelectedMessage("");
       setSelectedEmoji("");
       setAlert({ type: "success", message: "Wiadomość została wysłana" });
     } else {
+      setFailAlert(true);
       setAlert({
-        type: "fail",
-        message: "Wybierz co najmniej jedno miejsce i wiadomość",
+        type: "error",
+        message: "Select a place and enter a message!",
       });
     }
 
     setTimeout(() => {
       setAlert({ type: "", message: "" });
-    }, 2000);
+    }, 4000);
   };
 
   return (
