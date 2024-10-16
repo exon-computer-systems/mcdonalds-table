@@ -39,7 +39,7 @@
 
   background-position: center;
   background-size: cover;
-
+  position: relative;
   transition: 1.5s all ease-in-out;
   /* transform: rotate(180deg); */
 }

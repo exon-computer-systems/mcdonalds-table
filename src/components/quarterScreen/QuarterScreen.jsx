@@ -11,6 +11,7 @@ import Inactive from "../inactive/Inactive";
 import Cart from "../cart/Cart";
 import { messages as messagesData } from "../../data/messages";
 import useMessage from "../../hooks/useMessage";
+import Backdrop from "../backdrop/Backdrop";
 
 const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
   const timeoutRef = useRef();
@@ -20,14 +21,19 @@ const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
   const [showCart, setShowCart] = useState(false);
   const [showItemPreview, setShowItemPreview] = useState(false);
   const [activeChatBox, setActiveChatBox] = useState(false);
-
+  const [activePanel, setActivePanel] = useState(false);
   const [userOrder, setUserOrder] = useState({});
   const [orderQuantity, setOrderQuantity] = useState(0);
 
   const [activeComponent, setActiveComponent] = useState("menu");
   const [activeTitle, setActiveTitle] = useState("Menu");
-
-  const switchComponent = (componentName) => {
+  const open = () => {
+    setActivePanel(true);
+  };
+  const close = () => {
+    setActivePanel(false);
+  };
+  const switchComponent = componentName => {
     switch (componentName) {
       case "menu":
         setActiveComponent("menu");
@@ -59,7 +65,7 @@ const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
     }
   };
 
-  const handleClosePopup = (e) => {
+  const handleClosePopup = e => {
     e.stopPropagation();
     setActiveChatBox(false);
   };
@@ -113,6 +119,7 @@ const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
     >
       {!isReduced ? (
         <>
+          {activePanel && <Backdrop onClick={close} />}
           <Header
             id={id}
             title={activeTitle}
@@ -127,7 +134,11 @@ const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
             setActiveChatBox={setActiveChatBox}
             isSingle={isSingle}
           />
-          <Navigation switchComponent={switchComponent} />
+          <Navigation
+            switchComponent={switchComponent}
+            open={open}
+            close={close}
+          />
           <section className={`${styles.content}`}>
             {activeComponent === "menu" && (
               <Menu
@@ -147,7 +158,9 @@ const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
                 switchComponent={switchComponent}
               />
             )}
-            {activeComponent === "promotions" && <Promotions />}
+            {activeComponent === "promotions" && (
+              <Promotions open={open} close={close} />
+            )}
             {activeComponent === "messages" && <Messages id={id} />}
             {activeComponent === "application" && <Application />}
             {activeComponent === "games" && <MemoryGame />}

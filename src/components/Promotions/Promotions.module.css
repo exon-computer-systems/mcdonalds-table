@@ -18,7 +18,7 @@
   display: flex;
   flex-direction: column;
   /* height: 250px; */
-  z-index: 1;
+  /* z-index: 1; */
 }
 .scroll_container2 {
   position: relative;
@@ -29,7 +29,7 @@
   align-items: flex-start;
   flex-direction: column;
   /* height: 250px; */
-  z-index: 2;
+
   gap: 0.5rem;
 }
 
@@ -86,11 +86,11 @@
   cursor: pointer;
 }
 
-.expanded_section {
+/* .expanded_section {
   width: 150px;
   height: 200px;
   background-color: black;
-}
+} */
 
 .scroll_img2_wrapper {
   cursor: pointer;
@@ -106,10 +106,11 @@
   border-radius: 1rem;
   /* padding: 2rem; */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Adjust as needed */
+  width: 100%;
   max-width: 400px;
-  height: auto;
-  gap: 2rem;
+  height: 469px;
+  /* gap: 2rem; */
+  z-index: 500;
 }
 
 .expanded_section > h2 {
@@ -147,4 +148,49 @@
 
 .exit_icon {
   transform: scale(1.5);
+}
+
+.active_coupon {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
+.active_coupon {
+  font-size: 1.5rem;
+}
+
+.active_coupon > span {
+  padding: 0.5rem 4rem;
+  border: 1px solid var(--main-green);
+  background-color: rgb(16, 74, 16);
+  color: white;
+  border-radius: 1rem;
+  font-weight: 200;
+  font-size: 2rem;
+}
+
+.activate {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.active_btn {
+  padding: 0.5rem 4rem;
+  border: 1px solid var(--main-green);
+  background-color: rgb(16, 74, 16);
+  border-radius: 1rem;
+  color: white;
+  font-weight: 200;
+  font-size: 2rem;
+}
+
+.backdrop {
+  width: 200px;
+  height: 200px;
+  background-color: black;
 }

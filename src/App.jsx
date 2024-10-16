@@ -17,7 +17,7 @@ const App = () => {
   });
 
   const [playWelcome, setPlayWelcome] = useState(false);
-  const [showScreens, setShowsScreen] = useState(false);
+  const [showScreens, setShowsScreen] = useState(true);
 
   const prevSensors = useRef([]);
   const hasDetectedTrue = useRef(false);
@@ -25,18 +25,13 @@ const App = () => {
   const intervalRef = useRef(null);
 
   const [sensors, setSensors] = useState([
-<<<<<<< HEAD
-    { name: "sensor_1", distance: 175, isSitTaken: false },
-    { name: "sensor_2", distance: 175, isSitTaken: false },
-=======
     { name: "sensor_1", distance: 175, isSitTaken: true },
     { name: "sensor_2", distance: 175, isSitTaken: true },
->>>>>>> 3416714183f68e199a51b5facb864e57d88eec9c
     { name: "sensor_3", distance: 175, isSitTaken: false },
     { name: "sensor_4", distance: 175, isSitTaken: false },
   ]);
 
-  const enlargeLeft = (section) => {
+  const enlargeLeft = section => {
     setSectionFlex({
       ...sectionFlex,
       left1: section === "left1" ? 7 : 1,
@@ -44,7 +39,7 @@ const App = () => {
     });
   };
 
-  const enlargeRight = (section) => {
+  const enlargeRight = section => {
     setSectionFlex({
       ...sectionFlex,
       right1: section === "right1" ? 7 : 1,
@@ -69,7 +64,7 @@ const App = () => {
   };
 
   const simulateApi = () => {
-    const updatedSensors = sensors.map((sensor) => {
+    const updatedSensors = sensors.map(sensor => {
       // Losowa wartość true/false dla isSitTaken
       const isSitTaken = Math.random() > 0.8;
       return { ...sensor, isSitTaken };
