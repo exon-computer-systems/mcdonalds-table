@@ -25,13 +25,13 @@ const App = () => {
   const intervalRef = useRef(null);
 
   const [sensors, setSensors] = useState([
-    { name: "sensor_1", distance: 175, isSitTaken: true },
-    { name: "sensor_2", distance: 175, isSitTaken: true },
+    { name: "sensor_1", distance: 175, isSitTaken: false },
+    { name: "sensor_2", distance: 175, isSitTaken: false },
     { name: "sensor_3", distance: 175, isSitTaken: false },
     { name: "sensor_4", distance: 175, isSitTaken: false },
   ]);
 
-  const enlargeLeft = section => {
+  const enlargeLeft = (section) => {
     setSectionFlex({
       ...sectionFlex,
       left1: section === "left1" ? 7 : 1,
@@ -39,7 +39,7 @@ const App = () => {
     });
   };
 
-  const enlargeRight = section => {
+  const enlargeRight = (section) => {
     setSectionFlex({
       ...sectionFlex,
       right1: section === "right1" ? 7 : 1,
@@ -64,7 +64,7 @@ const App = () => {
   };
 
   const simulateApi = () => {
-    const updatedSensors = sensors.map(sensor => {
+    const updatedSensors = sensors.map((sensor) => {
       // Losowa wartość true/false dla isSitTaken
       const isSitTaken = Math.random() > 0.8;
       return { ...sensor, isSitTaken };
@@ -128,34 +128,6 @@ const App = () => {
 
     return () => clearInterval(intervalRef.current);
   }, []);
-
-  // useEffect(() => {
-  //   const handleWindow = () => {
-  //     let timeout = setTimeout(() => {}, 30000);
-  //   };
-
-  //   window.addEventListener("click", handleWindow);
-  //   window.addEventListener("touch", handleWindow);
-
-  //   return () => {
-  //     window.removeEventListener("click", handleWindow);
-  //     window.removeEventListener("touch", handleWindow);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   const handleWindow = () => {
-  //     let timeout = setTimeout(() => {}, 30000);
-  //   };
-
-  //   window.addEventListener("click", handleWindow);
-  //   window.addEventListener("touch", handleWindow);
-
-  //   return () => {
-  //     window.removeEventListener("click", handleWindow);
-  //     window.removeEventListener("touch", handleWindow);
-  //   };
-  // }, []);
 
   return (
     <>
