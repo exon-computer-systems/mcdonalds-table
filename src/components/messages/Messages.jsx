@@ -15,32 +15,26 @@ const Messages = () => {
   const [alert, setAlert] = useState({ type: "", message: "" });
 
   // Function to handle table/place selection
-  const handlePlaceClick = placeId => {
+  const handlePlaceClick = (placeId) => {
     if (selectedPlaces.includes(placeId)) {
-      setSelectedPlaces(selectedPlaces.filter(place => place !== placeId));
+      setSelectedPlaces(selectedPlaces.filter((place) => place !== placeId));
     } else {
       setSelectedPlaces([...selectedPlaces, placeId]);
     }
   };
 
-  const handleTextMessageClick = message => {
+  const handleTextMessageClick = (message) => {
     setSelectedMessage(message);
   };
 
-  const handleEmojiClick = emoji => {
+  const handleEmojiClick = (emoji) => {
     setSelectedEmoji(emoji);
   };
 
   const handleSendMessage = () => {
     if (selectedPlaces.length > 0 && selectedMessage) {
-      selectedPlaces.forEach(placeId => {
-        const randomTable = Math.floor(Math.random() * 8 + 1);
-        const randomUser = Math.floor(Math.random() * 4 + 1);
-
+      selectedPlaces.forEach((placeId) => {
         const author = `Stół ${randomTable}, użytkownik ${randomUser}`;
-        const randomText = selectedMessage;
-        const randomEmoji = selectedEmoji;
-        const fullMessage = `${randomText} ${randomEmoji}`;
 
         console.log(author, fullMessage, placeId);
 
@@ -81,7 +75,7 @@ const Messages = () => {
           {/* Message selection */}
           <section className={styles.message}>
             <section className={styles.messages_slider}>
-              {messages.text.map(el => (
+              {messages.text.map((el) => (
                 <button
                   key={el}
                   className={
@@ -98,7 +92,7 @@ const Messages = () => {
           {/* Emoji selection */}
           <section className={styles.emojis}>
             <section className={styles.emojis_slider}>
-              {messages.emojis.map(el => (
+              {messages.emojis.map((el) => (
                 <button
                   key={el}
                   className={selectedEmoji === el ? styles.selected : ""}

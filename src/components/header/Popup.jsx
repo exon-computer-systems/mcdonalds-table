@@ -70,7 +70,9 @@ const Popup = ({ id, switchComponent }) => {
                         style={{ borderRadius: "0rem 0rem 0.5rem 0rem" }}
                       ></span>
                     </span>
-                    <p className={styles.pp_user}>{el.author}</p>
+                    <p
+                      className={styles.pp_user}
+                    >{`Stół ${el.table}, miejsce ${el.seat}`}</p>
                   </span>
                   <span className={styles.pp_row}>
                     <p className={styles.pp_text}>{el.message}</p>

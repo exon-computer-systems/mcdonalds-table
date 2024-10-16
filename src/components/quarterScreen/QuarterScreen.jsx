@@ -148,7 +148,7 @@ const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
               />
             )}
             {activeComponent === "promotions" && <Promotions />}
-            {activeComponent === "messages" && <Messages />}
+            {activeComponent === "messages" && <Messages id={id} />}
             {activeComponent === "application" && <Application />}
             {activeComponent === "games" && <MemoryGame />}
           </section>

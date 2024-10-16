@@ -12,12 +12,16 @@ export const MessageProvider = ({ children }) => {
   });
 
   const addMessage = (ids, message) => {
+    console.log(ids);
+
     setUsersMessage((prev) => {
       // Create copy of messages state
       const newMessages = { ...prev };
 
       ids.forEach((el) => {
         const seatKey = "seat" + el;
+
+        console.log(seatKey);
 
         if (!newMessages[seatKey].muted) {
           // Create a new array for messages to ensure immutability

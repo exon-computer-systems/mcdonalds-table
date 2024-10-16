@@ -4,9 +4,15 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import banner3 from "../../assets/posters/banner3long.png";
-import banner4 from "../../assets/posters/banner4long.png";
-import banner5 from "../../assets/posters/banner5long.png";
+import banner1 from "../../assets/posters/banner1.png";
+import banner2 from "../../assets/posters/banner2.png";
+import banner3 from "../../assets/posters/banner3.png";
+
+import breakfast1 from "../../assets/menu/breakfast1.jpg";
+import breakfast2 from "../../assets/menu/breakfast2.jpg";
+import breakfast3 from "../../assets/menu/breakfast3.jpg";
+import breakfast4 from "../../assets/menu/breakfast4.jpg";
+import breakfast5 from "../../assets/menu/breakfast5.jpg";
 
 import { database, set, ref, onValue } from "../../../firebase";
 
@@ -45,6 +51,7 @@ const Entrance = () => {
     prevArrow: <SamplePrevArrow />,
     autoplay: true,
     autoplaySpeed: 5000,
+    arrows: false,
   };
 
   useEffect(() => {
@@ -53,7 +60,7 @@ const Entrance = () => {
 
       let timeout = setTimeout(() => {
         set(ref(database, `status/table`), {});
-      }, 10000);
+      }, 60000);
 
       const statusRef = ref(database, `status/table`);
       onValue(statusRef, (snapshot) => {
@@ -67,20 +74,27 @@ const Entrance = () => {
   }, []);
 
   return (
-    <section className="">
+    <section className={styles.container}>
       <Slider {...settings} className={styles.slider}>
+        <img className={styles.img} src={breakfast1} alt="promo image" />
+        <img className={styles.img} src={breakfast2} alt="promo image" />
+        <img className={styles.img} src={breakfast3} alt="promo image" />
+        <img className={styles.img} src={breakfast4} alt="promo image" />
+        <img className={styles.img} src={breakfast5} alt="promo image" />
+
+        {/* <section className={styles.content}>
+          <img className={styles.img} src={banner2} alt="promo image" />
+        </section>
         <section className={styles.content}>
           <img className={styles.img} src={banner3} alt="promo image" />
-        </section>
-        <section className={styles.content}>
-          <img className={styles.img} src={banner4} alt="promo image" />
-        </section>
-        <section className={styles.content}>
-          <img className={styles.img} src={banner5} alt="promo image" />
-        </section>
+        </section> */}
       </Slider>
 
-      <h1>{name && name.name}</h1>
+      <section className={styles.scan}>
+        <h1 className={styles.text}>
+          Zrealizuj rezerwację skanując kod qr poniżej
+        </h1>
+      </section>
     </section>
   );
 };

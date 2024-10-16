@@ -1,32 +1,34 @@
 import styles from "./TableMap.module.css";
+import { tables } from "../../../data/tables";
 
 const TableMap = ({ selectedPlaces, handlePlaceClick }) => {
-    return (
-        <section className={styles.table_map_container}>
-            {/* Loop through the 6 tables */}
-            {[...Array(6)].map((_, tableIndex) => (
-                <section key={tableIndex} className={styles.table}>
-                    {/* For each table, generate 4 places with unique IDs */}
-                    {[...Array(4)].map((_, placeIndex) => {
-                        const placeId = tableIndex * 4 + placeIndex + 1; // Generate sequential ID (1 to 24)
-                        return (
-                            <span
-                                key={placeId}
-                                className={`${styles.place} ${
-                                    selectedPlaces.includes(placeId)
-                                        ? styles.active
-                                        : ""
-                                }`}
-                                onClick={() => handlePlaceClick(placeId)}
-                            >
-                                {placeId}
-                            </span>
-                        );
-                    })}
-                </section>
-            ))}
+  // const data = tables.map(el => el);
+  // console.log("table", data);
+
+  console.log(tables);
+
+  return (
+    <section className={styles.table_map_container}>
+      {tables.map((el) => (
+        <section key={el.id} className={styles.table}>
+          {el.seats.map((seat) => {
+            const placeId = `${el.id}-${seat}`;
+            return (
+              <span
+                key={placeId}
+                className={`${styles.place} ${
+                  selectedPlaces.includes(placeId) ? styles.active : ""
+                }`}
+                onClick={() => handlePlaceClick(el.id, seat)}
+              >
+                {seat}
+              </span>
+            );
+          })}
         </section>
-    );
+      ))}
+    </section>
+  );
 };
 
 export default TableMap;

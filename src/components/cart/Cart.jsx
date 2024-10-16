@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import styles from "./Cart.module.css";
 import CartItem from "./CartItem";
 import Confirmation from "../confirmation/Confirmation";
+import { useGlobalOrders } from "../../context/OrdersContext";
+import { database, ref, set } from "../../../firebase";
 
 const Cart = ({
   userOrder,
@@ -9,18 +11,29 @@ const Cart = ({
   setShowItemPreview,
   switchComponent,
 }) => {
+  const { addToArray, globalArray } = useGlobalOrders();
   const [order, setOrder] = useState(userOrder);
   const [overallPrice, setOverallPrice] = useState(0);
   const [isBuy, setIsBuy] = useState(false);
 
   const removeItem = (category, itemId) => {
-    setOrder(prevOrder => ({
+    setOrder((prevOrder) => ({
       ...prevOrder,
-      [category]: prevOrder[category].filter(item => item.itemId !== itemId),
+      [category]: prevOrder[category].filter((item) => item.itemId !== itemId),
     }));
   };
 
+  const pushOrderToFirebase = (order) => {
+    const orderId = new Date().getTime();
+    set(ref(database, `orders/${orderId}`), order);
+  };
+
   const handleBuy = () => {
+    console.log("Adding new order to globalArray:", order);
+    addToArray(order);
+
+    pushOrderToFirebase(order);
+
     setIsBuy(true);
     setTimeout(() => {
       setIsBuy(false);
@@ -30,8 +43,8 @@ const Cart = ({
   };
 
   const modifyOrder = (item, category, action) => {
-    setOrder(prevOrder => {
-      const updatedCategory = prevOrder[category].map(el => {
+    setOrder((prevOrder) => {
+      const updatedCategory = prevOrder[category].map((el) => {
         if (item.itemId === el.itemId) {
           const newQuantity =
             action === "increase" ? el.quantity + 1 : el.quantity - 1;
@@ -54,6 +67,11 @@ const Cart = ({
     setUserOrder(order);
   }, [order]);
 
+  //DODAŁEM
+  useEffect(() => {
+    console.log("Current globalArray:", globalArray);
+  }, [globalArray]);
+
   const calculateTotal = () => {
     return Object.keys(userOrder).reduce((total, category) => {
       const categoryTotal = userOrder[category].reduce((categorySum, item) => {
@@ -73,7 +91,7 @@ const Cart = ({
       ) : (
         <section className={styles.container}>
           <section className={styles.cart}>
-            {categories.map(category =>
+            {categories.map((category) =>
               userOrder[category]?.length > 0 ? (
                 userOrder[category].map((item, idx) => (
                   <CartItem
