@@ -54,19 +54,27 @@ const Popup = ({ id, switchComponent }) => {
 
                     <span className={styles.pp_table}>
                       <span
-                        className={styles.pp_active}
+                        className={
+                          el.seat === 1 ? styles.pp_active : styles.pp_blank
+                        }
                         style={{ borderRadius: "0.5rem 0rem 0 0" }}
                       ></span>
                       <span
-                        className={styles.pp_blank}
+                        className={
+                          el.seat === 2 ? styles.pp_active : styles.pp_blank
+                        }
                         style={{ borderRadius: "0rem 0.5rem 0 0" }}
                       ></span>
                       <span
-                        className={styles.pp_blank}
+                        className={
+                          el.seat === 3 ? styles.pp_active : styles.pp_blank
+                        }
                         style={{ borderRadius: "0rem 0rem 0rem 0.5rem" }}
                       ></span>
                       <span
-                        className={styles.pp_blank}
+                        className={
+                          el.seat === 4 ? styles.pp_active : styles.pp_blank
+                        }
                         style={{ borderRadius: "0rem 0rem 0.5rem 0rem" }}
                       ></span>
                     </span>
