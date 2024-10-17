@@ -5,6 +5,8 @@ import WelcomePage from "./components/welcomePage/WelcomePage";
 import useMessages from "./hooks/useMessage";
 import Advertisements from "./components/advertisements/Advertisements";
 
+import { database, set, ref, onValue } from "../../../firebase";
+
 import axios from "axios";
 
 const App = () => {
@@ -95,6 +97,7 @@ const App = () => {
 
           if (!hasDetectedTrue.current && anySensorsTrue) {
             setPlayWelcome(true);
+            set(ref(database, `status/table`), {});
             setTimeout(() => setShowsScreen(true), 2000);
 
             hasDetectedTrue.current = true;
