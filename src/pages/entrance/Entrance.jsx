@@ -14,7 +14,7 @@ import breakfast3 from "../../assets/menu/breakfast3.jpg";
 import breakfast4 from "../../assets/menu/breakfast4.jpg";
 import breakfast5 from "../../assets/menu/breakfast5.jpg";
 
-import { database, set, ref, onValue } from "../../../firebase";
+import { database, set, ref, onValue } from "../../firebase";
 
 const Entrance = () => {
   const [name, setName] = useState("");
