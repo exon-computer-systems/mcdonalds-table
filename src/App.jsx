@@ -5,7 +5,7 @@ import WelcomePage from "./components/welcomePage/WelcomePage";
 import useMessages from "./hooks/useMessage";
 import Advertisements from "./components/advertisements/Advertisements";
 
-import { database, set, ref, onValue } from "../firebase";
+import { database, set, ref } from "../firebase";
 
 import axios from "axios";
 
