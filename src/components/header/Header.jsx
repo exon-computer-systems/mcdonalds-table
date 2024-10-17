@@ -18,7 +18,7 @@ import { database, set, ref, onValue } from "../../../firebase";
 import AlertMsg from "../alertMsg/AlertMsg";
 
 // prettier-ignore
-const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent, activeChatBox, setActiveChatBox, isSingle}) => {
+const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent, activeChatBox, setActiveChatBox, isSingle, setSelectedCategory}) => {
     const buttonRef = useRef();
     const activeChatBoxRef = useRef();
     const timeoutRef = useRef();
@@ -170,7 +170,10 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
                 </button>
 
                 {/* Menu button */}
-                <button className={styles.btn_cont} onClick={() => switchComponent("menu")}>
+                <button className={styles.btn_cont} onClick={() => {
+                  switchComponent("menu"); 
+                  setSelectedCategory("");
+                  }}>
                     <span className={styles.btn}>
                         <FontAwesomeIcon icon={faBurger} />
                     </span>

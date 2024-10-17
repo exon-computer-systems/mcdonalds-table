@@ -7,7 +7,7 @@ import ad2 from "../../assets/video/mc_ad2.webm";
 import { database, set, ref, onValue } from "../../../firebase";
 
 const Advertisements = ({ setSensors }) => {
-  const [activeTable, setActiveTable] = useState({});
+  const [activeTable, setActiveTable] = useState(null);
 
   useEffect(() => {
     const statusRef = ref(database, `status/table`);
@@ -29,33 +29,7 @@ const Advertisements = ({ setSensors }) => {
           </h1>
         </section>
       ) : (
-        <section
-          className={styles.container}
-          onClick={() =>
-            setSensors([
-              {
-                name: "sensor_1",
-                distance: 175,
-                isSitTaken: false,
-              },
-              {
-                name: "sensor_2",
-                distance: 175,
-                isSitTaken: true,
-              },
-              {
-                name: "sensor_3",
-                distance: 175,
-                isSitTaken: false,
-              },
-              {
-                name: "sensor_4",
-                distance: 175,
-                isSitTaken: true,
-              },
-            ])
-          }
-        >
+        <section className={styles.container}>
           <section className={styles.container1}>
             <video autoPlay muted loop>
               <source src={ad1} type="video/mp4" />
