@@ -41,7 +41,8 @@ const Cart = ({
       setUserOrder({});
     }, 5000);
   };
-
+  const checkIsEmpty = Object.keys(order).length == 0;
+  console.log("order", Object.keys(order).length == 0)
   const modifyOrder = (item, category, action) => {
     setOrder((prevOrder) => {
       const updatedCategory = prevOrder[category].map((el) => {
@@ -129,6 +130,7 @@ const Cart = ({
                 </button>
                 <button
                   className={`${styles.cc_btn} ${styles.cc_btn_2}`}
+                  disabled={checkIsEmpty ? true : false}
                   onClick={handleBuy}
                 >
                   Zamów

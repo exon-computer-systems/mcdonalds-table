@@ -112,7 +112,7 @@ const App = () => {
                 setTimeout(() => setShowsScreen(false), 2000);
                 hasDetectedTrue.current = false;
                 timeoutRef.current = null;
-              }, 5000);
+              }, 3000);
             }
           }
 
