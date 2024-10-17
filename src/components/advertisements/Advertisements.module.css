@@ -31,8 +31,8 @@
   /* background-color: #004314;
   color: #ffdc02; */
 
-  background-color: var(--main-green);
-  color: var(--main-yellow);
+  color: var(--main-green);
+  background-color: var(--main-yellow);
 
   display: flex;
   align-items: center;
