@@ -55,10 +55,12 @@ const Entrance = () => {
   };
 
   useEffect(() => {
+    let timeout;
     window.activeTable = (name) => {
       set(ref(database, `status/table`), { name: name });
+      clearTimeout(timeout);
 
-      let timeout = setTimeout(() => {
+      timeout = setTimeout(() => {
         set(ref(database, `status/table`), {});
       }, 60000);
 
