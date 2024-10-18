@@ -163,6 +163,26 @@
   transform: rotate(-45deg);
   background: #fff;
 }
+.single_pp_cont::before {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -14px;
+  z-index: 101;
+
+  width: 16px;
+  height: 16px;
+  margin: auto;
+
+  border: solid #ffbc08;
+  border-width: 5px 5px 0 0;
+  border-radius: 5px;
+
+  transform: rotate(-45deg);
+  background: #fff;
+}
 
 .pp_cont {
   width: 300px;
@@ -172,6 +192,28 @@
 
   position: absolute;
   right: 114px;
+  top: 105px;
+  /* transform: translate(-50%, 102.5%); */
+  z-index: 100;
+
+  border-radius: 0.75rem;
+  border: 5px solid #ffbc08;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+.single_pp_cont {
+  width: 300px;
+  height: 350px;
+
+  background-color: #fff;
+
+  position: absolute;
+  right: 20px;
   top: 105px;
   /* transform: translate(-50%, 102.5%); */
   z-index: 100;
@@ -414,4 +456,70 @@
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
   }
+}
+
+.waiter_pp_cont {
+  width: 130px;
+  height: 100px;
+
+  background-color: #fff;
+
+  position: absolute;
+  right: 1spx;
+  top: 105px;
+  /* transform: translate(-50%, 102.5%); */
+  z-index: 100;
+
+  border-radius: 0.75rem;
+  border: 5px solid #ffbc08;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.waiter_pp_cont::before {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -14px;
+  z-index: 101;
+
+  width: 16px;
+  height: 16px;
+  margin: auto;
+
+  border: solid #ffbc08;
+  border-width: 5px 5px 0 0;
+  border-radius: 5px;
+
+  transform: rotate(-45deg);
+  background: #fff;
+}
+
+.waiter_pp_btns_cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 100%;
+  width: 100%;
+}
+
+.waiter_pp_btns_cont > button {
+  width: inherit;
+  height: inherit;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 0.2rem 0rem;
+  font-family: "SpeedeeW";
 }

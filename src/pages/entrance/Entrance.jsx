@@ -77,6 +77,8 @@ const Entrance = () => {
 
   return (
     <section className={styles.container}>
+
+
       <Slider {...settings} className={styles.slider}>
         <img className={styles.img} src={breakfast1} alt="promo image" />
         <img className={styles.img} src={breakfast2} alt="promo image" />

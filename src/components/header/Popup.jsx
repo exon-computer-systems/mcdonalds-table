@@ -7,11 +7,11 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import useMessage from "../../hooks/useMessage";
 import { faBell, faBellSlash } from "@fortawesome/free-regular-svg-icons";
 
-const Popup = ({ id, switchComponent }) => {
+const Popup = ({ id, switchComponent, isSingle }) => {
   const { usersMessage, removeMessage, muteUser } = useMessage();
 
   return (
-    <section className={styles.pp_cont}>
+    <section className={!isSingle ? styles.pp_cont : styles.single_pp_cont}>
       <span className={styles.pp_btns_cont}>
         <button
           className={styles.pp_button}

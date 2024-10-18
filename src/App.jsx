@@ -19,7 +19,7 @@ const App = () => {
   });
 
   const [playWelcome, setPlayWelcome] = useState(false);
-  const [showScreens, setShowsScreen] = useState(false);
+  const [showScreens, setShowsScreen] = useState(true);
 
   const prevSensors = useRef([]);
   const hasDetectedTrue = useRef(false);

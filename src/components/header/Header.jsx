@@ -16,6 +16,7 @@ import useMessage from "../../hooks/useMessage";
 import { v4 as uuidv4 } from "uuid";
 import { database, set, ref, onValue } from "../../../firebase";
 import AlertMsg from "../alertMsg/AlertMsg";
+import WaiterPopup from "./WaiterPopup";
 
 // prettier-ignore
 const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent, activeChatBox, setActiveChatBox, isSingle, setSelectedCategory}) => {
@@ -26,6 +27,7 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
     const [activeWaiter, setActiveWaiter] = useState(false);
     const [statusId, setStatusId] = useState(null); 
     const [alert, setAlert] = useState({ type: "", message: "" });
+    const [activeWaiterPopup, setActiveWaiterPopup] = useState(false)
 
 
     useEffect(() => {
@@ -124,7 +126,13 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
                 {/* Call waiter button */}
                 <button
                     className={styles.btn_cont}
-                    onClick={() => callWaiter(id, "Rachunek")}
+                    // onClick={() => callWaiter(id, "Rachunek")}
+                    onClick={(e) => {
+                        setActiveWaiterPopup(!activeWaiterPopup)
+                        setActiveChatBox(false)
+                    }
+                        
+                    }
                 >
                     <span
                         className={`${styles.btn} ${
@@ -142,6 +150,7 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
                     ) : (
                         <p className={styles.btn_text}>Kelner</p>
                     )}
+                    {activeWaiterPopup && <WaiterPopup isSingle={isSingle} callWaiter={() => callWaiter(id, "Rachunek")}/>}
                 </button>
 
                 {/* Chat button */}
@@ -150,6 +159,7 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
                         console.log("active popup");
                         e.stopPropagation();
                         setActiveChatBox(prev => !prev);
+                        setActiveWaiterPopup(false)
                         
                     }} 
                     ref={buttonRef}
@@ -165,6 +175,7 @@ const Header = ({id, title, orderQuantity, enlarge, reset, size, switchComponent
                     <Popup 
                         id={id}
                         switchComponent={switchComponent} 
+                        isSingle={isSingle}
                         // setActiveChatBox={setActiveChatBox} 
                     />}
                 </button>
