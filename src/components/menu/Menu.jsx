@@ -176,15 +176,15 @@ const Menu = ({
                   }}
                 />
                 <MenuCategory
-                  category="2foru"
+                  category="twoForU"
                   title="2forU"
                   bkg={twoForUBkg}
                   selectedCategory={selectedCategory}
-                  active={selectedCategory === "2foru" ? true : false}
-                  // onClick={() => {
-                  //     setSelectedCategory("2foru");
-                  //     setFilter("");
-                  // }}
+                  active={selectedCategory === "twoForU" ? true : false}
+                  onClick={() => {
+                    setSelectedCategory("twoForU");
+                    setFilter("");
+                  }}
                 />
                 <MenuCategory
                   category="icescream"
@@ -192,10 +192,10 @@ const Menu = ({
                   bkg={iceScreamBkg}
                   selectedCategory={selectedCategory}
                   active={selectedCategory === "icescream" ? true : false}
-                  // onClick={() => {
-                  //     setSelectedCategory("icescream");
-                  //     setFilter("");
-                  // }}
+                  onClick={() => {
+                    setSelectedCategory("icescream");
+                    setFilter("");
+                  }}
                 />
                 <MenuCategory
                   category="fries"

@@ -38,14 +38,14 @@ const SubmenuItem = ({
           <span className={styles.sb_item_heading_wrapper}>
             <h3 className={styles.sb_item_heading}>
               {item.itemName}
-              {item.options && ` ${item.capacity}l`}
+              {item.options && item.capacity && ` ${item.capacity}l`}
             </h3>
             <p className={styles.sb_item_price}>
               {parseFloat(item.itemPrice).toFixed(2) + " zł"}
             </p>
           </span>
 
-          {item.options && (
+          {item.options && item.capacity && (
             <span className={styles.sb_item_default_size}>S</span>
           )}
         </section>

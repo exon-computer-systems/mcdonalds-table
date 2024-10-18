@@ -483,4 +483,249 @@ export const menu = {
       },
     ],
   },
+  twoForU: {
+    filters: [
+      {
+        filterName: "Wołowina",
+        filterId: "beef",
+      },
+      {
+        filterName: "Kurczak",
+        filterId: "chicken",
+      },
+    ],
+    categoryMenu: [
+      {
+        itemName: "Cheeseburger 2forU",
+        itemId: "cheeseburger2foru",
+        itemPrice: 9,
+        itemImage: "twoForU/cheeseburgerL2forU.png",
+        tag: "beef",
+        size: "",
+        options: [
+          {
+            size: "Normalne",
+            sizeName: "medium",
+            capacity: "",
+            itemPrice: 9,
+          },
+          {
+            size: "Powiększone",
+            sizeName: "large",
+            capacity: "",
+            itemPrice: 11,
+          },
+        ],
+        flavors: ["Frytki", "Coca-Cola", "Sprite", "Fanta", "Lipton"],
+      },
+      {
+        itemName: "Hamburger 2forU",
+        itemId: "hamburger2foru",
+        itemPrice: 9,
+        itemImage: "twoForU/hamburgerL2forU.png",
+        tag: "beef",
+        size: "",
+        options: [
+          {
+            size: "Normalne",
+            sizeName: "medium",
+            capacity: "",
+            itemPrice: 9,
+          },
+          {
+            size: "Powiększone",
+            sizeName: "large",
+            capacity: "",
+            itemPrice: 11,
+          },
+        ],
+        flavors: ["Frytki", "Coca-Cola", "Sprite", "Fanta", "Lipton"],
+      },
+      {
+        itemName: "Chikker 2forU",
+        itemId: "chikker2foru",
+        itemPrice: 9,
+        itemImage: "twoForU/chikkerL2forU.png",
+        tag: "chicken",
+        options: [
+          {
+            size: "Normalne",
+            sizeName: "medium",
+            itemPrice: 9,
+          },
+          {
+            size: "Powiększone",
+            sizeName: "large",
+            itemPrice: 11,
+          },
+        ],
+        flavors: ["Frytki", "Coca-Cola", "Sprite", "Fanta", "Lipton"],
+      },
+      {
+        itemName: "Red Chikker 2forU",
+        itemId: "redchikker2foru",
+        itemPrice: 9,
+        itemImage: "twoForU/chikkerredL2forU.png",
+        tag: "chicken",
+        size: "",
+        options: [
+          {
+            size: "Normalne",
+            sizeName: "medium",
+            capacity: "",
+            itemPrice: 9,
+          },
+          {
+            size: "Powiększone",
+            sizeName: "large",
+            capacity: "",
+            itemPrice: 11,
+          },
+        ],
+        flavors: ["Frytki", "Coca-Cola", "Sprite", "Fanta", "Lipton"],
+      },
+      {
+        itemName: "Jalapeno 2forU",
+        itemId: "jalapeno2foru",
+        itemPrice: 9,
+        itemImage: "twoForU/jalapenoL2forU.png",
+        tag: "beef",
+        size: "",
+        options: [
+          {
+            size: "Normalne",
+            sizeName: "medium",
+            capacity: "",
+            itemPrice: 9,
+          },
+          {
+            size: "Powiększone",
+            sizeName: "large",
+            capacity: "",
+            itemPrice: 11,
+          },
+        ],
+        flavors: ["Frytki", "Coca-Cola", "Sprite", "Fanta", "Lipton"],
+      },
+    ],
+  },
+  icescream: {
+    filters: [
+      {
+        filterName: "Lody",
+        filterId: "icecream",
+      },
+      {
+        filterName: "Shake",
+        filterId: "shake",
+      },
+      {
+        filterName: "McFlurry",
+        filterId: "mcflurry",
+      },
+    ],
+    categoryMenu: [
+      {
+        itemName: "Shake o smaku waniliowym",
+        itemId: "shake-vanilla",
+        itemPrice: 10.2,
+        itemImage: "icescream/shakewanilia.png",
+        tag: "shake",
+      },
+
+      {
+        itemName: "Shake o smaku truskawkowym",
+        itemId: "shake-truskawkowy",
+        itemPrice: 10.2,
+        itemImage: "icescream/shaketruskawka.png",
+        tag: "shake",
+      },
+      {
+        itemName: "Shake o smaku czekoladowym",
+        itemId: "shake-czekoladowy",
+        itemPrice: 10.2,
+        itemImage: "icescream/shakeczekolada.png",
+        tag: "shake",
+      },
+      {
+        itemName: "Lody o smaku waniliowym z polewą truskawkową",
+        itemId: "lody-vanilla-truskawka",
+        itemPrice: 10.9,
+        itemImage: "icescream/lodtruskawka.png",
+        tag: "icecream",
+      },
+      {
+        itemName: "Lody o smaku waniliowym z polewą karmelową",
+        itemId: "lody-vanilla-karamel",
+        itemPrice: 10.9,
+        itemImage: "icescream/lodkarmel.png",
+        tag: "icecream",
+      },
+      {
+        itemName: "Lody o smaku waniliowym z polewą o smaku czekoladowym",
+        itemId: "lody-vanilla-czekolada",
+        itemPrice: 10.9,
+        itemImage: "icescream/lodczekolada.png",
+        tag: "icecream",
+      },
+      {
+        itemName: "McFlurry® o smaku waniliowym Lion® z polewą karmelową",
+        itemId: "mcflurry-lion-karamel",
+        itemPrice: 12.6,
+        itemImage: "icescream/mcflurry1.png",
+        tag: "mcflurry",
+      },
+      {
+        itemName: "McFlurry® o smaku waniliowym KitKat® z polewą karmelową",
+        itemId: "mcflurry-kitkat-karamel",
+        itemPrice: 12.6,
+        itemImage: "icescream/mcflurry2.png",
+        tag: "mcflurry",
+      },
+      {
+        itemName: "McFlurry® o smaku waniliowym Lion®",
+        itemId: "mcflurry-vanilla-lion",
+        itemPrice: 12.1,
+        itemImage: "icescream/mcflurry.png",
+        tag: "mcflurry",
+      },
+      {
+        itemName:
+          "McFlurry® o smaku waniliowym KitKat® z polewą o smaku czekoladowym",
+        itemId: "mcflurry-kitkat-czekolada",
+        itemPrice: 12.6,
+        itemImage: "icescream/mcflurry3.png",
+        tag: "mcflurry",
+      },
+      {
+        itemName: "McFlurry® o smaku waniliowym Lion® z polewą truskawkową",
+        itemId: "mcflurry-lion-truskawka",
+        itemPrice: 12.6,
+        itemImage: "icescream/mcflurry4.png",
+        tag: "mcflurry",
+      },
+      {
+        itemName: "McFlurry® o smaku waniliowym KitKat® z polewą truskawkową",
+        itemId: "mcflurry-kitkat-truskawka",
+        itemPrice: 12.6,
+        itemImage: "icescream/mcflurry5.png",
+        tag: "mcflurry",
+      },
+      {
+        itemName:
+          "McFlurry® o smaku waniliowym Lion® z polewą o smaku czekoladowym",
+        itemId: "mcflurry-lion-czekolada",
+        itemPrice: 12.6,
+        itemImage: "icescream/mcflurry6.png",
+        tag: "mcflurry",
+      },
+      {
+        itemName: "McFlurry® o smaku waniliowym KitKat®",
+        itemId: "mcflurry-kitkat",
+        itemPrice: 12.1,
+        itemImage: "icescream/mcflurry2.png",
+        tag: "mcflurry",
+      },
+    ],
+  },
 };
