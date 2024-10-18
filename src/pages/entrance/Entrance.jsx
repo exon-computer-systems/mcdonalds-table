@@ -61,7 +61,7 @@ const Entrance = () => {
       clearTimeout(timeout);
 
       timeout = setTimeout(() => {
-        set(ref(database, `status/table`), {});
+        set(ref(database, `status/table`), null);
       }, 60000);
 
       const statusRef = ref(database, `status/table`);

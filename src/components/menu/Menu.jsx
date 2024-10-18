@@ -21,6 +21,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Nav from "../header/Header";
 
+import { menu as menuData } from "../../data/menu.js";
+
 const Menu = ({
   enlarge,
   reset,
@@ -33,371 +35,25 @@ const Menu = ({
   setUserOrder,
   showItemPreview,
   setShowItemPreview,
+  selectedCategory,
+  setSelectedCategory,
 }) => {
   // const menuRef = useScrollToStart(60000, () => handleUserInactivity());
 
-  const [selectedCategory, setSelectedCategory] = useState("");
   const [filter, setFilter] = useState("");
   // const [userOrder, setUserOrder] = useState({});
   const scrollRef = useRef(null);
-  const [menu, setMenu] = useState({
-    burgers: {
-      filters: [
-        {
-          filterName: "Wołowina",
-          filterId: "beef",
-        },
-        {
-          filterName: "Kurczak",
-          filterId: "chicken",
-        },
-        {
-          filterName: "Wege",
-          filterId: "vege",
-        },
-      ],
-      categoryMenu: [
-        {
-          itemName: "Big Mac",
-          itemId: "bigmac",
-          itemPrice: 20.5,
-          itemImage: "burgers/bigmac.png",
-          tag: "beef",
-        },
-        {
-          itemName: "WieśMac Podwójny",
-          itemId: "wiesmac-double",
-          itemPrice: 25.9,
-          itemImage: "burgers/wiesmac-double.png",
-          tag: "beef",
-        },
-        {
-          itemName: "WieśMac",
-          itemId: "wiesmac",
-          itemPrice: 22.2,
-          itemImage: "burgers/wiesmac.png",
-          tag: "beef",
-        },
-        {
-          itemName: "McRoyal Podwójny",
-          itemId: "mcroyal-double",
-          itemPrice: 25.9,
-          itemImage: "burgers/mcroyal-double.png",
-          tag: "beef",
-        },
-        {
-          itemName: "McRoyal",
-          itemId: "mcroyal",
-          itemPrice: 20.2,
-          itemImage: "burgers/mcroyal.png",
-          tag: "beef",
-        },
-        {
-          itemName: "McCrispy Supreme",
-          itemId: "mccrispy-supreme",
-          itemPrice: 24.9,
-          itemImage: "burgers/mccrispy-supreme.png",
-          tag: "chicken",
-        },
-        {
-          itemName: "McCrispy",
-          itemId: "mccrispy",
-          itemPrice: 20.5,
-          itemImage: "burgers/mccrispy.png",
-          tag: "chicken",
-        },
-        {
-          itemName: "McChicken",
-          itemId: "mcchicken",
-          itemPrice: 18.9,
-          itemImage: "burgers/mcchiken.png",
-          tag: "chicken",
-        },
-        {
-          itemName: "Veggie Burger",
-          itemId: "veggie-burger",
-          itemPrice: 19.6,
-          itemImage: "burgers/veggie-burger.png",
-          tag: "vege",
-        },
-        {
-          itemName: "McDouble",
-          itemId: "mcdouble",
-          itemPrice: 9.5,
-          itemImage: "burgers/mcdouble.png",
-          tag: "beef",
-        },
-        {
-          itemName: "Cheeseburger",
-          itemId: "cheeseburger",
-          itemPrice: 6.9,
-          itemImage: "burgers/cheeseburger.png",
-          tag: "beef",
-        },
-        {
-          itemName: "Hamburger",
-          itemId: "hamburger",
-          itemPrice: 6.5,
-          itemImage: "burgers/hamburger.png",
-          tag: "beef",
-        },
-        {
-          itemName: "Jalapeno Burger",
-          itemId: "jalapenoburger",
-          itemPrice: 6.9,
-          itemImage: "burgers/jalapenoburger.png",
-          tag: "beef",
-        },
-        {
-          itemName: "Chikker",
-          itemId: "chikker",
-          itemPrice: 6.9,
-          itemImage: "burgers/chikker.png",
-          tag: "chicken",
-        },
-        {
-          itemName: "RedChikker",
-          itemId: "redchikker",
-          itemPrice: 6.9,
-          itemImage: "burgers/red-chikker.png",
-          tag: "chicken",
-        },
-      ],
-    },
-    mccafe: {
-      filters: [
-        {
-          filterName: "Mrożona",
-          filterId: "iced",
-        },
-        {
-          filterName: "Klasyczna",
-          filterId: "classic",
-        },
-        {
-          filterName: "Smakowa",
-          filterId: "flavored",
-        },
-        {
-          filterName: "Herbata",
-          filterId: "tea",
-        },
-      ],
-      categoryMenu: [
-        {
-          itemName: "Iced Raspberry & White Choco Latte",
-          itemId: "iced-raspberry-latte",
-          itemPrice: 15.9,
-          itemImage: "mccafe/iced-raspberry-latte.png",
-          tag: "iced",
-        },
-        {
-          itemName: "Iced Caramel Latte",
-          itemId: "iced-caramel-latte",
-          itemPrice: 15.9,
-          itemImage: "mccafe/iced-latte.png",
-          tag: "iced",
-        },
-        {
-          itemName: "Iced Latte",
-          itemId: "iced-latte",
-          itemPrice: 14.9,
-          itemImage: "mccafe/iced-latte.png",
-          tag: "iced",
-        },
-        {
-          itemName: "Café Latte",
-          itemId: "cafe-latte",
-          itemPrice: 12.9,
-          itemImage: "mccafe/cafe-latte.png",
-          tag: "classic",
-          size: "s",
-          capacity: 0.2,
-          options: [
-            {
-              size: "s",
-              sizeName: "small",
-              capacity: 0.2,
-              itemPrice: 12.9,
-            },
-            {
-              size: "m",
-              sizeName: "medium",
-              capacity: 0.3,
-              itemPrice: 13.9,
-            },
-            {
-              size: "l",
-              sizeName: "large",
-              capacity: 0.4,
-              itemPrice: 14.9,
-            },
-          ],
-        },
-        {
-          itemName: "Cappuccino",
-          itemId: "cappuccino",
-          itemPrice: 6.6,
-          itemImage: "mccafe/cappuccino.png",
-          tag: "classic",
-          size: "s",
-          capacity: 0.2,
-          options: [
-            {
-              size: "s",
-              sizeName: "small",
-              capacity: 0.2,
-              itemPrice: 6.6,
-            },
-            {
-              size: "m",
-              sizeName: "medium",
-              capacity: 0.3,
-              itemPrice: 11.6,
-            },
-            {
-              size: "l",
-              sizeName: "large",
-              capacity: 0.4,
-              itemPrice: 12.6,
-            },
-          ],
-        },
-        {
-          itemName: "Flat White",
-          itemId: "flat-white",
-          itemPrice: 12.9,
-          itemImage: "mccafe/flat-white.png",
-          tag: "classic",
-          size: "s",
-          capacity: 0.2,
-          options: [
-            {
-              size: "s",
-              sizeName: "small",
-              capacity: 0.2,
-              itemPrice: 12.9,
-            },
-            {
-              size: "m",
-              sizeName: "medium",
-              capacity: 0.3,
-              itemPrice: 13.9,
-            },
-          ],
-        },
-        {
-          itemName: "Kawa z mlekiem",
-          itemId: "coffee-milk",
-          itemPrice: 10.2,
-          itemImage: "mccafe/coffee-milk.png",
-          tag: "classic",
-          size: "s",
-          capacity: 0.2,
-          options: [
-            {
-              size: "s",
-              sizeName: "small",
-              capacity: 0.2,
-              itemPrice: 10.2,
-            },
-            {
-              size: "m",
-              sizeName: "medium",
-              capacity: 0.3,
-              itemPrice: 11.2,
-            },
-            {
-              size: "l",
-              sizeName: "large",
-              capacity: 0.4,
-              itemPrice: 12.2,
-            },
-          ],
-        },
-        {
-          itemName: "Kawa czarna",
-          itemId: "coffee-black",
-          itemPrice: 9.2,
-          itemImage: "mccafe/coffee-black.png",
-          tag: "classic",
-          size: "s",
-          capacity: 0.2,
-          options: [
-            {
-              size: "s",
-              sizeName: "small",
-              capacity: 0.2,
-              itemPrice: 9.2,
-            },
-            {
-              size: "m",
-              sizeName: "medium",
-              capacity: 0.3,
-              itemPrice: 10.2,
-            },
-            {
-              size: "l",
-              sizeName: "large",
-              capacity: 0.4,
-              itemPrice: 11.2,
-            },
-          ],
-        },
-        {
-          itemName: "Espresso",
-          itemId: "espresso",
-          itemPrice: 7.4,
-          itemImage: "mccafe/espresso.png",
-          tag: "classic",
-          size: "s",
-          options: [
-            {
-              size: "s",
-              sizeName: "small",
-              itemPrice: 7.4,
-            },
-            {
-              size: "l",
-              sizeName: "large",
-              itemPrice: 9.4,
-            },
-          ],
-        },
-        {
-          itemName: "Caramel Latte Macchiato",
-          itemId: "caramel-latte-macchiato",
-          itemPrice: 16.6,
-          itemImage: "mccafe/caramel-latte-macchiato.png",
-          tag: "flavored",
-        },
-        {
-          itemName: "Choco Latte Macchiato",
-          itemId: "choco-latte-macchiato",
-          itemPrice: 16.6,
-          itemImage: "mccafe/choco-latte-macchiato.png",
-          tag: "flavored",
-        },
-        {
-          itemName: "Herbata",
-          itemId: "tea",
-          itemPrice: 9.4,
-          itemImage: "mccafe/tea.png",
-          tag: "tea",
-        },
-      ],
-    },
-  });
+  const [menu, setMenu] = useState(menuData);
 
   const addToOrder = (item, category, action) => {
     // find category in menu
     const categoryItems = menu[category].categoryMenu;
 
     if (categoryItems) {
-      const itemToOrder = categoryItems.find(it => it.itemId === item.itemId);
+      const itemToOrder = categoryItems.find((it) => it.itemId === item.itemId);
 
       if (itemToOrder) {
-        setUserOrder(prevOrder => {
+        setUserOrder((prevOrder) => {
           const updatedOrder = { ...prevOrder };
 
           // checking if category exists in userOrder
@@ -405,7 +61,7 @@ const Menu = ({
 
           // find item in category
           const existingItem = existingCategory.find(
-            orderItem => orderItem.itemId === item.itemId
+            (orderItem) => orderItem.itemId === item.itemId
           );
 
           if (existingItem) {
@@ -418,11 +74,11 @@ const Menu = ({
             if (newQuantity <= 0) {
               // remove item
               updatedOrder[category] = existingCategory.filter(
-                orderItem => orderItem.itemId !== item.itemId
+                (orderItem) => orderItem.itemId !== item.itemId
               );
             } else {
               // update existing item
-              updatedOrder[category] = existingCategory.map(orderItem =>
+              updatedOrder[category] = existingCategory.map((orderItem) =>
                 orderItem.itemId === item.itemId
                   ? {
                       ...orderItem,
@@ -456,13 +112,13 @@ const Menu = ({
 
     const categories = Object.keys(userOrder);
 
-    categories.map(category =>
-      userOrder[category].map(el => (quantity += el.quantity))
+    categories.map((category) =>
+      userOrder[category].map((el) => (quantity += el.quantity))
     );
     setOrderQuantity(quantity);
   }, [userOrder]);
 
-  const handleScroll = offset => {
+  const handleScroll = (offset) => {
     scrollRef.current.scrollLeft += offset;
   };
 
@@ -547,10 +203,10 @@ const Menu = ({
                   bkg={friesBkg}
                   selectedCategory={selectedCategory}
                   active={selectedCategory === "fries" ? true : false}
-                  // onClick={() => {
-                  //     setSelectedCategory("fries");
-                  //     setFilter("");
-                  // }}
+                  onClick={() => {
+                    setSelectedCategory("fries");
+                    setFilter("");
+                  }}
                 />
               </section>
             </section>
@@ -564,7 +220,7 @@ const Menu = ({
                         filter === el.filterId ? styles.submenu_btn_active : ""
                       }`}
                       onClick={() =>
-                        setFilter(prev =>
+                        setFilter((prev) =>
                           prev !== el.filterId ? el.filterId : ""
                         )
                       }
@@ -619,7 +275,7 @@ const Menu = ({
                       const filteredItems = menu[
                         selectedCategory
                       ].categoryMenu.filter(
-                        fil => !filter || fil.tag === filter
+                        (fil) => !filter || fil.tag === filter
                       );
 
                       return filteredItems.map((el, idx) => (
@@ -631,11 +287,20 @@ const Menu = ({
                           item={el}
                           addToOrder={addToOrder}
                           setShowItemPreview={setShowItemPreview}
-                          // borderLeft={
-                          //     idx === 0 ||
-                          //     idx === 1
-                          // }
-                          borderTop={idx % 2 === 0}
+                          borderRight={
+                            filteredItems.length <= 2
+                              ? false
+                              : idx === filteredItems.length - 2
+                              ? idx % 2 === 0
+                                ? false
+                                : true
+                              : idx === filteredItems.length - 1
+                              ? false
+                              : true
+                          }
+                          borderBottom={
+                            filteredItems.length > 1 && idx % 2 === 0
+                          }
                         />
                       ));
                     })()}

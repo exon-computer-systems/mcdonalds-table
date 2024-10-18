@@ -132,6 +132,30 @@ const App = () => {
     return () => clearInterval(intervalRef.current);
   }, []);
 
+  useEffect(() => {
+    let inactivityTimeout;
+
+    const resetInactivityTimer = () => {
+      if (inactivityTimeout) clearTimeout(inactivityTimeout);
+
+      inactivityTimeout = setTimeout(() => {
+        setPlayWelcome(true);
+        setTimeout(() => setShowsScreen(false), 2000);
+      }, 12000); // 2 minutes
+    };
+
+    // Nasłuchiwanie zdarzeń użytkownika
+    window.addEventListener("click", resetInactivityTimer);
+    window.addEventListener("touch", resetInactivityTimer);
+
+    // Resetowanie timera za każdym razem, gdy komponent się odmontuje
+    return () => {
+      if (inactivityTimeout) clearTimeout(inactivityTimeout);
+      window.removeEventListener("click", resetInactivityTimer);
+      window.removeEventListener("touch", resetInactivityTimer);
+    };
+  });
+
   return (
     <>
       {playWelcome && <WelcomePage setPlayWelcome={setPlayWelcome} />}

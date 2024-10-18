@@ -23,6 +23,7 @@ const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
   const [activeChatBox, setActiveChatBox] = useState(false);
   const [activePanel, setActivePanel] = useState(false);
   const [userOrder, setUserOrder] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [orderQuantity, setOrderQuantity] = useState(0);
 
   const [activeComponent, setActiveComponent] = useState("menu");
@@ -33,7 +34,7 @@ const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
   const close = () => {
     setActivePanel(false);
   };
-  const switchComponent = componentName => {
+  const switchComponent = (componentName) => {
     switch (componentName) {
       case "menu":
         setActiveComponent("menu");
@@ -65,7 +66,7 @@ const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
     }
   };
 
-  const handleClosePopup = e => {
+  const handleClosePopup = (e) => {
     e.stopPropagation();
     setActiveChatBox(false);
   };
@@ -135,6 +136,7 @@ const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
             activeChatBox={activeChatBox}
             setActiveChatBox={setActiveChatBox}
             isSingle={isSingle}
+            setSelectedCategory={setSelectedCategory}
           />
           <Navigation
             switchComponent={switchComponent}
@@ -149,6 +151,8 @@ const QuarterScreen = ({ id, reset, enlarge, size, isReduced, isSingle }) => {
                 setUserOrder={setUserOrder}
                 showItemPreview={showItemPreview}
                 setShowItemPreview={setShowItemPreview}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
               />
             )}
             {activeComponent === "cart" && (
